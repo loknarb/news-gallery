@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* #f6f6f6  -- light gray looks cutie */ 
+/*  TODO light blue, light grey,  */
 html,
 body {
   padding: 0;
