@@ -15,13 +15,21 @@ const Search = () => {
   };
   console.log(`w-${width}`);
   return (
-    <form className='flex items-center' onSubmit={onSubmitChangeHandler}>
-      <input
-        onBlur={searchBarWidthBlurHandler}
-        onClick={searchBarWidthHandler}
-        className={`border border-slate-200 rounded-md w-${width} p-1 pr-8 active:shadow`}
-        placeholder='Article'></input>
-
+    <form className='flex items-center border-none' onSubmit={onSubmitChangeHandler}>
+      {width === 48 ? (
+        <input
+          onBlur={searchBarWidthBlurHandler}
+          onClick={searchBarWidthHandler}
+          className='border border-slate-200 rounded-md w-48 p-1 pr-8'
+        />
+      ) : (
+        <input
+          onBlur={searchBarWidthBlurHandler}
+          onClick={searchBarWidthHandler}
+          className='border border-slate-200 rounded-md w-24 p-1 pr-8'
+          placeholder='Article'
+        />
+      )}
       <Button className='-ml-8'>
         <SearchLogo />
       </Button>
