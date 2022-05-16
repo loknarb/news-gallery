@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from './Search';
-import MenuLogo from './MenuLogo';
+import MenuLogo from '../UI/MenuLogo';
 import Image from 'next/image';
 import icon from '../../public/favicon.png';
 import Button from '../UI/Button';

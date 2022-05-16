@@ -1,6 +1,6 @@
 import React from 'react';
 import NewsList from './NewsList';
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 
 const MainDesktop = () => {
   return (

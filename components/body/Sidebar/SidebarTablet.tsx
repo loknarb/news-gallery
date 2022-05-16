@@ -1,12 +1,13 @@
 import React from 'react';
-import useSideBar from '../hooks/useSideBarHook';
-import Button from '../UI/Button';
-import RightArrow from '../UI/RightArrow';
+import useSideBar from '../../hooks/useSideBarHook';
+import Button from '../../UI/Button';
+import RightArrow from '../../UI/RightArrow';
 import Discover from './Discover';
 import Manage from './Manage';
 
-const SidebarMobile = () => {
+const SidebarTablet = () => {
   const { hideSideBar } = useSideBar((state) => state);
+
   return (
     <>
       <div
@@ -25,4 +26,4 @@ const SidebarMobile = () => {
   );
 };
 
-export default SidebarMobile;
+export default SidebarTablet;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MenuLogo from './MenuLogo';
+import MenuLogo from '../UI/MenuLogo';
 import Image from 'next/image';
 import icon from '../../public/favicon.png';
 import SearchMobile from './SearchMobile';

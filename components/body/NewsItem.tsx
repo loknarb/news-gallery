@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '../UI/Card';
-import Bookmark from './Bookmark';
-import Discussion from './Discussion';
-import Upvote from './Upvote';
+import Bookmark from '../UI/Bookmark';
+import Discussion from '../UI/Discussions';
+import Upvote from '../UI/Upvote';
 
 const NewsItem = () => {
   return (

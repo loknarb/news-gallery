@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
 import SearchLogo from '../UI/SearchLogo';
