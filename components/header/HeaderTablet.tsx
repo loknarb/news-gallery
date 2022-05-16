@@ -3,11 +3,16 @@ import Search from './Search';
 import MenuLogo from './MenuLogo';
 import Image from 'next/image';
 import icon from '../../public/favicon.png';
+import Button from '../UI/Button';
+import useSideBar from '../hooks/useSideBarHook';
 const HeaderMobile = () => {
+  const { showSideBar } = useSideBar((state) => state);
   return (
     <>
       <div className='flex-1'>
-        <MenuLogo />
+        <Button onClick={() => showSideBar()}>
+          <MenuLogo />
+        </Button>
       </div>
       <div className='flex justify-center flex-1'>
         <Image width={'28px'} height={'28px'} src={icon} />
