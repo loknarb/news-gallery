@@ -1,8 +1,11 @@
 import React from 'react';
-import arrowUp from '../../public/arrow-up.svg';
 
 const Upvote = () => {
-  return <button>{arrowUp}</button>;
+  return (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -4.5 24 24' width='24' fill='currentColor'>
+      <path d='M6 4.071l-3.95 3.95A1 1 0 0 1 .636 6.607L6.293.95a.997.997 0 0 1 1.414 0l5.657 5.657A1 1 0 0 1 11.95 8.02L8 4.07v9.586a1 1 0 1 1-2 0V4.07z'></path>
+    </svg>
+  );
 };
 
 export default Upvote;
