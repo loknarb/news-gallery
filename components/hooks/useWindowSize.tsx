@@ -16,13 +16,15 @@ function useWindowSize(): Size {
 
   useEffect(() => {
     // Handler to call on window resize
-    const handleResize = () => {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
+    function handleResize() {
+      if (typeof window !== 'undefined') {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    }
 
     // Add event listener
     window.addEventListener('resize', handleResize);

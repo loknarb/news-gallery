@@ -6,26 +6,21 @@ import MenuLogo from './MenuLogo';
 import Search from './Search';
 
 import useDebounce from '../hooks/useDebounce';
+import HeaderTablet from './HeaderTablet';
+import HeaderMobile from './HeaderMobile';
+import HeaderDesktop from './HeaderDesktop';
 
 const Header = () => {
   const { width } = useWindowSize();
   const debouncedValue = useDebounce<number | undefined>(width, 500);
-  console.log(width);
-  console.log(debouncedValue);
-  // TODO search bar
   // TODO left side company icon
   // TODO header about 55px
   return (
-    <header className='w-full flex z-10 flex-row top-0 fixed items-center h-14 '>
-      <MenuLogo />
-      <div className='flex'>
-        <Image width={'28px'} height={'28px'} src={icon} />
-        <h1 className='text-2xl'>Tech News</h1>
-      </div>
-      <div className=''>
-        <Search />
-      </div>
-    </header>
+    <>
+      {width! >= 992 ? <HeaderDesktop /> : ''}
+      {width! > 768 && width! < 992 ? <HeaderTablet /> : ''}
+      {width! <= 768 ? <HeaderMobile /> : ''}
+    </>
   );
 };
 
