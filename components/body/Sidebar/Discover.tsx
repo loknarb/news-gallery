@@ -11,20 +11,25 @@ const Discover = () => {
       <ul className='list-none'>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <Popular />
-            <span></span>
-            Popular
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'>
+              <Popular />
+            </span>
+            <span>Popular</span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <Upvote />
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-green-300'>
+              <Upvote />
+            </span>
             <span>Most Upvoted</span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <Discussions />
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-fuchsia-300'>
+              <Discussions />
+            </span>
             <span>Best Discussions</span>
           </Button>
         </List>

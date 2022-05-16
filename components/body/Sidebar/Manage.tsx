@@ -12,19 +12,25 @@ const Manage = () => {
       <ul className='list-none'>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <Bookmark />
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-orange-300'>
+              <Bookmark />
+            </span>
             <span>Bookmarks</span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <ReadingHistory />
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-blue-300'>
+              <ReadingHistory />
+            </span>
             <span>Reading History</span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full'>
-            <Settings />
+            <span className='w-4 flex align-middle mt-0.5 mr-1'>
+              <Settings />
+            </span>
             <span>Settings</span>
           </Button>
         </List>
