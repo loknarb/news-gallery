@@ -16,11 +16,11 @@ const Header = () => {
   // TODO left side company icon
   // TODO header about 55px
   return (
-    <>
+    <header className='w-full flex z-10 flex-row top-0 fixed items-center h-14 px-4 justify-between'>
       {width! >= 992 ? <HeaderDesktop /> : ''}
       {width! > 768 && width! < 992 ? <HeaderTablet /> : ''}
       {width! <= 768 ? <HeaderMobile /> : ''}
-    </>
+    </header>
   );
 };
 
