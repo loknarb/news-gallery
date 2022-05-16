@@ -13,7 +13,6 @@ const Search = () => {
   const onSubmitChangeHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  console.log(`w-${width}`);
   return (
     <form className='flex items-center border-none' onSubmit={onSubmitChangeHandler}>
       {width === 48 ? (

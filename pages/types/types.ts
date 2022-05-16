@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
 
-export interface NewsItem {
+export interface NewsItemType {
   uuid: string;
   title: string;
   description: string;
@@ -8,12 +8,13 @@ export interface NewsItem {
   url: string;
   image_url: StaticImageData | string;
   source: string;
+  categories: string | string[];
 }
 
 export interface NewsItemProps {
-  newsItems: NewsItem[];
+  newsItems: NewsItemType[];
 }
 
 export interface NewsItemProp {
-  specificNews: NewsItem;
+  specificNews: NewsItemType;
 }
