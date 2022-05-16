@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 
 const MainDesktop = () => {
   return (
-    <div className='flex flex-row md:pl-52 pt-14 h-50'>
+    <div className='flex flex-row md:pl-52 pt-14 h-screen'>
       <Sidebar />
       <NewsList />
     </div>
