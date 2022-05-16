@@ -4,6 +4,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'phone': '480px',
+      'tablet': '768px',
+      'desktop': '1280px',
+      
+    },
     letterSpacing: {
       tight: '-.015em'
     },

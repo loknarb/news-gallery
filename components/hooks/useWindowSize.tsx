@@ -5,6 +5,7 @@ interface Size {
   width: number | undefined;
   height: number | undefined;
 }
+
 function useWindowSize(): Size {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
@@ -15,13 +16,13 @@ function useWindowSize(): Size {
 
   useEffect(() => {
     // Handler to call on window resize
-    function handleResize() {
+    const handleResize = () => {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }
+    };
 
     // Add event listener
     window.addEventListener('resize', handleResize);
