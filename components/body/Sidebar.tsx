@@ -3,6 +3,8 @@ import useSideBar from '../hooks/useSideBarHook';
 import Button from '../UI/Button';
 import LeftArrow from '../UI/LeftArrow';
 import RightArrow from '../UI/RightArrow';
+import Discover from './Discover';
+import Manage from './Manage';
 
 const Sidebar = () => {
   const [hovered, setHovered] = useState(false);
@@ -21,6 +23,8 @@ const Sidebar = () => {
       ) : (
         ''
       )}
+      <Discover />
+      <Manage />
     </aside>
   );
 };

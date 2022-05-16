@@ -2,6 +2,8 @@ import React from 'react';
 import useSideBar from '../hooks/useSideBarHook';
 import Button from '../UI/Button';
 import RightArrow from '../UI/RightArrow';
+import Discover from './Discover';
+import Manage from './Manage';
 
 const SidebarTablet = () => {
   const { hideSideBar } = useSideBar((state) => state);
@@ -17,7 +19,8 @@ const SidebarTablet = () => {
             <RightArrow />
           </Button>
         </div>
-        We want to map these
+        <Discover />
+        <Manage />
       </aside>
     </>
   );
