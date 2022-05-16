@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useSideBar from '../hooks/useSideBarHook';
 import Button from '../UI/Button';
+import LeftArrow from '../UI/LeftArrow';
 import RightArrow from '../UI/RightArrow';
 
 const Sidebar = () => {
@@ -12,9 +13,9 @@ const Sidebar = () => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {hovered ? (
-        <div className='self-end' onClick={() => hideSideBar()}>
-          <Button>
-            <RightArrow />
+        <div className='self-end -mr-7' onClick={() => hideSideBar()}>
+          <Button className='bg-white text-red-200 rounded-sm'>
+            <LeftArrow />
           </Button>
         </div>
       ) : (
