@@ -6,6 +6,7 @@ import Upvote from '../UI/Upvote';
 import { NewsItemType } from '../../pages/types/types';
 import Image from 'next/image';
 import ArticleDate from './ArticleDate';
+import Link from 'next/link';
 
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
@@ -20,7 +21,7 @@ const NewsItem: React.FC<{
   return (
     <>
       <Card>
-        <a href={url}>
+        <Link className='cursor-pointer' href={url}>
           <article className='w-full h-80 flex flex-col justify-between'>
             <a href={url}>{source}</a>
             <h3 className='font-bold break-words text-gray-900 text-lg line-clamp-3 mx-4'>
@@ -48,7 +49,7 @@ const NewsItem: React.FC<{
               </span>
             </div>
           </article>
-        </a>
+        </Link>
       </Card>
     </>
   );
