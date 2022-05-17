@@ -9,6 +9,7 @@ export interface NewsItemType {
   image_url: StaticImageData | string;
   source: string;
   categories: string | string[];
+  time: string;
 }
 
 export interface NewsItemProps {

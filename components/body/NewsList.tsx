@@ -8,18 +8,21 @@ const NewsList = () => {
 
   return (
     <main className='w-full h-full grid grid-cols-4 gap-3 '>
-      {testData.data.map(({ uuid, categories, title, description, url, image_url, source }) => (
-        <NewsItem
-          key={uuid}
-          uuid={uuid}
-          categories={categories}
-          title={title}
-          description={description}
-          url={url}
-          image_url={image_url}
-          source={source}
-        />
-      ))}
+      {testData.data.map(
+        ({ uuid, categories, title, description, url, image_url, source, published_at }) => (
+          <NewsItem
+            key={uuid}
+            uuid={uuid}
+            categories={categories}
+            title={title}
+            description={description}
+            url={url}
+            image_url={image_url}
+            source={source}
+            time={published_at}
+          />
+        )
+      )}
     </main>
   );
 };
