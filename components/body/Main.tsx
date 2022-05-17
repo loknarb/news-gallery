@@ -1,12 +1,12 @@
+import axios from 'axios';
 import React from 'react';
+import { NewsItemProps, NewsItemType } from '../../pages/types/types';
 import useWindowSize from '../hooks/useWindowSize';
 import MainDesktop from './MainDesktop';
 import MainMobile from './MainMobile';
 import MainTablet from './MainTablet';
 
-const Main: React.FC = () => {
-  // TODO sidebar
-  // TODO removed on mobile show on Laptop
+const Main: React.FC<{ newsItems: NewsItemType[] }> = ({ newsItems }) => {
   const { width } = useWindowSize();
   return (
     <>
