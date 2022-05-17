@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import useSideBar from '../../hooks/useSideBarHook';
 import Button from '../../UI/Button';
 import LeftArrow from '../../UI/LeftArrow';
-import RightArrow from '../../UI/RightArrow';
 import Discover from './Discover';
 import Manage from './Manage';
 
@@ -11,7 +10,7 @@ const Sidebar = () => {
   const { hideSideBar } = useSideBar((state) => state);
   return (
     <aside
-      className='flex-col flex fixed left-0 w-60 border-r bg-slate-700 border-r-slate-400 h-screen p-4'
+      className='flex-col flex fixed left-0 w-60 border-r-2 bg-slate-700 border-r-slate-300 h-screen p-4'
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {hovered ? (
