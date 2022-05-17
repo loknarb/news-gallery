@@ -4,9 +4,11 @@ import Sidebar from './Sidebar/Sidebar';
 
 const MainDesktop = () => {
   return (
-    <div className='flex flex-row md:pl-52 pt-14 h-screen'>
+    <div className='flex flex-row md:pl-52 pt-14 bg-slate-100'>
       <Sidebar />
-      <NewsList />
+      <main className='pl-96'>
+        <NewsList />
+      </main>
     </div>
   );
 };

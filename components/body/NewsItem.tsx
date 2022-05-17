@@ -16,17 +16,23 @@ const NewsItem: React.FC<{
   source: NewsItemType['source'];
 }> = ({ uuid, categories, title, description, url, image_url, source }) => {
   return (
-    <li>
+    <>
       <Card>
-        <span>{title}</span>
-        <span>{description}</span>
-        <Image width={100} height={100} src={image_url} />
-        <a href={url}>{source}</a>
-        <Upvote />
-        <Discussion />
-        <Bookmark />
+        <div className='w-full h-full flex flex-col'>
+          <span>{title}</span>
+          {/* <span>{description}</span> */}
+          <div>
+            <Image width={100} height={100} src={image_url} />
+          </div>
+          <a href={url}>{source}</a>
+          <div className='flex flex-row justify-around'>
+            <Upvote />
+            <Discussion />
+            <Bookmark />
+          </div>
+        </div>
       </Card>
-    </li>
+    </>
   );
 };
 
