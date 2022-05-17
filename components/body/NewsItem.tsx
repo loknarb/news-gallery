@@ -20,32 +20,35 @@ const NewsItem: React.FC<{
   return (
     <>
       <Card>
-        <article className='w-full h-80 flex flex-col justify-between cursor-pointer'>
-          {/* <a href={url} className='w-full h-full inset-0 absolute'></a> */}
-          <h3 className='font-bold break-words text-gray-900 truncate text-lg line-clamp-3 '>
-            {title}
-          </h3>
-          <div className='flex-1'></div>
-          <ArticleDate time={time} />
-          {/* <span>{description}</span> */}
-          <div className=''>
-            <div className='relative h-40 w-full object-cover border rounded-md'>
-              <Image layout='fill' src={image_url} />
+        <a href={url}>
+          <article className='w-full h-80 flex flex-col justify-between'>
+            <a href={url}>{source}</a>
+            <h3 className='font-bold break-words text-gray-900 text-lg line-clamp-3 mx-4'>
+              {title}
+            </h3>
+            <div className='flex-1'></div>
+            <div className='mx-4 text-xs text-gray-900 mb-1'>
+              <ArticleDate time={time} />
             </div>
-          </div>
-          <a href={url}>{source}</a>
-          <div className='flex flex-row justify-around justify-self-end'>
-            <span className='text-green-300'>
-              <Upvote />
-            </span>
-            <span className='text-fuchsia-300'>
-              <Discussion />
-            </span>
-            <span className='text-orange-300'>
-              <Bookmark />
-            </span>
-          </div>
-        </article>
+            {/* <span>{description}</span> */}
+            <div className=''>
+              <div className='relative h-40 w-full object-cover border rounded-md'>
+                <Image layout='fill' src={image_url} />
+              </div>
+            </div>
+            <div className='flex flex-row justify-around justify-self-end mt-2'>
+              <span className='text-gray-400 hover:text-green-300 z-10'>
+                <Upvote />
+              </span>
+              <span className='text-gray-400 hover:text-fuchsia-300 z-10'>
+                <Discussion />
+              </span>
+              <span className='text-gray-400 hover:text-orange-300 z-10'>
+                <Bookmark />
+              </span>
+            </div>
+          </article>
+        </a>
       </Card>
     </>
   );

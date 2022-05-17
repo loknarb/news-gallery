@@ -17,7 +17,7 @@ const NewsList = () => {
   // console.log(cards);
   return (
     <main
-      className='w-full h-full grid gap-3 justify-center'
+      className='w-full h-full grid gap-6 justify-center'
       style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
       {testData.data.map(
         ({ uuid, categories, title, description, url, image_url, source, published_at }) => (
