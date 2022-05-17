@@ -20,24 +20,35 @@ const NewsItem: React.FC<{
   return (
     <>
       <Card>
-        <div className='w-full h-full flex flex-col justify-between'>
-          <span>{title}</span>
+        <article className='w-full h-80 flex flex-col justify-between cursor-pointer'>
+          {/* <a href={url} className='w-full h-full inset-0 absolute'></a> */}
+          <h3 className='font-bold break-words text-gray-900 truncate text-lg line-clamp-3 '>
+            {title}
+          </h3>
           <div className='flex-1'></div>
           <ArticleDate time={time} />
           {/* <span>{description}</span> */}
-          <div className='h-40 object-cover'>
-            <Image width={100} height={51} layout='responsive' src={image_url} />
+          <div className=''>
+            <div className='relative h-40 w-full object-cover border rounded-md'>
+              <Image layout='fill' src={image_url} />
+            </div>
           </div>
           <a href={url}>{source}</a>
           <div className='flex flex-row justify-around justify-self-end'>
-            <Upvote />
-            <Discussion />
-            <Bookmark />
+            <span className='text-green-300'>
+              <Upvote />
+            </span>
+            <span className='text-fuchsia-300'>
+              <Discussion />
+            </span>
+            <span className='text-orange-300'>
+              <Bookmark />
+            </span>
           </div>
-        </div>
+        </article>
       </Card>
     </>
   );
 };
 
-export default NewsItem;
+export default React.memo(NewsItem);

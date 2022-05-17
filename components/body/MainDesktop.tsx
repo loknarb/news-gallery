@@ -6,7 +6,7 @@ const MainDesktop = () => {
   return (
     <div className='flex flex-row md:pl-52 pt-14 bg-slate-100'>
       <Sidebar />
-      <main className='pl-96 pr-40 pt-8'>
+      <main className='pl-64 pr-6 pt-8 w-full mx-auto '>
         <NewsList />
       </main>
     </div>

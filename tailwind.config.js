@@ -8,7 +8,8 @@ module.exports = {
       'phone': '480px',
       'tablet': '768px',
       'desktop': '1280px',
-      
+      'breakDesktopXS': '1148px',      
+      'breakDesktopXXS': '992px',      
     },
     letterSpacing: {
       tight: '-.015em'
@@ -19,5 +20,7 @@ module.exports = {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ],
 }

@@ -1,13 +1,24 @@
 import React from 'react';
 import testData from '../../pages/api/fakeNewsApi.json';
-import { NewsItemType } from '../../pages/types/types';
-import List from '../UI/List';
+import useWindowSize from '../hooks/useWindowSize';
 import NewsItem from './NewsItem';
 const NewsList = () => {
-  // console.log(testData);
-
+  let cards = 4;
+  // const { width } = useWindowSize();
+  // if (width! > 1920) {
+  //   cards = 4;
+  // }
+  // if (width! < 1668) {
+  //   cards = 3;
+  // }
+  // if (width! < 1360) {
+  //   cards = 2;
+  // }
+  // console.log(cards);
   return (
-    <main className='w-full h-full grid grid-cols-4 gap-3 '>
+    <main
+      className='w-full h-full grid gap-3 justify-center'
+      style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
       {testData.data.map(
         ({ uuid, categories, title, description, url, image_url, source, published_at }) => (
           <NewsItem
