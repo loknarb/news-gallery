@@ -12,7 +12,9 @@ module.exports = {
       'breakDesktopXXS': '992px',      
     },
     letterSpacing: {
-      tight: '-.015em'
+      tight: '-.015em',
+      wide: '0.025em',
+      wider: '0.07em' 
     },
     extend: {
       height: {

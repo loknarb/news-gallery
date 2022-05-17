@@ -10,7 +10,7 @@ const HeaderMobile = () => {
   return (
     <>
       <div className='flex-1'>
-        <Button onClick={() => showSideBar()}>
+        <Button className='text-slate-200' onClick={() => showSideBar()}>
           <MenuLogo />
         </Button>
       </div>

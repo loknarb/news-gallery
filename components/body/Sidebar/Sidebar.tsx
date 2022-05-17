@@ -11,12 +11,12 @@ const Sidebar = () => {
   const { hideSideBar } = useSideBar((state) => state);
   return (
     <aside
-      className='flex-col flex fixed left-0 w-60 border-r bg-slate-100 border-r-slate-400 h-screen p-4'
+      className='flex-col flex fixed left-0 w-60 border-r bg-slate-700 border-r-slate-400 h-screen p-4'
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {hovered ? (
         <div className='self-end -mr-7 absolute' onClick={() => hideSideBar()}>
-          <Button className='bg-white text-red-200 rounded-sm'>
+          <Button className='bg-slate-100 text-slate-700 border-2 rounded border-slate-700'>
             <LeftArrow />
           </Button>
         </div>

@@ -32,8 +32,8 @@ const NewsItem: React.FC<{
             </div>
             {/* <span>{description}</span> */}
             <div className=''>
-              <div className='relative h-40 w-full object-cover border rounded-md'>
-                <Image layout='fill' src={image_url} />
+              <div className='relative h-40 w-full border rounded-lg overflow-hidden'>
+                <Image layout='fill' className='object-cover' src={image_url} />
               </div>
             </div>
             <div className='flex flex-row justify-around justify-self-end mt-2'>

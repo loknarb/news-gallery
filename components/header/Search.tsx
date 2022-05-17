@@ -19,13 +19,13 @@ const Search = () => {
         <input
           onBlur={searchBarWidthBlurHandler}
           onClick={searchBarWidthHandler}
-          className='border border-slate-200 rounded-md w-48 p-1 pr-8  focus-visible:outline-none focus:shadow'
+          className='border border-slate-200 rounded-md w-48 p-1 pr-8  shadow-white focus-visible:outline-none focus:shadow'
         />
       ) : (
         <input
           onBlur={searchBarWidthBlurHandler}
           onClick={searchBarWidthHandler}
-          className='border border-slate-200 rounded-md w-24 p-1 pr-8 active:shadow hover:shadow focus:shadow focus-visible:outline-none'
+          className='border border-slate-200 rounded-md w-24 p-1 pr-8 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none'
           placeholder='Article'
         />
       )}

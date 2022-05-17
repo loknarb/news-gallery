@@ -10,9 +10,7 @@ const Button: React.FC<
   // })
   ({ children, className, ...rest }) => {
     return (
-      <button
-        {...rest}
-        className={`${className} focus:outline-0 text-gray-400 border-t-neutral-200`}>
+      <button {...rest} className={`${className} focus:outline-0 text-gray-400`}>
         {children}
       </button>
     );

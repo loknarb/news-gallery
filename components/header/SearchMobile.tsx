@@ -22,14 +22,14 @@ const SearchMobile: React.FC<{
         <>
           <input
             onBlur={onInputHideHandler}
-            className='border border-slate-200 rounded-md w-60 p-1 pr-8 active:shadow hover:shadow focus:shadow focus-visible:outline-none'
+            className='border border-slate-200 rounded-md w-60 p-1 pr-8 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none'
             placeholder='Article'></input>
           <Button className='-ml-8' onClick={onInputHideHandler}>
             <CloseLogo />
           </Button>
         </>
       ) : (
-        <Button className='-ml-8' onClick={onInputOpenHandler}>
+        <Button className='-ml-8 text-slate-200' onClick={onInputOpenHandler}>
           <SearchLogo />
         </Button>
       )}

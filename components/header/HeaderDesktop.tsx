@@ -8,7 +8,9 @@ const HeaderDesktop = () => {
     <>
       <div className='flex'>
         <Image className='px-4' width={'28px'} height={'28px'} src={icon} />
-        <h1 className='text-2xl px-2 italic'>Tech News</h1>
+        <h1 className='text-2xl px-4 italic font-bold text-slate-200 font-serif tracking-tight'>
+          Tech News
+        </h1>
       </div>
       <div>
         <Search />
