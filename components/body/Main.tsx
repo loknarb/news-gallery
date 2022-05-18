@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React from 'react';
-import { NewsItemProps, NewsItemType } from '../../pages/types/types';
 import useWindowSize from '../hooks/useWindowSize';
 import MainDesktop from './MainDesktop';
 import MainMobile from './MainMobile';
