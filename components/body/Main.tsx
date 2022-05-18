@@ -6,7 +6,7 @@ import MainDesktop from './MainDesktop';
 import MainMobile from './MainMobile';
 import MainTablet from './MainTablet';
 
-const Main: React.FC<{ newsItems: NewsItemType[] }> = ({ newsItems }) => {
+const Main: React.FC = () => {
   const { width } = useWindowSize();
   return (
     <>
