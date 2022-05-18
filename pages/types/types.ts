@@ -10,6 +10,9 @@ export interface NewsItemType {
   source: string;
   categories: string | string[];
   published_at: string;
+  upvote?: boolean;
+  upvoteAmount?: number;
+  bookmark?: boolean;
 }
 
 export interface NewsItemProps {
