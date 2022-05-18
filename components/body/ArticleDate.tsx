@@ -1,8 +1,10 @@
 import React from 'react';
 import { NewsItemType } from '../../pages/types/types';
 
-const ArticleDate: React.FC<{ time: NewsItemType['time'] }> = ({ time }) => {
-  const dateArticle = time.split('T');
+const ArticleDate: React.FC<{ published_at: NewsItemType['published_at'] }> = ({
+  published_at,
+}) => {
+  const dateArticle = published_at.split('T');
   const date = dateArticle[0];
   const parsed = Date.parse(date);
 

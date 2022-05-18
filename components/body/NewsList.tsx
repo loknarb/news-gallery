@@ -1,10 +1,8 @@
 import React from 'react';
-import testData from '../../pages/api/fakeNewsApi.json';
 import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 const NewsList = () => {
   const { articles } = useArticles((state) => state);
-  console.log(articles);
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'
@@ -20,7 +18,7 @@ const NewsList = () => {
             url={url}
             image_url={image_url}
             source={source}
-            time={published_at}
+            published_at={published_at}
           />
         )
       )}

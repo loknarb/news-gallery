@@ -29,6 +29,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
+  const x = axios.get('https://logo.clearbit.com/google.com');
+  console.log(x);
   // const collectionAPI = [
   //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=javascript&categories=business,tech&limit=5`,
   //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=typescript&categories=business,tech&limit=5`,
@@ -77,7 +79,9 @@ export const getStaticProps: GetStaticProps = async () => {
   //   }
   // );
   // console.log(x);
+  await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection.find({}, { projection: { _id: 0 } }).toArray();
+
   const articleData = JSON.stringify(response);
   const newsItems = JSON.parse(articleData);
   mongo.close();
