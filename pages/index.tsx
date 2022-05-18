@@ -7,7 +7,8 @@ import { NewsItemProps } from './types/types';
 import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
-  newsItems = useArticles((state) => state.articles);
+  useArticles((state) => (state.articles = newsItems));
+  // console.log(newsItems);
   return (
     <>
       <Head>
@@ -78,8 +79,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // console.log(x);
   const response = await newsArticleCollection.find({}, { projection: { _id: 0 } }).toArray();
   const articleData = JSON.stringify(response);
-  const newsItems = JSON.stringify(articleData);
-  console.log(newsItems);
+  const newsItems = JSON.parse(articleData);
   mongo.close();
 
   return {
