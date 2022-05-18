@@ -7,9 +7,8 @@ import { NewsItemType } from '../../pages/types/types';
 import Image from 'next/image';
 import ArticleDate from './ArticleDate';
 import Link from 'next/link';
-const useElement = (initialValue: Element) => {
-  useState<Element>(initialValue);
-};
+import VerticalDots from '../UI/VerticalDots';
+import Button from '../UI/Button';
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
   categories: NewsItemType['categories'];
@@ -21,17 +20,33 @@ const NewsItem: React.FC<{
   published_at: NewsItemType['published_at'];
 }> = ({ uuid, categories, title, description, url, image_url, source, published_at }) => {
   const domain = new URL(url).hostname.replace('www.', '');
-
+  const [hovered, setHovered] = useState(false);
   return (
     <>
       <Card>
         <Link className='cursor-pointer' href={url}>
-          <article className='w-full h-80 flex flex-col justify-between'>
-            <Link href={url}>
-              <div className='mx-4 mt-2 relative h-6 w-6  rounded-full overflow-hidden'>
-                <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} />
+          <article
+            className='w-full h-80 flex flex-col justify-between'
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}>
+            <div className='flex justify-between align-middle mt-2'>
+              <Link href={url}>
+                <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
+                  <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} />
+                </div>
+              </Link>
+              <div className='h-6'>
+                {hovered ? (
+                  <Button className='z-20'>
+                    <span className='text-gray-900 flex w-6'>
+                      <VerticalDots />
+                    </span>
+                  </Button>
+                ) : (
+                  ''
+                )}
               </div>
-            </Link>
+            </div>
             <h3 className='font-bold break-words text-gray-900 text-base line-clamp-3 mx-4'>
               {title}
             </h3>
@@ -45,13 +60,13 @@ const NewsItem: React.FC<{
               </div>
             </div>
             <div className='flex flex-row justify-around justify-self-end mt-2'>
-              <span className='text-gray-900 hover:text-green-300 z-10'>
+              <span className='text-gray-900 hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'>
                 <Upvote />
               </span>
-              <span className='text-gray-900 hover:text-fuchsia-300 z-10'>
+              <span className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
                 <Discussion />
               </span>
-              <span className='text-gray-900 hover:text-orange-300 z-10'>
+              <span className='text-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10'>
                 <Bookmark />
               </span>
             </div>

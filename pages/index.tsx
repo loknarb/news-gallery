@@ -6,9 +6,18 @@ import { Document, MongoClient, UpdateResult } from 'mongodb';
 import { NewsItemProps } from './types/types';
 import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
+import { useEffect } from 'react';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
-  useArticles((state) => (state.articles = newsItems));
+  const setter = useArticles((state) => state.setter);
+  useEffect(() => {
+    setter(newsItems);
+
+    return () => {
+      setter(newsItems);
+    };
+  }, []);
   // console.log(newsItems);
+
   return (
     <>
       <Head>

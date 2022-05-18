@@ -2,14 +2,17 @@ import { NewsItemType } from '../../pages/types/types';
 import create from 'zustand';
 const useArticles = create<{
   articles: NewsItemType[];
+  filteredArticles: NewsItemType[];
   upvote: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
   bookmark: (uuid: NewsItemType['uuid']) => void;
   hideArticle: (uuid: NewsItemType['uuid']) => void;
   filterSource: (source: NewsItemType['source']) => void;
   search: (input: string) => void;
+  setter: (init: NewsItemType[]) => void;
 }>((set) => ({
   articles: [],
+  filteredArticles: [],
   upvote: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleUpvote(state.articles, uuid),
@@ -32,7 +35,12 @@ const useArticles = create<{
     })),
   search: (input: string) =>
     set((state) => ({
-      articles: handleSearch(state.articles, input),
+      filteredArticles: handleSearch(state.articles, input),
+    })),
+  setter: (init: NewsItemType[]) =>
+    set((state) => ({
+      articles: [...init],
+      filteredArticles: [...init],
     })),
 }));
 
@@ -57,7 +65,13 @@ const handleHideArticle = (articles: NewsItemType[], uuid: NewsItemType['uuid'])
 const handleFilterSource = (articles: NewsItemType[], source: NewsItemType['source']) => {
   return articles.filter((article) => article.source !== source);
 };
-const handleSearch = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
-  return [...articles];
+const handleSearch = (articles: NewsItemType[], input: string) => {
+  console.log(input);
+  if (input === '') {
+    return [...articles];
+  }
+  return articles.filter((article) =>
+    Object.values(article).join(' ').toLowerCase().includes(input.toLowerCase())
+  );
 };
 export default useArticles;

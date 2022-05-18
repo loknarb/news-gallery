@@ -2,12 +2,12 @@ import React from 'react';
 import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 const NewsList = () => {
-  const { articles } = useArticles((state) => state);
+  const { filteredArticles } = useArticles((state) => state);
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'
       style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
-      {articles.map(
+      {filteredArticles.map(
         ({ uuid, categories, title, description, url, image_url, source, published_at }) => (
           <NewsItem
             key={uuid}
@@ -26,4 +26,4 @@ const NewsList = () => {
   );
 };
 
-export default React.memo(NewsList);
+export default NewsList;
