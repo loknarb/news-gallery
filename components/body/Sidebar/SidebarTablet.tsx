@@ -13,9 +13,9 @@ const SidebarTablet = () => {
       <div
         className='fixed w-full h-full bg-zinc-800 bg-opacity-50 z-30 cursor-pointer inset-0 '
         onClick={() => hideSideBar()}></div>
-      <aside className='p-4 h-full z-40 w-60 flex-col flex fixed left-0 bg-slate-700 top-0 border-r border-r-slate-400'>
+      <aside className='p-4 h-full z-40 w-60 flex-col flex fixed left-0 bg-slate-700 top-0 shadow-slate-900 shadow-lg'>
         <div className='self-end' onClick={() => hideSideBar()}>
-          <Button>
+          <Button className='text-slate-100 '>
             <RightArrow />
           </Button>
         </div>
