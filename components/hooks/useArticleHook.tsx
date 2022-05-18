@@ -1,5 +1,5 @@
 import { NewsItemType } from '../../pages/types/types';
-import create from 'zustand/react';
+import create from 'zustand';
 const useArticles = create<{
   articles: NewsItemType[];
   upvote: (uuid: NewsItemType['uuid']) => void;
