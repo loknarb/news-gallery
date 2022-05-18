@@ -5,7 +5,9 @@ import Header from '../components/header/Header';
 import { Document, MongoClient, UpdateResult } from 'mongodb';
 import { NewsItemProps } from './types/types';
 import axios from 'axios';
+import useArticles from '../components/hooks/useArticleHook';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
+  newsItems = useArticles((state) => state.articles);
   return (
     <>
       <Head>
@@ -17,7 +19,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Header />
-      <Main newsItems={newsItems} />
+      <Main />
     </>
   );
 };
