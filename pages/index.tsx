@@ -6,11 +6,6 @@ import { Document, MongoClient, UpdateResult } from 'mongodb';
 import { NewsItemProps } from './types/types';
 import axios from 'axios';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
-  //  TODO fire 7 requests every 1 second or so for 35 articles every 4 hours - 140 when fully populated
-
-  //api.thenewsapi.com/v1/news/all?api_token=API_KEY_HERE&language=en&search=react+(javascript)&categories=business,tech&published_on=2022-05-17&limit=5
-
-  // 7 x 5 x 4
   return (
     <>
       <Head>
@@ -89,6 +84,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       newsItems,
     },
+    //  TODO fire 7 or so for 20-35 articles every 4 hours - 140 when fully populated
     revalidate: 1,
   };
 };
