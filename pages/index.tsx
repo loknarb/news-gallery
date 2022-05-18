@@ -28,18 +28,16 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // https://stackoverflow.com/questions/68643457/next-js-pull-data-at-specific-times
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
-  const collectionAPI = [
-    `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=javascript&categories=business,tech&limit=5`,
-    `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=typescript&categories=business,tech&limit=5`,
-    `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=python&categories=business,tech&limit=5`,
-    `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(typescript)&categories=business,tech&limit=5`,
-    `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(javascript)&categories=business,tech&published_on=2022-05-17&limit=5`,
-  ];
-  // console.log(`${process.env.MONGO_DB_API}`);
+  // const collectionAPI = [
+  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=javascript&categories=business,tech&limit=5`,
+  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=typescript&categories=business,tech&limit=5`,
+  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=python&categories=business,tech&limit=5`,
+  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(typescript)&categories=business,tech&limit=5`,
+  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(javascript)&categories=business,tech&published_on=2022-05-17&limit=5`,
+  // ];
   // Promise.all(collectionAPI.map((endpoint) => axios.get(endpoint))).then(
   //   async ([
   //     { data: js },
@@ -58,14 +56,8 @@ export const getStaticProps: GetStaticProps = async () => {
   //     const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   //     const mongoDB = mongo.db();
   //     const newsArticleCollection = mongoDB.collection('newsArticles');
-  //     // return console.log([...title.data, ...repos, ...followers, ...followings, ...test, ...tester]);
-  //     // https://www.mongodb.com/docs/manual/reference/method/db.collection.update/
-  //     //www.mongodb.com/docs/manual/reference/method/db.collection.update/#std-label-update-upsert
-  //     // const result = await newsArticleCollection.insertMany(data);
-  //     // https://stackoverflow.com/questions/46441006/how-can-i-remove-older-records-from-a-collection-in-mongodb <- date published removal
   //     let resultMany: UpdateResult | Document;
   //     actualCollection.forEach(async (article, i) => {
-  //       // console.log(article);
   //       resultMany = await newsArticleCollection.updateMany(
   //         { uuid: article.uuid },
   //         {
@@ -83,16 +75,7 @@ export const getStaticProps: GetStaticProps = async () => {
   //         },
   //         { upsert: true }
   //       );
-  //       console.log(i);
-  //       console.log(resultMany);
   //     });
-  //     // const result = await newsArticleCollection.updateOne(
-  //     //   { id: title.id },
-  //     //   { $set: { userId: title.userId, id: title.id, title: title.title, body: title.body } },
-  //     //   {
-  //     //     upsert: true,
-  //     //   }
-  //     // );
   //   }
   // );
   // console.log(x);
