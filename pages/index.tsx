@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Main from '../components/body/Main';
 import Header from '../components/header/Header';
 import { Document, MongoClient, UpdateResult } from 'mongodb';
-import { NewsItemProps } from './types/types';
+import { NewsItemProps, NewsItemType } from './types/types';
 import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
 import { useEffect } from 'react';
@@ -36,33 +36,59 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
-  // const collectionAPI = [
-  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=javascript&categories=business,tech&limit=5`,
-  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=typescript&categories=business,tech&limit=5`,
-  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=python&categories=business,tech&limit=5`,
-  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(typescript)&categories=business,tech&limit=5`,
-  //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=react+(javascript)&categories=business,tech&published_on=2022-05-17&limit=5`,
-  // ];
-  // Promise.all(collectionAPI.map((endpoint) => axios.get(endpoint))).then(
-  //   async ([
-  //     { data: js },
-  //     { data: ts },
-  //     { data: python },
-  //     { data: reactts },
-  //     { data: reactjs },
-  //   ]) => {
-  //     const actualCollection = [
-  //       ...js.data,
-  //       ...ts.data,
-  //       ...python.data,
-  //       ...reactts.data,
-  //       ...reactjs.data,
-  //     ];
-  //     const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
-  //     const mongoDB = mongo.db();
-  //     const newsArticleCollection = mongoDB.collection('newsArticles');
-  //     let resultMany: UpdateResult | Document;
-  //     actualCollection.forEach(async (article, i) => {
+  const categories = [
+    'accessibility',
+    'alpinejs',
+    'angular',
+    'appwrite',
+    'blazor',
+    'bootstrap-css',
+    'chromium',
+    'css',
+    'elm',
+    'emberjs',
+    'firebase',
+    'firefox',
+    'gatsby',
+    'google-chrome',
+    'graphql',
+    'grpc',
+    'html',
+    'jamstack',
+    'javascript',
+    'jquery',
+    'microsoft-edge',
+    'nextjs',
+    'nodejs',
+    'preact',
+    'prisma',
+    'react',
+    'react-native',
+    'react-query',
+    'safari',
+    'supabase',
+    'svelte',
+    'tailwind-css',
+    'typescript',
+    'vite',
+    'vuejs',
+    'web-design',
+    'webassembly',
+    'webdev',
+    'webpack',
+    'webrtc',
+  ];
+  // const collectionAPI = categories.map((search) => {
+  //   return `https://api.thenewsapi.com/v1/news/all?api_token=${
+  //     process.env.NEWS_API
+  //   }&language=en&search=${search}&categories=business,tech&published_on=${new Date().toLocaleDateString(
+  //     'en-CA'
+  //   )}&limit=5`;
+  // });
+  // Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then((results) => {
+  //   results.forEach((result) => {
+  //     result.data.data.forEach(async (article: NewsItemType) => {
+  //       let resultMany: UpdateResult | Document;
   //       resultMany = await newsArticleCollection.updateMany(
   //         { uuid: article.uuid },
   //         {
@@ -80,16 +106,17 @@ export const getStaticProps: GetStaticProps = async () => {
   //         },
   //         { upsert: true }
   //       );
+  //       console.log(resultMany);
   //     });
-  //   }
-  // );
-  // console.log(x);
+  //   });
+  // });
+
   await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection.find({}, { projection: { _id: 0 } }).toArray();
 
   const articleData = JSON.stringify(response);
   const newsItems = JSON.parse(articleData);
-  mongo.close();
+  // mongo.close();
 
   return {
     props: {
