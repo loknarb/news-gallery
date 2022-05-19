@@ -10,7 +10,8 @@ interface ItemProps {
 type ItemData = any;
 const NewsList = () => {
   const { filteredArticles, filterSource, hideArticle } = useArticles((state) => state);
-  function handleItemClick({ event, props, data }: ItemParams<ItemProps, ItemData>) {}
+  // function handleItemClick({ event, props, data }: ItemParams<ItemProps, ItemData>) {}
+  const handleClipboardCopy = () => {};
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'
@@ -33,7 +34,7 @@ const NewsList = () => {
             <Menu id={uuid}>
               <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
               <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-              <Item>Share this post</Item>
+              <Item onClick={() => navigator.clipboard.writeText(url)}>Share this post</Item>
             </Menu>
           </>
         )
