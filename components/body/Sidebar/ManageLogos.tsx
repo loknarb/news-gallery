@@ -8,24 +8,24 @@ import Settings from '../../UI/Settings';
 const Manage = () => {
   return (
     <>
-      <ul className='list-none'>
+      <ul className='list-none mt-0.5 mr-1'>
         <List>
           <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-orange-300'>
+            <span className='w-4 flex align-middle  text-orange-300'>
               <Bookmark />
             </span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-blue-300'>
+            <span className='w-4 flex align-middle  text-blue-300'>
               <ReadingHistory />
             </span>
           </Button>
         </List>
         <List>
           <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-gray-300'>
+            <span className='w-4 flex align-middle  text-gray-300'>
               <Settings />
             </span>
           </Button>
