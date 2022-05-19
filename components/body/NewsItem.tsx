@@ -9,6 +9,7 @@ import ArticleDate from './ArticleDate';
 import Link from 'next/link';
 import VerticalDots from '../UI/VerticalDots';
 import Button from '../UI/Button';
+import { useContextMenu } from 'react-contexify';
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
   categories: NewsItemType['categories'];
@@ -21,6 +22,13 @@ const NewsItem: React.FC<{
 }> = ({ uuid, categories, title, description, url, image_url, source, published_at }) => {
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
+  const { show } = useContextMenu({ id: uuid });
+
+  function displayMenu(e: React.MouseEvent) {
+    show(e, {
+      props: { id: uuid },
+    });
+  }
   return (
     <>
       <Card>
@@ -37,7 +45,7 @@ const NewsItem: React.FC<{
               </Link>
               <div className='h-6'>
                 {hovered ? (
-                  <Button className='z-20'>
+                  <Button className='z-20' onClick={displayMenu}>
                     <span className='text-gray-900 flex w-6'>
                       <VerticalDots />
                     </span>

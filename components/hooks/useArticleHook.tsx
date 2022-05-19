@@ -27,11 +27,11 @@ const useArticles = create<{
     })),
   hideArticle: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
-      articles: handleHideArticle(state.articles, uuid),
+      filteredArticles: handleHideArticle(state.articles, uuid),
     })),
   filterSource: (source: NewsItemType['source']) =>
     set((state) => ({
-      articles: handleFilterSource(state.articles, source),
+      filteredArticles: handleFilterSource(state.articles, source),
     })),
   search: (input: string) =>
     set((state) => ({
