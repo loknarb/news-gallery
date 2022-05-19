@@ -11,12 +11,10 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
   const setter = useArticles((state) => state.setter);
   useEffect(() => {
     setter(newsItems);
-
     return () => {
       setter(newsItems);
     };
   }, []);
-  // console.log(newsItems);
 
   return (
     <>
@@ -38,8 +36,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
-  const x = axios.get('https://logo.clearbit.com/google.com');
-  console.log(x);
   // const collectionAPI = [
   //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=javascript&categories=business,tech&limit=5`,
   //   `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=typescript&categories=business,tech&limit=5`,

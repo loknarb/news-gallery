@@ -37,7 +37,7 @@ const NewsItem: React.FC<{
             className='w-full h-80 flex flex-col justify-between'
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}>
-            <div className='flex justify-between align-middle mt-2'>
+            <div className='flex justify-between align-middle mt-1'>
               <Link href={url}>
                 <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
                   <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} />

@@ -4,14 +4,22 @@ import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 
 import 'react-contexify/dist/ReactContexify.css';
+import { NewsItemType } from '../../pages/types/types';
+import usePopUp from '../hooks/usePopUpHook';
+import 'reactjs-popup/dist/index.css';
 interface ItemProps {
   id: string;
 }
 type ItemData = any;
 const NewsList = () => {
   const { filteredArticles, filterSource, hideArticle } = useArticles((state) => state);
+  const { openPopUp, closePopup } = usePopUp((state) => state);
   // function handleItemClick({ event, props, data }: ItemParams<ItemProps, ItemData>) {}
-  const handleClipboardCopy = () => {};
+  const handleClipboardCopy = (url: NewsItemType['url']) => {
+    navigator.clipboard.writeText(url);
+    openPopUp();
+    setTimeout(closePopup, 3000);
+  };
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'
@@ -31,10 +39,10 @@ const NewsList = () => {
               published_at={published_at}
             />
 
-            <Menu id={uuid}>
+            <Menu key={`Menu${uuid}`} id={uuid}>
               <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
               <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-              <Item onClick={() => navigator.clipboard.writeText(url)}>Share this post</Item>
+              <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
             </Menu>
           </>
         )
