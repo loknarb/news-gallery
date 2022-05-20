@@ -5,6 +5,7 @@ import axios from 'axios';
 const useArticles = create<{
   articles: NewsItemType[];
   filteredArticles: NewsItemType[];
+  scrollAmount: number;
   upvote: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
   bookmark: (uuid: NewsItemType['uuid']) => void;
@@ -16,6 +17,7 @@ const useArticles = create<{
 }>((set) => ({
   articles: [],
   filteredArticles: [],
+  scrollAmount: 1,
   upvote: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleUpvote(state.articles, uuid),
@@ -49,6 +51,7 @@ const useArticles = create<{
     console.log(scrollAmount);
     const response = await axios.post('/api/pages', { skip: scrollAmount });
     set((state) => ({
+      scrollAmount: state.scrollAmount + 1,
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
       filteredArticles: [
         ...new Set([...state.articles, ...(response.data.articles as NewsItemType[])]),
