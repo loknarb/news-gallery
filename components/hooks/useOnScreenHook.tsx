@@ -1,7 +1,7 @@
 import { MutableRefObject, useState, useEffect } from 'react';
 
 function useOnScreen<T extends Element>(
-  ref: MutableRefObject<T>,
+  ref: MutableRefObject<T> | null,
   rootMargin: string = '0px'
 ): boolean {
   // State and setter for storing whether element is visible
@@ -17,11 +17,11 @@ function useOnScreen<T extends Element>(
         rootMargin,
       }
     );
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (ref!.current) {
+      observer.observe(ref!.current);
     }
     return () => {
-      observer.unobserve(ref.current);
+      observer.unobserve(ref!.current);
     };
   }, []); // Empty array ensures that effect is only run on mount and unmount
 

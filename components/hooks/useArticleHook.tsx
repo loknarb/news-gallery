@@ -30,11 +30,11 @@ const useArticles = create<{
     })),
   hideArticle: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
-      filteredArticles: handleHideArticle(state.articles, uuid),
+      filteredArticles: handleHideArticle(state.filteredArticles, uuid),
     })),
   filterSource: (source: NewsItemType['source']) =>
     set((state) => ({
-      filteredArticles: handleFilterSource(state.articles, source),
+      filteredArticles: handleFilterSource(state.filteredArticles, source),
     })),
   search: (input: string) =>
     set((state) => ({
@@ -46,11 +46,13 @@ const useArticles = create<{
     //     fetchArticleHandler();
     //   }
     // }, [scrollAmount]);
+    console.log(scrollAmount);
     const response = await axios.post('/api/pages', { skip: scrollAmount });
-    console.log(response);
     set((state) => ({
-      articles: [...state.articles, ...(response.data.articles as NewsItemType[])],
-      filteredArticles: [...state.articles, ...(response.data.articles as NewsItemType[])],
+      articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
+      filteredArticles: [
+        ...new Set([...state.articles, ...(response.data.articles as NewsItemType[])]),
+      ],
     }));
     // return response.data.articles;
     // .then((response) => {
