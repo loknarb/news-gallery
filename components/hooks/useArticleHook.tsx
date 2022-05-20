@@ -1,5 +1,7 @@
 import { NewsItemType } from '../../pages/types/types';
 import create from 'zustand';
+import { useCallback, useEffect } from 'react';
+import axios from 'axios';
 const useArticles = create<{
   articles: NewsItemType[];
   filteredArticles: NewsItemType[];
@@ -10,6 +12,7 @@ const useArticles = create<{
   filterSource: (source: NewsItemType['source']) => void;
   search: (input: string) => void;
   setter: (init: NewsItemType[]) => void;
+  scroll: (scrollAmount: number) => void;
 }>((set) => ({
   articles: [],
   filteredArticles: [],
@@ -37,6 +40,24 @@ const useArticles = create<{
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
     })),
+  scroll: async (scrollAmount: number) => {
+    // useEffect(() => {
+    //   if (scrollAmount > 1) {
+    //     fetchArticleHandler();
+    //   }
+    // }, [scrollAmount]);
+    const response = await axios.post('/api/pages', { skip: scrollAmount });
+    console.log(response);
+    set((state) => ({
+      articles: [...state.articles, ...(response.data.articles as NewsItemType[])],
+      filteredArticles: [...state.articles, ...(response.data.articles as NewsItemType[])],
+    }));
+    // return response.data.articles;
+    // .then((response) => {
+    //   return ([...state.articles, ...(response.data.articles as NewsItemType[])]);
+    // });
+  },
+
   setter: (init: NewsItemType[]) =>
     set((state) => ({
       articles: [...init],
@@ -66,7 +87,6 @@ const handleFilterSource = (articles: NewsItemType[], source: NewsItemType['sour
   return articles.filter((article) => article.source !== source);
 };
 const handleSearch = (articles: NewsItemType[], input: string) => {
-  console.log(input);
   if (input === '') {
     return [...articles];
   }
@@ -74,4 +94,19 @@ const handleSearch = (articles: NewsItemType[], input: string) => {
     Object.values(article).join(' ').toLowerCase().includes(input.toLowerCase())
   );
 };
+// const scrollFetch = (articles: NewsItemType[], scrollAmount: number) => {
+//   useEffect(() => {
+//     if (scrollAmount > 1) {
+//       fetchArticleHandler();
+//     }
+//   }, [scrollAmount]);
+//   let x: NewsItemType[] = [...articles];
+//   const fetchArticleHandler = useCallback(async () => {
+//     await axios.post('/api/pages', { skip: scrollAmount }).then((response) => {
+//       return (x = [...articles, ...(response.data.articles as NewsItemType[])]);
+//     });
+//   }, [scrollAmount]);
+//   console.log(x);
+//   return x;
+// };
 export default useArticles;

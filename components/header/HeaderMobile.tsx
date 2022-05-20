@@ -6,15 +6,16 @@ import SearchMobile from './SearchMobile';
 import useSideBar from '../hooks/useSideBarHook';
 import Button from '../UI/Button';
 import useSearchArticles from '../hooks/useSearchArticles';
+import useArticles from '../hooks/useArticleHook';
 const HeaderMobile = () => {
-  const [searchShown, setSearchShown] = useState(false);
+  const { showSideBar } = useSideBar((state) => state);
+  const scroll = useArticles((state) => state.scroll);
   const [count, setCount] = useState(1);
-  console.log(count);
+  const [searchShown, setSearchShown] = useState(false);
   const counter = () => {
     setCount(count + 1);
+    scroll(count);
   };
-  useSearchArticles(count);
-  const { showSideBar } = useSideBar((state) => state);
   return (
     <>
       <div className='flex-1'>

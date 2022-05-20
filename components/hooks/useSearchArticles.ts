@@ -18,7 +18,7 @@ const useSearchArticles = (scrollAmount: number) => {
       .post('/api/pages', { skip: scrollAmount })
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
-  }, []);
+  }, [scrollAmount]);
 };
 
 export default useSearchArticles;
