@@ -14,6 +14,7 @@ const useArticles = create<{
   search: (input: string) => void;
   setter: (init: NewsItemType[]) => void;
   scroll: (scrollAmount: number) => void;
+  scrollIncrementer: () => void;
 }>((set) => ({
   articles: [],
   filteredArticles: [],
@@ -42,6 +43,11 @@ const useArticles = create<{
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
     })),
+  setter: (init: NewsItemType[]) =>
+    set((state) => ({
+      articles: [...init],
+      filteredArticles: [...init],
+    })),
   scroll: async (scrollAmount: number) => {
     const response = await axios.post('/api/pages', { skip: scrollAmount });
     set((state) => ({
@@ -51,10 +57,9 @@ const useArticles = create<{
       ],
     }));
   },
-  setter: (init: NewsItemType[]) =>
+  scrollIncrementer: () =>
     set((state) => ({
-      articles: [...init],
-      filteredArticles: [...init],
+      scrollAmount: state.scrollAmount + 1,
     })),
 }));
 

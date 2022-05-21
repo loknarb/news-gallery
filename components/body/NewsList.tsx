@@ -8,9 +8,8 @@ import { NewsItemType } from '../../pages/types/types';
 import usePopUp from '../hooks/usePopUpHook';
 import 'reactjs-popup/dist/index.css';
 const NewsList = () => {
-  const { filteredArticles, filterSource, hideArticle, scroll, scrollAmount } = useArticles(
-    (state) => state
-  );
+  const { filteredArticles, filterSource, hideArticle, scroll, scrollAmount, scrollIncrementer } =
+    useArticles((state) => state);
   const [counter, setCounter] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
   const { openPopUp, closePopup } = usePopUp((state) => state);
@@ -24,7 +23,7 @@ const NewsList = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setCounter((prev) => prev + 1);
+          scrollIncrementer();
         }
       });
       if (node) observer.current.observe(node);
@@ -32,21 +31,8 @@ const NewsList = () => {
     [observer]
   );
   useEffect(() => {
-    console.log(counter);
-    scroll(counter);
-  }, [counter]);
-  // useEffect(() => {
-  //   observer.current = new IntersectionObserver((entries) => {
-  //     if (entries[0].isIntersecting) {
-  //       console.log('counter inside useEffect before');
-  //       setCounter(counter + 1);
-  //       console.log('counter inside useEffect after');
-  //     }
-  //   });
-  //   return () => {
-  //     observer.current;
-  //   };
-  // }, [articleElementRef]);
+    scroll(scrollAmount);
+  }, [counter, scrollAmount]);
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'
