@@ -43,25 +43,14 @@ const useArticles = create<{
       filteredArticles: handleSearch(state.articles, input),
     })),
   scroll: async (scrollAmount: number) => {
-    // useEffect(() => {
-    //   if (scrollAmount > 1) {
-    //     fetchArticleHandler();
-    //   }
-    // }, [scrollAmount]);
-    const response = await axios.post('/api/pages', { skip: get()state.scrollAmount });
+    const response = await axios.post('/api/pages', { skip: scrollAmount });
     set((state) => ({
-      scrollAmount: state.scrollAmount + 1,
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
       filteredArticles: [
         ...new Set([...state.articles, ...(response.data.articles as NewsItemType[])]),
       ],
     }));
-    // return response.data.articles;
-    // .then((response) => {
-    //   return ([...state.articles, ...(response.data.articles as NewsItemType[])]);
-    // });
   },
-
   setter: (init: NewsItemType[]) =>
     set((state) => ({
       articles: [...init],

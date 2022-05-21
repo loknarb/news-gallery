@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
   await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection
     .find({}, { projection: { _id: 0 } })
-    .limit(100)
+    .limit(50)
     .toArray();
 
   const articleData = JSON.stringify(response);

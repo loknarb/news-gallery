@@ -24,6 +24,5 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     res.status(200).json({ articles: articles });
     client.close();
   }
-  // res.status(200).json({ title: 'John Doe' });
 };
 export default handler;
