@@ -8,7 +8,6 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     const data = req.body;
     console.log(data);
     let skip = data.skip ? parseInt(data.skip) : 0;
-    // const skip = data.skip;
     // TODO close client or instead keep it open for a specific session
     const client = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
     const db = client.db();
@@ -25,4 +24,5 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     client.close();
   }
 };
+
 export default handler;

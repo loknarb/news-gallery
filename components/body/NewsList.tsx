@@ -31,8 +31,17 @@ const NewsList = () => {
     [observer]
   );
   useEffect(() => {
-    scroll(scrollAmount);
-  }, [counter, scrollAmount]);
+    let isApiSubscribed = true;
+
+    if (isApiSubscribed && scrollAmount > 0) {
+      console.log(scrollAmount);
+      scroll(scrollAmount);
+    }
+    return () => {
+      isApiSubscribed = false;
+    };
+    // return () => scroll(scrollAmount);
+  }, [scrollAmount]);
   return (
     <main
       className='w-full h-full grid gap-6 justify-center'

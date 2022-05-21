@@ -18,7 +18,7 @@ const useArticles = create<{
 }>((set) => ({
   articles: [],
   filteredArticles: [],
-  scrollAmount: 1,
+  scrollAmount: 0,
   upvote: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleUpvote(state.articles, uuid),
