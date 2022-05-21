@@ -7,8 +7,13 @@ import { NewsItemProps, NewsItemType } from './types/types';
 import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
 import { useEffect } from 'react';
+import Button from '../components/UI/Button';
+import UpScroll from '../components/UI/UpScroll';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
   const setter = useArticles((state) => state.setter);
+  const scrollAmount = useArticles((state) => state.scrollAmount);
+  const scrollTopButton = useArticles((state) => state.scrollTopButton);
+  console.log(scrollTopButton);
   useEffect(() => {
     setter(newsItems);
     return () => {
@@ -27,6 +32,13 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Header />
+      {scrollAmount > 0 ? (
+        <Button className='rounded-full bg-black fixed z-20 bottom-[2em] right-[2em] '>
+          <UpScroll />
+        </Button>
+      ) : (
+        ''
+      )}
       <Main />
     </>
   );

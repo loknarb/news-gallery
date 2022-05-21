@@ -1,11 +1,11 @@
 import { NewsItemType } from '../../pages/types/types';
 import create from 'zustand';
-import { useCallback, useEffect } from 'react';
 import axios from 'axios';
 const useArticles = create<{
   articles: NewsItemType[];
   filteredArticles: NewsItemType[];
   scrollAmount: number;
+  scrollTopButton: boolean;
   upvote: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
   bookmark: (uuid: NewsItemType['uuid']) => void;
@@ -15,10 +15,12 @@ const useArticles = create<{
   setter: (init: NewsItemType[]) => void;
   scroll: (scrollAmount: number) => void;
   scrollIncrementer: () => void;
+  scrollButtonShower: () => void;
 }>((set) => ({
   articles: [],
   filteredArticles: [],
   scrollAmount: 0,
+  scrollTopButton: false,
   upvote: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleUpvote(state.articles, uuid),
@@ -61,6 +63,10 @@ const useArticles = create<{
     set((state) => ({
       scrollAmount: state.scrollAmount + 1,
     })),
+  scrollButtonShower: () =>
+    set((state) => ({
+      scrollTopButton: !state.scrollTopButton,
+    })),
 }));
 
 const handleUpvote = (articles: NewsItemType[], uuid: NewsItemType['uuid']): NewsItemType[] => {
@@ -92,19 +98,5 @@ const handleSearch = (articles: NewsItemType[], input: string) => {
     Object.values(article).join(' ').toLowerCase().includes(input.toLowerCase())
   );
 };
-// const scrollFetch = (articles: NewsItemType[], scrollAmount: number) => {
-//   useEffect(() => {
-//     if (scrollAmount > 1) {
-//       fetchArticleHandler();
-//     }
-//   }, [scrollAmount]);
-//   let x: NewsItemType[] = [...articles];
-//   const fetchArticleHandler = useCallback(async () => {
-//     await axios.post('/api/pages', { skip: scrollAmount }).then((response) => {
-//       return (x = [...articles, ...(response.data.articles as NewsItemType[])]);
-//     });
-//   }, [scrollAmount]);
-//   console.log(x);
-//   return x;
-// };
+
 export default useArticles;

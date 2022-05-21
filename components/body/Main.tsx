@@ -1,7 +1,10 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
+import useArticles from '../hooks/useArticleHook';
 import usePopUp from '../hooks/usePopUpHook';
 import useWindowSize from '../hooks/useWindowSize';
+import Button from '../UI/Button';
+import UpScroll from '../UI/UpScroll';
 import MainDesktop from './MainDesktop';
 import MainMobile from './MainMobile';
 import MainTablet from './MainTablet';
@@ -9,6 +12,7 @@ import MainTablet from './MainTablet';
 const Main: React.FC = () => {
   const { width } = useWindowSize();
   const shown = usePopUp((state) => state.shown);
+
   return (
     <>
       {width! >= 992 ? <MainDesktop /> : ''}
