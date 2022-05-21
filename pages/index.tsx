@@ -118,6 +118,10 @@ export const getStaticProps: GetStaticProps = async () => {
   //             source: article.source,
   //             categories: article.categories,
   //             published_at: article.published_at,
+  //             bookmark: false,
+  //             upvoted: false,
+  //             upvoteAmount: 0,
+  //             commentAmount: 0,
   //           },
   //         },
   //         { upsert: true }

@@ -11,6 +11,7 @@ import VerticalDots from '../UI/VerticalDots';
 import Button from '../UI/Button';
 import { useContextMenu } from 'react-contexify';
 import useArticles from '../hooks/useArticleHook';
+import ImageWithFallback from '../UI/ImageWithFallback';
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
   categories: NewsItemType['categories'];
@@ -51,11 +52,16 @@ const NewsItem: React.FC<{
           className='w-full h-80 flex flex-col justify-between'
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}>
-          <a className='cursor-pointer z-0' href={url}>
+          <a className='cursor-pointer z-0 w-full h-80 flex flex-col justify-between' href={url}>
             <div className='flex justify-between align-middle mt-1'>
               <Link href={url}>
                 <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
-                  <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} />
+                  {/* <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} /> */}
+                  <ImageWithFallback
+                    src={`https://logo.clearbit.com/${domain}`}
+                    layout='fill'
+                    fallbackSrc='/favicon.png'
+                  />
                 </div>
               </Link>
               <div className='h-6'>
@@ -79,7 +85,7 @@ const NewsItem: React.FC<{
             </div>
             <div className=''>
               <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
-                <Image unoptimized layout='fill' className='object-cover' src={image_url} />
+                <Image layout='fill' className='object-cover' src={image_url} />
               </div>
             </div>
           </a>
