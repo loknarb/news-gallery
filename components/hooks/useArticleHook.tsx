@@ -16,6 +16,7 @@ const useArticles = create<{
   scroll: (scrollAmount: number) => void;
   scrollIncrementer: () => void;
   scrollButtonShower: () => void;
+  scrollButtonHider: () => void;
 }>((set) => ({
   articles: [],
   filteredArticles: [],
@@ -65,7 +66,11 @@ const useArticles = create<{
     })),
   scrollButtonShower: () =>
     set((state) => ({
-      scrollTopButton: !state.scrollTopButton,
+      scrollTopButton: true,
+    })),
+  scrollButtonHider: () =>
+    set((state) => ({
+      scrollTopButton: false,
     })),
 }));
 

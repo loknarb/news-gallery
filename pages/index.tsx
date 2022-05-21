@@ -20,7 +20,9 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
       setter(newsItems);
     };
   }, []);
-
+  const scrollToTopHandler = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
   return (
     <>
       <Head>
@@ -32,8 +34,10 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Header />
-      {scrollAmount > 0 ? (
-        <Button className='rounded-full bg-black fixed z-20 bottom-[2em] right-[2em] '>
+      {scrollTopButton ? (
+        <Button
+          className='rounded-full bg-black fixed z-20 bottom-[2em] right-[2em]'
+          onClick={scrollToTopHandler}>
           <UpScroll />
         </Button>
       ) : (

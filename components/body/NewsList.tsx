@@ -16,6 +16,7 @@ const NewsList = () => {
     scrollAmount,
     scrollIncrementer,
     scrollButtonShower,
+    scrollButtonHider,
   } = useArticles((state) => state);
   const [counter, setCounter] = useState(1);
   const observerAPI = useRef<IntersectionObserver | null>(null);
@@ -28,7 +29,7 @@ const NewsList = () => {
   };
   const articleElementRef = useCallback(
     (node: HTMLDivElement) => {
-      // if (observer.current) observer.current.disconnect();
+      if (observerAPI.current) observerAPI.current.disconnect();
       observerAPI.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           scrollIncrementer();
@@ -38,12 +39,17 @@ const NewsList = () => {
     },
     [observerAPI]
   );
-  const scrollButtonRef = useCallback(
+  // const scrollButtonRef = useCallback((node: HTMLDivElement) => {
+  //   console.log('triggered');
+  // if (observer.current) observer.current.disconnect();
+  // }, []);
+  const scrollDivRef = useCallback(
     (node: HTMLDivElement) => {
-      console.log('triggered');
-      // if (observer.current) observer.current.disconnect();
       observerScroll.current = new IntersectionObserver((entries) => {
+        console.log('ran');
         if (entries[0].isIntersecting) {
+          scrollButtonHider();
+        } else {
           scrollButtonShower();
         }
       });
@@ -68,10 +74,10 @@ const NewsList = () => {
       style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
       {filteredArticles.map(
         ({ uuid, categories, title, description, url, image_url, source, published_at }, index) => {
-          if (scrollAmount === 0 && index === 16) {
+          if (index === 10) {
             return (
               <>
-                <div ref={scrollButtonRef}></div>
+                <div ref={scrollDivRef} className='absolute h-1'></div>
                 <NewsItem
                   key={uuid}
                   uuid={uuid}
