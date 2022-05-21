@@ -11,6 +11,7 @@ const NewsList = () => {
   const { filteredArticles, filterSource, hideArticle, scroll, scrollAmount } = useArticles(
     (state) => state
   );
+
   const [queryPage, setQueryPage] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
   const { openPopUp, closePopup } = usePopUp((state) => state);
@@ -19,11 +20,12 @@ const NewsList = () => {
     openPopUp();
     setTimeout(closePopup, 3000);
   };
+
   const articleElementRef = useCallback((node: HTMLDivElement) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        scroll(scrollAmount);
+        scroll(scrollAmount + 1);
       }
     });
     if (node) observer.current.observe(node);

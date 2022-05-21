@@ -48,8 +48,7 @@ const useArticles = create<{
     //     fetchArticleHandler();
     //   }
     // }, [scrollAmount]);
-    console.log(scrollAmount);
-    const response = await axios.post('/api/pages', { skip: scrollAmount });
+    const response = await axios.post('/api/pages', { skip: get()state.scrollAmount });
     set((state) => ({
       scrollAmount: state.scrollAmount + 1,
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
