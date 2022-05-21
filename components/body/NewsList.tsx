@@ -18,7 +18,6 @@ const NewsList = () => {
     scrollButtonShower,
     scrollButtonHider,
   } = useArticles((state) => state);
-  const [counter, setCounter] = useState(1);
   const observerAPI = useRef<IntersectionObserver | null>(null);
   const observerScroll = useRef<IntersectionObserver | null>(null);
   const { openPopUp, closePopup } = usePopUp((state) => state);
@@ -39,14 +38,9 @@ const NewsList = () => {
     },
     [observerAPI]
   );
-  // const scrollButtonRef = useCallback((node: HTMLDivElement) => {
-  //   console.log('triggered');
-  // if (observer.current) observer.current.disconnect();
-  // }, []);
   const scrollDivRef = useCallback(
     (node: HTMLDivElement) => {
       observerScroll.current = new IntersectionObserver((entries) => {
-        console.log('ran');
         if (entries[0].isIntersecting) {
           scrollButtonHider();
         } else {
@@ -73,75 +67,59 @@ const NewsList = () => {
       className='w-full h-full grid gap-6 justify-center'
       style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
       {filteredArticles.map(
-        ({ uuid, categories, title, description, url, image_url, source, published_at }, index) => {
+        (
+          {
+            uuid,
+            categories,
+            title,
+            description,
+            url,
+            image_url,
+            source,
+            published_at,
+            bookmark,
+            upvote,
+          },
+          index
+        ) => {
+          const body = (
+            <>
+              <NewsItem
+                key={uuid}
+                uuid={uuid}
+                categories={categories}
+                title={title}
+                description={description}
+                url={url}
+                image_url={image_url}
+                source={source}
+                published_at={published_at}
+                bookmark={bookmark}
+                upvote={upvote}
+              />
+              <Menu key={`Menu${uuid}`} id={uuid}>
+                <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
+                <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
+                <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
+              </Menu>
+            </>
+          );
           if (index === 10) {
             return (
               <>
                 <div ref={scrollDivRef} className='absolute h-1'></div>
-                <NewsItem
-                  key={uuid}
-                  uuid={uuid}
-                  categories={categories}
-                  title={title}
-                  description={description}
-                  url={url}
-                  image_url={image_url}
-                  source={source}
-                  published_at={published_at}
-                />
-
-                <Menu key={`Menu${uuid}`} id={uuid}>
-                  <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
-                  <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-                  <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
-                </Menu>
+                {body}
               </>
             );
           } else if (filteredArticles.length === index + 1) {
             return (
               <>
                 <div ref={articleElementRef}></div>
-                <NewsItem
-                  key={uuid}
-                  uuid={uuid}
-                  categories={categories}
-                  title={title}
-                  description={description}
-                  url={url}
-                  image_url={image_url}
-                  source={source}
-                  published_at={published_at}
-                />
-
-                <Menu key={`Menu${uuid}`} id={uuid}>
-                  <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
-                  <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-                  <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
-                </Menu>
+                {body}
               </>
             );
           } else {
-            return (
-              <>
-                <NewsItem
-                  key={uuid}
-                  uuid={uuid}
-                  categories={categories}
-                  title={title}
-                  description={description}
-                  url={url}
-                  image_url={image_url}
-                  source={source}
-                  published_at={published_at}
-                />
-
-                <Menu key={`Menu${uuid}`} id={uuid}>
-                  <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
-                  <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-                  <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
-                </Menu>
-              </>
-            );
+            return <>{body}</>;
           }
         }
       )}

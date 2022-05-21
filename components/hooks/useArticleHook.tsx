@@ -6,9 +6,11 @@ const useArticles = create<{
   filteredArticles: NewsItemType[];
   scrollAmount: number;
   scrollTopButton: boolean;
-  upvote: (uuid: NewsItemType['uuid']) => void;
+  upvoteHandler: (uuid: NewsItemType['uuid']) => void;
+  upvoteStatus: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
-  bookmark: (uuid: NewsItemType['uuid']) => void;
+  bookmarkHandler: (uuid: NewsItemType['uuid']) => void;
+  bookmarkStatus: (uuid: NewsItemType['uuid']) => void;
   hideArticle: (uuid: NewsItemType['uuid']) => void;
   filterSource: (source: NewsItemType['source']) => void;
   search: (input: string) => void;
@@ -22,17 +24,25 @@ const useArticles = create<{
   filteredArticles: [],
   scrollAmount: 0,
   scrollTopButton: false,
-  upvote: (uuid: NewsItemType['uuid']) =>
+  upvoteHandler: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
-      articles: handleUpvote(state.articles, uuid),
+      filteredArticles: handleUpvote(state.filteredArticles, uuid),
+    })),
+  upvoteStatus: () =>
+    set((state) => ({
+      filteredArticles: handleFilterUpvote(state.articles),
     })),
   comment: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleComment(state.articles, uuid),
     })),
-  bookmark: (uuid: NewsItemType['uuid']) =>
+  bookmarkHandler: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
-      articles: handleBookmark(state.articles, uuid),
+      filteredArticles: handleBookmark(state.filteredArticles, uuid),
+    })),
+  bookmarkStatus: () =>
+    set((state) => ({
+      filteredArticles: handleFilterBookmark(state.articles),
     })),
   hideArticle: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
@@ -77,7 +87,7 @@ const useArticles = create<{
 const handleUpvote = (articles: NewsItemType[], uuid: NewsItemType['uuid']): NewsItemType[] => {
   return articles.map((article) => ({
     ...article,
-    upvoted: article.uuid === uuid ? !article.upvote : article.upvote,
+    upvote: article.uuid === uuid ? !article.upvote : article.upvote,
   }));
 };
 const handleComment = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
@@ -88,6 +98,12 @@ const handleBookmark = (articles: NewsItemType[], uuid: NewsItemType['uuid']) =>
     ...article,
     bookmark: article.uuid === uuid ? !article.bookmark : article.bookmark,
   }));
+};
+const handleFilterUpvote = (articles: NewsItemType[]) => {
+  return articles.filter((article) => article.upvote === true);
+};
+const handleFilterBookmark = (articles: NewsItemType[]) => {
+  return articles.filter((article) => article.bookmark === true);
 };
 const handleHideArticle = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
   return articles.filter((article) => article.uuid !== uuid);

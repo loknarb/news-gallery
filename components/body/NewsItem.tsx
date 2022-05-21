@@ -10,6 +10,7 @@ import Link from 'next/link';
 import VerticalDots from '../UI/VerticalDots';
 import Button from '../UI/Button';
 import { useContextMenu } from 'react-contexify';
+import useArticles from '../hooks/useArticleHook';
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
   categories: NewsItemType['categories'];
@@ -19,24 +20,38 @@ const NewsItem: React.FC<{
   image_url: NewsItemType['image_url'];
   source: NewsItemType['source'];
   published_at: NewsItemType['published_at'];
-}> = ({ uuid, categories, title, description, url, image_url, source, published_at }) => {
+  bookmark: NewsItemType['bookmark'];
+  upvote: NewsItemType['upvote'];
+}> = ({
+  uuid,
+  categories,
+  title,
+  description,
+  url,
+  image_url,
+  source,
+  published_at,
+  bookmark,
+  upvote,
+}) => {
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
   const { show } = useContextMenu({ id: uuid });
-
+  const { bookmarkHandler, upvoteHandler } = useArticles((state) => state);
   function displayMenu(e: React.MouseEvent) {
     show(e, {
       props: { id: uuid },
     });
   }
+  console.log(upvote);
   return (
     <>
       <Card>
-        <Link className='cursor-pointer' href={url}>
-          <article
-            className='w-full h-80 flex flex-col justify-between'
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}>
+        <article
+          className='w-full h-80 flex flex-col justify-between'
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}>
+          <a className='cursor-pointer z-0' href={url}>
             <div className='flex justify-between align-middle mt-1'>
               <Link href={url}>
                 <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
@@ -67,19 +82,31 @@ const NewsItem: React.FC<{
                 <Image unoptimized layout='fill' className='object-cover' src={image_url} />
               </div>
             </div>
-            <div className='flex flex-row justify-around justify-self-end mt-2'>
-              <span className='text-gray-900 hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'>
-                <Upvote />
-              </span>
-              <span className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
-                <Discussion />
-              </span>
-              <span className='text-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10'>
-                <Bookmark />
-              </span>
-            </div>
-          </article>
-        </Link>
+          </a>
+          <div className='flex flex-row justify-around justify-self-end mt-2'>
+            <span
+              className={
+                upvote
+                  ? ' bg-gray-900 text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
+                  : 'text-gray-900 hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
+              }
+              onClick={() => upvoteHandler(uuid)}>
+              <Upvote />
+            </span>
+            <span className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
+              <Discussion />
+            </span>
+            <span
+              className={
+                bookmark
+                  ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 text-orange-300'
+                  : 'text-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
+              }
+              onClick={() => bookmarkHandler(uuid)}>
+              <Bookmark />
+            </span>
+          </div>
+        </article>
       </Card>
     </>
   );
