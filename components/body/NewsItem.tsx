@@ -44,7 +44,6 @@ const NewsItem: React.FC<{
       props: { id: uuid },
     });
   }
-  console.log(upvote);
   return (
     <>
       <Card>
