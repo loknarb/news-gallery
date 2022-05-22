@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import Button from '../components/UI/Button';
 import UpScroll from '../components/UI/UpScroll';
 import LoginModal from '../components/modal/LoginModal';
+import SettingsModal from '../components/modal/SettingsModal';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
   const setter = useArticles((state) => state.setter);
   const scrollAmount = useArticles((state) => state.scrollAmount);
@@ -36,7 +37,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
       <Header />
       {scrollTopButton ? (
         <Button
-          className='rounded-full bg-black fixed z-20 bottom-[2em] right-[2em]'
+          className='rounded-full bg-slate-700 text-white fixed z-20 bottom-[2em] right-[2em]'
           onClick={scrollToTopHandler}>
           <UpScroll />
         </Button>
@@ -45,6 +46,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
       )}
       <Main />
       <LoginModal />
+      <SettingsModal />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import useModal from '../../hooks/useModalHook';
 import useUserAuth from '../../hooks/useUserAuthHook';
 import Bookmark from '../../UI/Bookmark';
 import Button from '../../UI/Button';
@@ -8,6 +9,7 @@ import Settings from '../../UI/Settings';
 
 const Manage = () => {
   const openModalAuth = useUserAuth((state) => state.openModalAuth);
+  const openModal = useModal((state) => state.openModal);
   return (
     <>
       <span className='text-xs font-bold pt-3 pb-1 text-slate-500 tracking-wider '>Manage</span>
@@ -31,7 +33,9 @@ const Manage = () => {
           </Button>
         </List>
         <List>
-          <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
+          <Button
+            className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+            onClick={() => openModal()}>
             <span className='w-4 flex align-middle mt-0.5 mr-1 text-gray-300'>
               <Settings />
             </span>

@@ -3,6 +3,10 @@ import ReactModal from 'react-modal';
 import useModal from '../hooks/useModalHook';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
+import Discussions from '../UI/Discussions';
+import List from '../UI/List';
+import Popular from '../UI/Popular';
+import Upvote from '../UI/Upvote';
 
 const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
@@ -24,12 +28,11 @@ const SettingsModal = () => {
         },
         content: {
           maxWidth: '24rem',
-          maxHeight: '24rem',
+          maxHeight: '30rem',
           margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
-          padding: '1rem',
-          alignItems: 'center',
+          padding: '1.5rem',
           borderRadius: '1rem',
           border: '1px solid rgb(51 65 85 / 1)',
           background: 'rgb(51 65 85 / 1)',
@@ -42,26 +45,78 @@ const SettingsModal = () => {
       <Button className='absolute right-6 ' onClick={closeModal}>
         <CloseLogo />
       </Button>
-      <div className='mt-5 mb-5 text-center font'>
-        Unlock extra capabilities by signing in.
-        <br /> Bookmarn, Filter, and Personalize your news.
+      <div className='mb-2 '>
+        <span className='text-xl tracking-tight font-semibold '>Personalize your View</span>
       </div>
-      <Button
-        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 items-center'
-        onClick={closeModal}>
-        <span className='font-serif text-sm font-medium ml-2'>Connect with Github</span>
-      </Button>
-      <Button
-        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 items-center'
-        onClick={closeModal}>
-        <span className='font-serif text-sm font-medium ml-2 '>Connect with Google</span>
-      </Button>
-      <div className='mt-6 mb-3 text-xs text-center'>
-        <a href=''>
-          <span>
-            By signing in I accept the Terms of Services <br />& the Privacy Policy
-          </span>
-        </a>
+      <div className='border-b border-slate-500 my-2 -mx-6'></div>
+      <div className='mt-3 mb-2 text-center'>
+        <span className='text-xs font-bold pb-1 text-slate-200 font-mono tracking-tight'>
+          Theme
+        </span>
+        <ul className='list-none'>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Dark</span>
+            </Button>
+          </List>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Light</span>
+            </Button>
+          </List>
+        </ul>
+      </div>
+      <div className='my-2 text-center'>
+        <span className='text-xs font-bold pb-1 text-slate-200 font-mono tracking-tight'>
+          Density
+        </span>
+        <ul className='list-none'>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Compact</span>
+            </Button>
+          </List>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Normal</span>
+            </Button>
+          </List>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Cozy</span>
+            </Button>
+          </List>
+        </ul>
+      </div>
+      <div className='my-2 text-center'>
+        <span className='text-xs font-bold pb-1 text-slate-200 font-mono tracking-tight'>
+          Preferences
+        </span>
+        <ul className='list-none'>
+          <List>
+            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
+                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+              </span>
+              <span className='tracking-tight'>Open links in new tab</span>
+            </Button>
+          </List>
+        </ul>
       </div>
     </ReactModal>
   );
