@@ -8,9 +8,9 @@ import ManageLogos from './ManageLogos';
 const SideBarLogos = () => {
   const { showSideBar } = useSideBar((state) => state);
   return (
-    <aside className='flex-col flex fixed left-0 w-15 border-r-2 bg-slate-700 border-r-slate-300 h-screen p-2'>
+    <aside className='flex-col flex fixed left-0 w-15 border-r-2 bg-slate-700 border-r-slate-300 h-screen p-2 dark:bg-[#1F2937] dark:border-[#1A1E1F]'>
       <div className='self-end -mr-4 absolute' onClick={() => showSideBar()}>
-        <Button className='bg-slate-100 text-slate-700 border-2 rounded border-slate-700'>
+        <Button className='bg-slate-100 text-slate-700 border-2 rounded border-slate-700 dark:bg-[#141717] dark:text-[#dad7d1] dark:border-[#1a1f24]'>
           <RightArrow />
         </Button>
       </div>

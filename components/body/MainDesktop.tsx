@@ -7,7 +7,7 @@ import SideBarLogos from './Sidebar/SideBarLogos';
 const MainDesktop = () => {
   const { sideBar, showSideBar } = useSideBar((state) => state);
   return (
-    <div className='flex flex-row md:pl-52 pt-14 bg-slate-100 dark:bg-[#141717]'>
+    <div className='flex flex-row md:pl-52 pt-14 bg-slate-100 dark:bg-[#151718]'>
       {sideBar ? (
         <>
           <Sidebar />

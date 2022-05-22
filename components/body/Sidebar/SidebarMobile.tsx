@@ -12,9 +12,9 @@ const SidebarMobile = () => {
       <div
         className='fixed w-full h-full bg-zinc-800 bg-opacity-50 z-30 cursor-pointer inset-0 '
         onClick={() => hideSideBar()}></div>
-      <aside className='p-4 h-full z-40 w-55 flex-col flex fixed left-0 bg-slate-700 top-0 shadow-slate-900 shadow-lg'>
+      <aside className='p-4 h-full z-40 w-55 flex-col flex fixed left-0 bg-slate-700 top-0 shadow-slate-900 shadow-lg dark:bg-[#1F2937]'>
         <div className='self-end' onClick={() => hideSideBar()}>
-          <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
+          <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-200 font-semibold'>
             <RightArrow />
           </Button>
         </div>

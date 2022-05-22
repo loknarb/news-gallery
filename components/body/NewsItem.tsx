@@ -67,7 +67,7 @@ const NewsItem: React.FC<{
               <div className='h-6'>
                 {hovered ? (
                   <Button className='z-20' onClick={displayMenu}>
-                    <span className='text-gray-900 flex w-6'>
+                    <span className='text-gray-900 dark:text-[#AAB6C1] flex w-6'>
                       <VerticalDots />
                     </span>
                   </Button>
@@ -76,11 +76,11 @@ const NewsItem: React.FC<{
                 )}
               </div>
             </div>
-            <h3 className='font-bold break-words text-gray-900 text-base line-clamp-3 mx-4'>
+            <h3 className='font-bold break-words text-gray-900 dark:text-[#AAB6C1] text-base line-clamp-3 mx-4'>
               {title}
             </h3>
             <div className='flex-1'></div>
-            <div className='mx-4 text-xs text-gray-900 mb-1'>
+            <div className='mx-4 text-xs text-gray-900 dark:text-[#AAB6C1] mb-1'>
               <ArticleDate published_at={published_at} />
             </div>
             <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
@@ -93,19 +93,19 @@ const NewsItem: React.FC<{
               className={
                 upvote
                   ? ' bg-gray-900 text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
-                  : 'text-gray-900 hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
+                  : 'text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
               }
               onClick={() => upvoteHandler(uuid)}>
               <Upvote />
             </Button>
-            <Button className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
+            <Button className='text-gray-900 dark:text-[#AAB6C1] hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
               <Discussion />
             </Button>
             <Button
               className={
                 bookmark
                   ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 text-orange-300'
-                  : 'text-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
+                  : 'text-gray-900 dark:text-[#AAB6C1] hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
               }
               onClick={() => bookmarkHandler(uuid)}>
               <Bookmark />

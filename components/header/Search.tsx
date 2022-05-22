@@ -35,18 +35,18 @@ const Search = () => {
           onBlur={searchBarWidthBlurHandler}
           onClick={searchBarWidthHandler}
           onChange={onInputChangeHandler}
-          className='border border-slate-200 rounded-md w-48 p-1 pr-8 pl-2  shadow-white focus-visible:outline-none focus:shadow'
+          className='border border-slate-200 rounded-md w-48 p-1 pr-8 pl-2  shadow-white focus-visible:outline-none focus:shadow dark:bg-[#2B2A33] dark:caret-slate-400 dark:border-slate-500'
         />
       ) : (
         <input
           onBlur={searchBarWidthBlurHandler}
           onClick={searchBarWidthHandler}
           onChange={onInputChangeHandler}
-          className='border border-slate-200 rounded-md w-24 p-1 pr-8 pl-2 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none'
+          className='border border-slate-200 rounded-md w-24 p-1 pr-8 pl-2 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none dark:bg-[#2B2A33] dark:caret-slate-400 dark:border-slate-500'
           placeholder='Article'
         />
       )}
-      <Button className='-ml-8'>
+      <Button className='-ml-8 dark:text-[#AAB6C1]'>
         <SearchLogo />
       </Button>
     </form>
