@@ -91,7 +91,7 @@ const NewsItem: React.FC<{
             </div>
           </a>
           <div className='flex flex-row justify-around justify-self-end mt-2'>
-            <span
+            <Button
               className={
                 upvote
                   ? ' bg-gray-900 text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
@@ -99,11 +99,11 @@ const NewsItem: React.FC<{
               }
               onClick={() => upvoteHandler(uuid)}>
               <Upvote />
-            </span>
-            <span className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
+            </Button>
+            <Button className='text-gray-900 hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
               <Discussion />
-            </span>
-            <span
+            </Button>
+            <Button
               className={
                 bookmark
                   ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 text-orange-300'
@@ -111,7 +111,7 @@ const NewsItem: React.FC<{
               }
               onClick={() => bookmarkHandler(uuid)}>
               <Bookmark />
-            </span>
+            </Button>
           </div>
         </article>
       </Card>

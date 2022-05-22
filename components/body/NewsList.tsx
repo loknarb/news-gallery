@@ -127,4 +127,4 @@ const NewsList = () => {
   );
 };
 
-export default NewsList;
+export default React.memo(NewsList);

@@ -9,11 +9,11 @@ import useArticles from '../components/hooks/useArticleHook';
 import { useEffect } from 'react';
 import Button from '../components/UI/Button';
 import UpScroll from '../components/UI/UpScroll';
+import LoginModal from '../components/modal/LoginModal';
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
   const setter = useArticles((state) => state.setter);
   const scrollAmount = useArticles((state) => state.scrollAmount);
   const scrollTopButton = useArticles((state) => state.scrollTopButton);
-  console.log(scrollTopButton);
   useEffect(() => {
     setter(newsItems);
     return () => {
@@ -44,6 +44,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
         ''
       )}
       <Main />
+      <LoginModal />
     </>
   );
 };
