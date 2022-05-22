@@ -6,7 +6,6 @@ import { NewsItemType } from '../types/types';
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const data = req.body;
-    console.log(data);
     let skip = data.skip ? parseInt(data.skip) : 0;
     // TODO close client or instead keep it open for a specific session
     const client = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
@@ -16,7 +15,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 
     const articles = await newsArticleCollection
       .find({}, { projection: { _id: 0 } })
-      .sort({ $natural: -1 })
+      // .sort({ $natural: -1 })
       .skip(skip * PAGE_SIZE)
       .limit(PAGE_SIZE)
       .toArray();

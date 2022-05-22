@@ -12,6 +12,7 @@ import Button from '../UI/Button';
 import { useContextMenu } from 'react-contexify';
 import useArticles from '../hooks/useArticleHook';
 import ImageWithFallback from '../UI/ImageWithFallback';
+import UnoptimizedImageFallback from '../UI/UnoptimizedImageFallback';
 const NewsItem: React.FC<{
   uuid: NewsItemType['uuid'];
   categories: NewsItemType['categories'];
@@ -84,7 +85,8 @@ const NewsItem: React.FC<{
             </div>
             <div className=''>
               <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
-                <Image layout='fill' className='object-cover' src={image_url} />
+                <UnoptimizedImageFallback layout='fill' className='object-cover' src={image_url} />
+                {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
               </div>
             </div>
           </a>

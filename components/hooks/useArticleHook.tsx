@@ -63,6 +63,7 @@ const useArticles = create<{
     })),
   scroll: async (scrollAmount: number) => {
     const response = await axios.post('/api/pages', { skip: scrollAmount });
+    console.log(response);
     set((state) => ({
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
       filteredArticles: [

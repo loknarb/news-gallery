@@ -135,6 +135,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await newsArticleCollection
     // .find({ published_at: { $gte: pastweek.toISOString() } }, { projection: { _id: 0 } })
     .find({}, { projection: { _id: 0 } })
+    // .sort({ $natural: -1 })
     .limit(50)
     .toArray();
 
