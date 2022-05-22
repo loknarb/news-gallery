@@ -10,10 +10,12 @@ import GoogleLogo from '../UI/GoogleLogo';
 import Link from 'next/link';
 const LoginModal = () => {
   const { shown, closeModalAuth } = useUserAuth((state) => state);
-  console.log(shown);
   return (
     <ReactModal
       isOpen={shown}
+      closeTimeoutMS={250}
+      onRequestClose={closeModalAuth}
+      ariaHideApp={false}
       style={{
         overlay: {
           backgroundColor: 'rgba(0, 0, 0, 0.15)',
@@ -50,16 +52,16 @@ const LoginModal = () => {
         <br /> Bookmarn, Filter, and Personalize your news.
       </div>
       <Button
-        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 '
+        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 items-center'
         onClick={closeModalAuth}>
         <GithubLogo />
-        <span className='font-mono ml-2'>Connect with Github</span>
+        <span className='font-serif text-sm font-medium ml-2'>Connect with Github</span>
       </Button>
       <Button
-        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 '
+        className='mt-2 flex bg-white border border-transparent rounded-lg py-1.5 px-2 text-black hover:bg-slate-400 items-center'
         onClick={closeModalAuth}>
         <GoogleLogo />
-        <span className='font-mono ml-2 black'>Connect with Google</span>
+        <span className='font-serif text-sm font-medium ml-2 '>Connect with Google</span>
       </Button>
       <div className='mt-6 mb-3 text-xs text-center'>
         <a href=''>
