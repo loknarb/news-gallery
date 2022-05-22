@@ -98,28 +98,34 @@ const NewsList = () => {
                 upvote={upvote}
               />
               <Menu key={`Menu${uuid}`} id={uuid}>
-                <Item onClick={() => hideArticle(uuid)}>Hide Post</Item>
-                <Item onClick={() => filterSource(source)}>Hide Posts from {source}</Item>
-                <Item onClick={() => handleClipboardCopy(url)}>Share this post</Item>
+                <Item key={`hide${uuid}`} onClick={() => hideArticle(uuid)}>
+                  Hide Post
+                </Item>
+                <Item key={`filter${uuid}`} onClick={() => filterSource(source)}>
+                  Hide Posts from {source}
+                </Item>
+                <Item key={`clip${uuid}`} onClick={() => handleClipboardCopy(url)}>
+                  Share this post
+                </Item>
               </Menu>
             </>
           );
           if (index === 10) {
             return (
-              <>
+              <ul>
                 <div ref={scrollDivRef} className='absolute h-1'></div>
                 {body}
-              </>
+              </ul>
             );
           } else if (filteredArticles.length === index + 1) {
             return (
-              <>
+              <ul>
                 <div ref={articleElementRef}></div>
                 {body}
-              </>
+              </ul>
             );
           } else {
-            return <>{body}</>;
+            return <ul>{body}</ul>;
           }
         }
       )}
