@@ -83,11 +83,9 @@ const NewsItem: React.FC<{
             <div className='mx-4 text-xs text-gray-900 mb-1'>
               <ArticleDate published_at={published_at} />
             </div>
-            <div className=''>
-              <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
-                <UnoptimizedImageFallback layout='fill' className='object-cover' src={image_url} />
-                {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
-              </div>
+            <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
+              <UnoptimizedImageFallback layout='fill' className='object-cover' src={image_url} />
+              {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
             </div>
           </a>
           <div className='flex flex-row justify-around justify-self-end mt-2'>
