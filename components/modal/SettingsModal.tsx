@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import useDarkModeHook from '../hooks/useDarkMode';
 import useModal from '../hooks/useModalHook';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
@@ -10,6 +11,8 @@ import Upvote from '../UI/Upvote';
 
 const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
+  const [isDark, setIsDark] = useDarkModeHook();
+  console.log('isDark', isDark);
   return (
     <ReactModal
       isOpen={shown}
@@ -55,7 +58,9 @@ const SettingsModal = () => {
         </span>
         <ul className='list-none'>
           <List>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+            <Button
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
+              onClick={() => setIsDark(true)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
               </span>
@@ -63,7 +68,9 @@ const SettingsModal = () => {
             </Button>
           </List>
           <List>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+            <Button
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
+              onClick={() => setIsDark(false)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
               </span>

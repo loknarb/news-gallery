@@ -5,7 +5,7 @@ import SidebarMobile from './Sidebar/SidebarMobile';
 const MainMobile = () => {
   const { sideBar } = useSideBar((state) => state);
   return (
-    <div className='flex flex-row md:pl-52 pt-14  bg-slate-100'>
+    <div className='flex flex-row md:pl-52 pt-14 bg-slate-100 dark:bg-[#141717]'>
       {sideBar ? <SidebarMobile /> : ''}
       <main className='pt-8 w-full mx-auto '>
         <NewsList />
