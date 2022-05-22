@@ -52,84 +52,96 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
+  // const categories = [
+  //   'accessibility',
+  //   'alpinejs',
+  //   'angular',
+  //   'appwrite',
+  //   'blazor',
+  //   'bootstrap-css',
+  //   'chromium',
+  //   'css',
+  //   'elm',
+  //   'emberjs',
+  //   'firebase',
+  //   'firefox',
+  //   'gatsby',
+  //   'google-chrome',
+  //   'graphql',
+  //   'grpc',
+  //   'html',
+  //   'jamstack',
+  //   'javascript',
+  //   'jquery',
+  //   'microsoft-edge',
+  //   'nextjs',
+  //   'nodejs',
+  //   'preact',
+  //   'prisma',
+  //   'react',
+  //   'react-native',
+  //   'react-query',
+  //   'safari',
+  //   'supabase',
+  //   'svelte',
+  //   'tailwind-css',
+  //   'typescript',
+  //   'vite',
+  //   'vuejs',
+  //   'web-design',
+  //   'webassembly',
+  //   'webdev',
+  //   'webpack',
+  //   'webrtc',
+  // ];
   const categories = [
-    'accessibility',
-    'alpinejs',
-    'angular',
-    'appwrite',
-    'blazor',
-    'bootstrap-css',
-    'chromium',
-    'css',
-    'elm',
-    'emberjs',
-    'firebase',
-    'firefox',
-    'gatsby',
-    'google-chrome',
-    'graphql',
-    'grpc',
-    'html',
-    'jamstack',
-    'javascript',
-    'jquery',
-    'microsoft-edge',
-    'nextjs',
-    'nodejs',
-    'preact',
-    'prisma',
-    'react',
-    'react-native',
-    'react-query',
-    'safari',
-    'supabase',
-    'svelte',
-    'tailwind-css',
-    'typescript',
-    'vite',
-    'vuejs',
-    'web-design',
-    'webassembly',
-    'webdev',
-    'webpack',
-    'webrtc',
+    'joshwcomeau.com',
+    'freecodecamp.org',
+    'medium.com',
+    'blog.logrocket.com',
+    'code.tutsplus.com',
+    'producthunter.com',
+    'slack.engineering',
+    'blog.jetbrains.com',
   ];
-  // const collectionAPI = categories.map((search) => {
-  //   return `https://api.thenewsapi.com/v1/news/all?api_token=${
-  //     process.env.NEWS_API
-  //   }&language=en&search=${search}&categories=business,tech&published_on=${new Date().toLocaleDateString(
-  //     'en-CA'
-  //   )}&limit=5`;
-  // });
-  // Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then((results) => {
-  //   results.forEach((result) => {
-  //     result.data.data.forEach(async (article: NewsItemType) => {
-  //       let resultMany: UpdateResult | Document;
-  //       resultMany = await newsArticleCollection.updateMany(
-  //         { uuid: article.uuid },
-  //         {
-  //           $set: {
-  //             uuid: article.uuid,
-  //             title: article.title,
-  //             description: article.description,
-  //             snippet: article.snippet,
-  //             url: article.url,
-  //             image_url: article.image_url,
-  //             source: article.source,
-  //             categories: article.categories,
-  //             published_at: article.published_at,
-  //             bookmark: false,
-  //             upvoted: false,
-  //             upvoteAmount: 0,
-  //             commentAmount: 0,
-  //           },
-  //         },
-  //         { upsert: true }
-  //       );
-  //       console.log(resultMany);
-  //     });
-  //   });
-  // });
+  const today = new Date();
+  const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+  const collectionAPI = categories.map((domain) => {
+    return `https://api.thenewsapi.com/v1/news/all?api_token=${
+      process.env.NEWS_API
+    }&language=en&domains=${domain}&categories=business,tech&published_at=${pastweek.toLocaleDateString(
+      'en-CA'
+    )}&limit=5`;
+  });
+  Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then((results) => {
+    results.forEach((result) => {
+      result.data.data.forEach(async (article: NewsItemType) => {
+        let resultMany: UpdateResult | Document;
+        resultMany = await newsArticleCollection.updateMany(
+          { uuid: article.uuid },
+          {
+            $set: {
+              uuid: article.uuid,
+              title: article.title,
+              description: article.description,
+              snippet: article.snippet,
+              url: article.url,
+              image_url: article.image_url,
+              source: article.source,
+              categories: article.categories,
+              published_at: article.published_at,
+              bookmark: false,
+              upvoted: false,
+              upvoteAmount: 0,
+              commentAmount: 0,
+            },
+          },
+          { upsert: true }
+        );
+        console.log(resultMany);
+      });
+    });
+  });
 
   await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection
