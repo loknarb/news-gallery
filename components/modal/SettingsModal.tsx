@@ -6,6 +6,7 @@ import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
 import Discussions from '../UI/Discussions';
 import List from '../UI/List';
+import ListPadded from '../UI/ListPadded';
 import Popular from '../UI/Popular';
 import Upvote from '../UI/Upvote';
 
@@ -30,8 +31,12 @@ const SettingsModal = () => {
         },
         content: {
           maxWidth: '24rem',
-          maxHeight: '30rem',
+          maxHeight: '32rem',
           margin: '0 auto',
+          top: '-50px',
+          bottom: '0',
+          right: '0',
+          left: '0',
           display: 'flex',
           flexDirection: 'column',
           padding: '1.5rem',
@@ -39,7 +44,7 @@ const SettingsModal = () => {
           border: '1px solid rgb(51 65 85 / 1)',
           background: 'rgb(51 65 85 / 1)',
           color: 'white',
-          width: '100%',
+          width: '75%',
           position: 'relative',
           zIndex: '50',
         },
@@ -55,29 +60,61 @@ const SettingsModal = () => {
       <div className='border-b border-slate-500 my-2 -mx-6'></div>
       <div className='mt-3 mb-2 text-center'>
         <span className='text-xs font-bold pb-1 text-slate-200 font-mono tracking-tight'>
-          Theme
+          Layout
         </span>
         <ul className='list-none'>
-          <List>
+          <ListPadded>
+            <div className='flex items-center justify-center'>
+              <span className='tracking-tight font-semibold '>Row</span>
+              <input
+                className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                type='checkbox'
+                id='switch'
+                // checked
+              />
+              <label
+                className='tracking-tight  after:bg-white after:hover:bg-slate-800 bg-slate-500 hover:bg-slate-300 ml-2 mr-2'
+                htmlFor='switch'></label>
+              <span className='tracking-tight font-semibold '>Grid</span>
+            </div>
+          </ListPadded>
+        </ul>
+      </div>
+      <div className='mt-3 mb-2 text-center'>
+        <span className='text-xs font-bold pb-1 text-slate-200 font-mono tracking-tight'>
+          Theme
+        </span>
+
+        <ul className='list-none'>
+          <ListPadded>
             <Button
               className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
               onClick={() => setIsDark(true)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+                {!isDark ? (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3' />
+                ) : (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                )}
+                {/* <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span> */}
               </span>
               <span className='tracking-tight'>Dark</span>
             </Button>
-          </List>
-          <List>
+          </ListPadded>
+          <ListPadded>
             <Button
               className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
               onClick={() => setIsDark(false)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+                {isDark ? (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3' />
+                ) : (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                )}
               </span>
               <span className='tracking-tight'>Light</span>
             </Button>
-          </List>
+          </ListPadded>
         </ul>
       </div>
       <div className='my-2 text-center'>
@@ -85,30 +122,30 @@ const SettingsModal = () => {
           Density
         </span>
         <ul className='list-none'>
-          <List>
+          <ListPadded>
             <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
               </span>
               <span className='tracking-tight'>Compact</span>
             </Button>
-          </List>
-          <List>
+          </ListPadded>
+          <ListPadded>
             <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
               </span>
               <span className='tracking-tight'>Normal</span>
             </Button>
-          </List>
-          <List>
+          </ListPadded>
+          <ListPadded>
             <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
               </span>
-              <span className='tracking-tight'>Cozy</span>
+              <span className='tracking-tight font-semibold'>Cozy</span>
             </Button>
-          </List>
+          </ListPadded>
         </ul>
       </div>
       <div className='my-2 text-center'>
@@ -116,14 +153,20 @@ const SettingsModal = () => {
           Preferences
         </span>
         <ul className='list-none'>
-          <List>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
-              <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
-              </span>
-              <span className='tracking-tight'>Open links in new tab</span>
-            </Button>
-          </List>
+          <ListPadded>
+            <div className='flex items-center'>
+              <input
+                className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                type='checkbox'
+                id='switch2'
+                // checked
+              />
+              <label
+                className='tracking-tight  after:bg-white after:hover:bg-slate-800 bg-slate-500 hover:bg-slate-300 ml-1 mr-2'
+                htmlFor='switch2'></label>
+              <span className='tracking-tight font-semibold'>Open links in new tab</span>
+            </div>
+          </ListPadded>
         </ul>
       </div>
     </ReactModal>
