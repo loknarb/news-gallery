@@ -22,3 +22,10 @@ export interface NewsItemProps {
 export interface NewsItemProp {
   specificNews: NewsItemType;
 }
+
+export interface LayoutProps {
+  display: string;
+  flexDirection?: string;
+  gridTemplateColumns?: string;
+  gap: string;
+}

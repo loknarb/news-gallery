@@ -4,9 +4,10 @@ import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 
 import 'react-contexify/dist/ReactContexify.css';
-import { NewsItemType } from '../../pages/types/types';
+import { LayoutProps, NewsItemType } from '../../pages/types/types';
 import usePopUp from '../hooks/usePopUpHook';
 import 'reactjs-popup/dist/index.css';
+import useLayout from '../hooks/useLayout';
 const NewsList = () => {
   const {
     filteredArticles,
@@ -18,6 +19,33 @@ const NewsList = () => {
     scrollButtonShower,
     scrollButtonHider,
   } = useArticles((state) => state);
+  const { spacingType, layoutType } = useLayout((state) => state);
+  const [initLayout, setLayout] = useState<LayoutProps>({
+    display: `${layoutType}`,
+    gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))`,
+    gap: `${spacingType}`,
+  });
+  useEffect(() => {
+    if (layoutType === 'flex') {
+      setLayout({
+        display: `${layoutType}`,
+        flexDirection: 'column',
+        gap: `${spacingType}`,
+      });
+    } else if (layoutType === 'grid') {
+      setLayout({
+        display: `${layoutType}`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))`,
+        gap: `${spacingType}`,
+      });
+    } else {
+      setLayout({
+        display: `${layoutType}`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))`,
+        gap: `${spacingType}`,
+      });
+    }
+  }, [spacingType, layoutType]);
   const observerAPI = useRef<IntersectionObserver | null>(null);
   const observerScroll = useRef<IntersectionObserver | null>(null);
   const { openPopUp, closePopup } = usePopUp((state) => state);
@@ -63,9 +91,7 @@ const NewsList = () => {
   }, [scrollAmount]);
 
   return (
-    <main
-      className='w-full h-full grid gap-6 justify-center'
-      style={{ gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))` }}>
+    <main className='w-full h-full justify-center' style={initLayout}>
       {filteredArticles.map(
         (
           {

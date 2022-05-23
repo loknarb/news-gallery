@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import useDarkModeHook from '../hooks/useDarkMode';
+import useLayout from '../hooks/useLayout';
 import useModal from '../hooks/useModalHook';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
@@ -13,6 +14,8 @@ import Upvote from '../UI/Upvote';
 const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
   const [isDark, setIsDark] = useDarkModeHook();
+  const { spacingHandler, spacingType, layoutHandler, layoutType } = useLayout((state) => state);
+  console.log(layoutType);
   return (
     <ReactModal
       isOpen={shown}
@@ -31,7 +34,7 @@ const SettingsModal = () => {
         },
         content: {
           maxWidth: '24rem',
-          maxHeight: '32rem',
+          maxHeight: '33rem',
           margin: '0 auto',
           top: '-50px',
           bottom: '0',
@@ -65,17 +68,26 @@ const SettingsModal = () => {
         <ul className='list-none'>
           <ListPadded>
             <div className='flex items-center justify-center'>
-              <span className='tracking-tight font-semibold '>Row</span>
-              <input
-                className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
-                type='checkbox'
-                id='switch'
-                // checked
-              />
+              <span className='tracking-tight font-semibold '>Grid</span>
+              {layoutType !== 'grid' ? (
+                <input
+                  className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                  type='checkbox'
+                  id='switch'
+                  onClick={() => layoutHandler('GRID')}
+                />
+              ) : (
+                <input
+                  className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                  type='checkbox'
+                  id='switch'
+                  onClick={() => layoutHandler('FLEX')}
+                />
+              )}
               <label
                 className='tracking-tight  after:bg-white after:hover:bg-slate-800 bg-slate-500 hover:bg-slate-300 ml-2 mr-2'
                 htmlFor='switch'></label>
-              <span className='tracking-tight font-semibold '>Grid</span>
+              <span className='tracking-tight font-semibold '>Row</span>
             </div>
           </ListPadded>
         </ul>
@@ -88,7 +100,7 @@ const SettingsModal = () => {
         <ul className='list-none'>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
               onClick={() => setIsDark(true)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {!isDark ? (
@@ -96,14 +108,13 @@ const SettingsModal = () => {
                 ) : (
                   <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
                 )}
-                {/* <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span> */}
               </span>
               <span className='tracking-tight'>Dark</span>
             </Button>
           </ListPadded>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold '
               onClick={() => setIsDark(false)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {isDark ? (
@@ -123,25 +134,43 @@ const SettingsModal = () => {
         </span>
         <ul className='list-none'>
           <ListPadded>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+            <Button
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              onClick={() => spacingHandler('COMPACT')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+                {spacingType === '0.5rem' || '' ? (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                ) : (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                )}
               </span>
               <span className='tracking-tight'>Compact</span>
             </Button>
           </ListPadded>
           <ListPadded>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+            <Button
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              onClick={() => spacingHandler('NORMAL')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+                {spacingType === '1.5rem' || '' ? (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                ) : (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                )}
               </span>
               <span className='tracking-tight'>Normal</span>
             </Button>
           </ListPadded>
           <ListPadded>
-            <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold items-center'>
+            <Button
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              onClick={() => spacingHandler('COZY')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
-                <span className='w-full h-full flex rounded-full border-2 border-white center'></span>
+                {spacingType === '2.5rem' || '' ? (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                ) : (
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                )}
               </span>
               <span className='tracking-tight font-semibold'>Cozy</span>
             </Button>
