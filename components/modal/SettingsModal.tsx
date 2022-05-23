@@ -12,7 +12,6 @@ import Upvote from '../UI/Upvote';
 const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
   const [isDark, setIsDark] = useDarkModeHook();
-  console.log('isDark', isDark);
   return (
     <ReactModal
       isOpen={shown}
@@ -49,7 +48,9 @@ const SettingsModal = () => {
         <CloseLogo />
       </Button>
       <div className='mb-2 '>
-        <span className='text-xl tracking-tight font-semibold '>Personalize your View</span>
+        <span className='desktop:text-xl tracking-tight font-semibold phone:text-base'>
+          Personalize your View
+        </span>
       </div>
       <div className='border-b border-slate-500 my-2 -mx-6'></div>
       <div className='mt-3 mb-2 text-center'>
