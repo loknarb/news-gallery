@@ -11,7 +11,7 @@ export interface NewsItemType {
   categories: string | string[];
   published_at: string;
   bookmark?: boolean;
-  upvote?: boolean;
+  upvoted?: boolean;
   upvoteAmount?: number;
   commentAmount?: number;
 }

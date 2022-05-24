@@ -87,11 +87,11 @@ const useArticles = create<{
 const handleUpvote = (articles: NewsItemType[], uuid: NewsItemType['uuid']): NewsItemType[] => {
   return articles.map((article) => ({
     ...article,
-    upvote: article.uuid === uuid ? !article.upvote : article.upvote,
+    upvoted: article.uuid === uuid ? !article.upvoted : article.upvoted,
     upvoteAmount:
-      article.uuid === uuid && !article.upvote
+      article.uuid === uuid && !article.upvoted
         ? article.upvoteAmount! + 1
-        : article.uuid === uuid && article.upvote
+        : article.uuid === uuid && article.upvoted
         ? article.upvoteAmount! - 1
         : article.upvoteAmount!,
   }));
@@ -106,7 +106,7 @@ const handleBookmark = (articles: NewsItemType[], uuid: NewsItemType['uuid']) =>
   }));
 };
 const handleFilterUpvote = (articles: NewsItemType[]) => {
-  return articles.filter((article) => article.upvote === true);
+  return articles.filter((article) => article.upvoted === true);
 };
 const handleFilterBookmark = (articles: NewsItemType[]) => {
   return articles.filter((article) => article.bookmark === true);

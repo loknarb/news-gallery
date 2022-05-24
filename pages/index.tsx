@@ -149,20 +149,20 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     });
   });
-  for (let i = 0; i < 543; i++) {}
-  newsArticleCollection.find({}).forEach((document) => {
-    newsArticleCollection.updateOne(
-      { uuid: document.uuid },
-      {
-        $set: {
-          upvoteAmount: Math.floor(Math.random() * 90),
-          commentAmount: Math.floor(Math.random() * 30),
-          upvoted: false,
-        },
-      },
-      { upsert: true }
-    );
-  });
+  // for (let i = 0; i < 543; i++) {}
+  // newsArticleCollection.find({}).forEach((document) => {
+  //   newsArticleCollection.updateOne(
+  //     { uuid: document.uuid },
+  //     {
+  //       $set: {
+  //         upvoteAmount: Math.floor(Math.random() * 90),
+  //         commentAmount: Math.floor(Math.random() * 30),
+  //         upvoted: false,
+  //       },
+  //     },
+  //     { upsert: true }
+  //   );
+  // });
   await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection
     // .find({ published_at: { $gte: pastweek.toISOString() } }, { projection: { _id: 0 } })

@@ -23,7 +23,7 @@ const NewsItem: React.FC<NewsItemType> = ({
   source,
   published_at,
   bookmark,
-  upvote,
+  upvoted,
   upvoteAmount,
   commentAmount,
 }) => {
@@ -82,7 +82,7 @@ const NewsItem: React.FC<NewsItemType> = ({
           <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-[#33415524] shadow-sm shadow-black border-b-0 '>
             <Button
               className={
-                upvote
+                upvoted
                   ? 'flex flex-row bg-gray-900 text-green-300 hover:bg-gray-900 border-none rounded-none z-10 p-1'
                   : 'flex flex-row text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
               }

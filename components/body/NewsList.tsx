@@ -104,7 +104,7 @@ const NewsList = () => {
             source,
             published_at,
             bookmark,
-            upvote,
+            upvoted,
             upvoteAmount,
             commentAmount,
           },
@@ -123,7 +123,7 @@ const NewsList = () => {
                 source={source}
                 published_at={published_at}
                 bookmark={bookmark}
-                upvote={upvote}
+                upvoted={upvoted}
                 upvoteAmount={upvoteAmount}
                 commentAmount={commentAmount}
               />
