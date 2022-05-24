@@ -55,120 +55,124 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongo = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
-  const categories = [
-    'accessibility',
-    'alpinejs',
-    'angular',
-    'babel',
-    'bootstrap-css',
-    'chromium',
-    'css',
-    'emberjs',
-    'firebase',
-    'firefox',
-    'gatsby',
-    'graphql',
-    'jamstack',
-    'javascript',
-    'jquery',
-    'microsoft-edge',
-    'nextjs',
-    'nodejs',
-    'preact',
-    'react',
-    'react-native',
-    'react-query',
-    'safari',
-    'supabase',
-    'svelte',
-    'tailwind-css',
-    'typescript',
-    'vite',
-    'vuejs',
-    'web-design',
-    'webassembly',
-    'webdev',
-    'webpack',
-    'webrtc',
-  ];
-  const acceptedNewsSources = [
-    'medium.com',
-    'joshwcomeau.com',
-    'freecodecamp.org',
-    'code.tutsplus.com',
-    'producthunter.com',
-    'slack.engineering',
-    'blog.jetbrains.com',
-    'blog.logrocket.com',
-  ];
-  const today = new Date();
-  // for (let i = 0; i < acceptedNewsSources.length; i++) {
-  //   for (let j = 0; j < categories.length; j++) {
-  //     collectionSearch.push(
-  //       `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=${categories[j]}&domains=${acceptedNewsSources[i]}&categories=business,tech&limit=5`
-  //     );
-  //   }
-  // }
-  const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const collectionAPI = acceptedNewsSources.map((domain) => {
-    return `https://api.thenewsapi.com/v1/news/all?api_token=${
-      process.env.NEWS_API
-    }&language=en&domains=${domain}&categories=business,tech&published_on=${pastweek.toLocaleDateString(
-      'en-CA'
-    )}&limit=5`;
-  });
-  Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then((results) => {
-    results.forEach((result) => {
-      if (result.data.data) {
-        console.log(result.data.data);
-        result.data.data.forEach(async (article: NewsItemType) => {
-          let resultMany: UpdateResult | Document;
-          resultMany = await newsArticleCollection.updateMany(
-            { uuid: article.uuid },
-            {
-              $set: {
-                uuid: article.uuid,
-                title: article.title,
-                description: article.description,
-                snippet: article.snippet,
-                url: article.url,
-                image_url: article.image_url,
-                source: article.source,
-                categories: article.categories,
-                published_at: article.published_at,
-                bookmark: false,
-                upvoted: false,
-                upvoteAmount: Math.floor(Math.random() * 90),
-                commentAmount: Math.floor(Math.random() * 30),
-              },
-            },
-            { upsert: true }
-          );
-          console.log(resultMany);
+
+  if (process.env.NODE_ENV !== 'development') {
+    const categories = [
+      'accessibility',
+      'alpinejs',
+      'angular',
+      'babel',
+      'bootstrap-css',
+      'chromium',
+      'css',
+      'emberjs',
+      'firebase',
+      'firefox',
+      'gatsby',
+      'graphql',
+      'jamstack',
+      'javascript',
+      'jquery',
+      'microsoft-edge',
+      'nextjs',
+      'nodejs',
+      'preact',
+      'react',
+      'react-native',
+      'react-query',
+      'safari',
+      'supabase',
+      'svelte',
+      'tailwind-css',
+      'typescript',
+      'vite',
+      'vuejs',
+      'web-design',
+      'webassembly',
+      'webdev',
+      'webpack',
+      'webrtc',
+    ];
+    const acceptedNewsSources = [
+      'medium.com',
+      'joshwcomeau.com',
+      'freecodecamp.org',
+      'code.tutsplus.com',
+      'producthunter.com',
+      'slack.engineering',
+      'blog.jetbrains.com',
+      'blog.logrocket.com',
+    ];
+    const today = new Date();
+    const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const collectionAPI = acceptedNewsSources.map((domain) => {
+      return `https://api.thenewsapi.com/v1/news/all?api_token=${
+        process.env.NEWS_API
+      }&language=en&domains=${domain}&categories=business,tech&published_on=${pastweek.toLocaleDateString(
+        'en-CA'
+      )}&limit=5`;
+    });
+    Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then(
+      (results) => {
+        results.forEach((result) => {
+          if (result.data.data) {
+            console.log(result.data.data);
+            result.data.data.forEach(async (article: NewsItemType) => {
+              let resultMany: UpdateResult | Document;
+              resultMany = await newsArticleCollection.updateMany(
+                { uuid: article.uuid },
+                {
+                  $set: {
+                    uuid: article.uuid,
+                    title: article.title,
+                    description: article.description,
+                    snippet: article.snippet,
+                    url: article.url,
+                    image_url: article.image_url,
+                    source: article.source,
+                    categories: article.categories,
+                    published_at: article.published_at,
+                    bookmark: false,
+                    upvoted: false,
+                    upvoteAmount: Math.floor(Math.random() * 90),
+                    commentAmount: Math.floor(Math.random() * 30),
+                  },
+                },
+                { upsert: true }
+              );
+              console.log(resultMany);
+            });
+          }
         });
       }
-    });
-  });
-  // for (let i = 0; i < 543; i++) {}
-  // newsArticleCollection.find({}).forEach((document) => {
-  //   newsArticleCollection.updateOne(
-  //     { uuid: document.uuid },
-  //     {
-  //       $set: {
-  //         upvoteAmount: Math.floor(Math.random() * 90),
-  //         commentAmount: Math.floor(Math.random() * 30),
-  //         upvoted: false,
-  //       },
-  //     },
-  //     { upsert: true }
-  //   );
-  // });
+    );
+    // for (let i = 0; i < acceptedNewsSources.length; i++) {
+    //   for (let j = 0; j < categories.length; j++) {
+    //     collectionSearch.push(
+    //       `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=${categories[j]}&domains=${acceptedNewsSources[i]}&categories=business,tech&limit=5`
+    //     );
+    //   }
+    // }
+    // for (let i = 0; i < 543; i++) {}
+    // newsArticleCollection.find({}).forEach((document) => {
+    //   newsArticleCollection.updateOne(
+    //     { uuid: document.uuid },
+    //     {
+    //       $set: {
+    //         upvoteAmount: Math.floor(Math.random() * 90),
+    //         commentAmount: Math.floor(Math.random() * 30),
+    //         upvoted: false,
+    //       },
+    //     },
+    //     { upsert: true }
+    //   );
+    // });
+  }
+
   await newsArticleCollection.deleteMany({ image_url: '' });
   const response = await newsArticleCollection
-    // .find({ published_at: { $gte: pastweek.toISOString() } }, { projection: { _id: 0 } })
     .find({}, { projection: { _id: 0 } })
     .sort({ published_at: -1 })
-    // .sort({ $natural: -1 })
     .limit(50)
     .toArray();
 
