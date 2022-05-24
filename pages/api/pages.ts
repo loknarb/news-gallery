@@ -15,6 +15,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 
     const articles = await newsArticleCollection
       .find({}, { projection: { _id: 0 } })
+      .sort({ published_at: -1 })
       // .sort({ $natural: -1 })
       .skip(skip * PAGE_SIZE)
       .limit(PAGE_SIZE)

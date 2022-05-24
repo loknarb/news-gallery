@@ -11,7 +11,6 @@ const useSafeLocalStorage = (key: string, initialValue: undefined) => {
   });
 
   const setValue = (value: string) => {
-    console.log('value', value);
     try {
       window.localStorage.setItem(key, value);
       setValueProxy(value);

@@ -15,7 +15,6 @@ const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
   const [isDark, setIsDark] = useDarkModeHook();
   const { spacingHandler, spacingType, layoutHandler, layoutType } = useLayout((state) => state);
-  console.log(layoutType);
   return (
     <ReactModal
       isOpen={shown}

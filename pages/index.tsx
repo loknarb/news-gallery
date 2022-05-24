@@ -97,9 +97,10 @@ export const getStaticProps: GetStaticProps = async () => {
     'webpack',
     'webrtc',
   ];
+  const acceptedNewsSources = ['producthunter.com', 'slack.engineering', 'blog.jetbrains.com'];
   // const categories = [];
   const today = new Date();
-  const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 14);
+  const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
   // const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 14);
   // const collectionAPI = categories.map((search) => {
   //   return `https://api.thenewsapi.com/v1/news/all?api_token=${process.env.NEWS_API}&language=en&search=${search}&domains=producthunter.com, slack.engineering, blog.jetbrains.com&categories=business,tech&limit=5`;
@@ -138,6 +139,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await newsArticleCollection
     // .find({ published_at: { $gte: pastweek.toISOString() } }, { projection: { _id: 0 } })
     .find({}, { projection: { _id: 0 } })
+    .sort({ published_at: -1 })
     // .sort({ $natural: -1 })
     .limit(50)
     .toArray();
