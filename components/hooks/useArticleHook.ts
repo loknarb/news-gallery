@@ -1,12 +1,12 @@
 import { NewsItemType } from '../../pages/types/types';
-import create from 'zustand';
+import create, { useStore } from 'zustand';
 import axios from 'axios';
 const useArticles = create<{
   articles: NewsItemType[];
   filteredArticles: NewsItemType[];
   scrollAmount: number;
   scrollTopButton: boolean;
-  upvoteHandler: (uuid: NewsItemType['uuid']) => void;
+  upvoteHandler: (uuid: NewsItemType['uuid'], action: 'ADD' | 'SUBTRACT') => void;
   upvoteStatus: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
   bookmarkHandler: (uuid: NewsItemType['uuid']) => void;
@@ -24,10 +24,11 @@ const useArticles = create<{
   filteredArticles: [],
   scrollAmount: 0,
   scrollTopButton: false,
-  upvoteHandler: (uuid: NewsItemType['uuid']) =>
+  upvoteHandler: (uuid: NewsItemType['uuid'], action: 'ADD' | 'SUBTRACT') => {
     set((state) => ({
-      filteredArticles: handleUpvote(state.filteredArticles, uuid),
-    })),
+      filteredArticles: handleUpvote(state.filteredArticles, uuid, action),
+    }));
+  },
   upvoteStatus: () =>
     set((state) => ({
       filteredArticles: handleFilterUpvote(state.articles),
@@ -84,7 +85,22 @@ const useArticles = create<{
     })),
 }));
 
-const handleUpvote = (articles: NewsItemType[], uuid: NewsItemType['uuid']): NewsItemType[] => {
+const handleUpvote = (
+  articles: NewsItemType[],
+  uuid: NewsItemType['uuid'],
+  action: 'ADD' | 'SUBTRACT'
+): NewsItemType[] => {
+  const index = articles.findIndex((i) => i.uuid === uuid);
+  switch (action) {
+    case 'ADD':
+      break;
+    case 'SUBTRACT':
+      break;
+  }
+
+  const response = axios.post('api/popular', {});
+
+  console.log(response);
   return articles.map((article) => ({
     ...article,
     upvoted: article.uuid === uuid ? !article.upvoted : article.upvoted,
