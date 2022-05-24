@@ -30,3 +30,7 @@ export interface LayoutProps {
   gridTemplateColumns?: string;
   gap: string;
 }
+
+export interface UpvotePostRequest extends Pick<NewsItemType, 'uuid'> {
+  action: 'ADD' | 'SUBTRACT';
+}
