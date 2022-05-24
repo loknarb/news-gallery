@@ -105,6 +105,8 @@ const NewsList = () => {
             published_at,
             bookmark,
             upvote,
+            upvoteAmount,
+            commentAmount,
           },
           index
         ) => {
@@ -122,6 +124,8 @@ const NewsList = () => {
                 published_at={published_at}
                 bookmark={bookmark}
                 upvote={upvote}
+                upvoteAmount={upvoteAmount}
+                commentAmount={commentAmount}
               />
               <Menu key={`Menu${uuid}`} id={uuid}>
                 <Item key={`hide${uuid}`} onClick={() => hideArticle(uuid)}>

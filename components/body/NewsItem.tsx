@@ -13,18 +13,7 @@ import { useContextMenu } from 'react-contexify';
 import useArticles from '../hooks/useArticleHook';
 import ImageWithFallback from '../UI/ImageWithFallback';
 import UnoptimizedImageFallback from '../UI/UnoptimizedImageFallback';
-const NewsItem: React.FC<{
-  uuid: NewsItemType['uuid'];
-  categories: NewsItemType['categories'];
-  title: NewsItemType['title'];
-  description: NewsItemType['description'];
-  url: NewsItemType['url'];
-  image_url: NewsItemType['image_url'];
-  source: NewsItemType['source'];
-  published_at: NewsItemType['published_at'];
-  bookmark: NewsItemType['bookmark'];
-  upvote: NewsItemType['upvote'];
-}> = ({
+const NewsItem: React.FC<NewsItemType> = ({
   uuid,
   categories,
   title,
@@ -35,6 +24,8 @@ const NewsItem: React.FC<{
   published_at,
   bookmark,
   upvote,
+  upvoteAmount,
+  commentAmount,
 }) => {
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
@@ -88,15 +79,16 @@ const NewsItem: React.FC<{
               {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
             </div>
           </a>
-          <div className='flex flex-row justify-around justify-self-end mt-2'>
+          <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-[#33415524] shadow-sm shadow-black border-b-0 '>
             <Button
               className={
                 upvote
-                  ? ' bg-gray-900 text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
-                  : 'text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
+                  ? 'flex flex-row bg-gray-900 text-green-300 hover:bg-gray-900 border-none rounded-none z-10 p-1'
+                  : 'flex flex-row text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
               }
               onClick={() => upvoteHandler(uuid)}>
               <Upvote />
+              <span className='font-mono font-semibold tracking-tight'>{upvoteAmount}</span>
             </Button>
             <Button className='text-gray-900 dark:text-[#AAB6C1] hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
               <Discussion />
@@ -104,7 +96,7 @@ const NewsItem: React.FC<{
             <Button
               className={
                 bookmark
-                  ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 text-orange-300'
+                  ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900  p-1 z-10 text-orange-300 border-none rounded-none'
                   : 'text-gray-900 dark:text-[#AAB6C1] hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
               }
               onClick={() => bookmarkHandler(uuid)}>

@@ -4,15 +4,16 @@ export interface NewsItemType {
   uuid: string;
   title: string;
   description: string;
-  snippet: string;
+  snippet?: string;
   url: string;
   image_url: StaticImageData | string;
   source: string;
   categories: string | string[];
   published_at: string;
+  bookmark?: boolean;
   upvote?: boolean;
   upvoteAmount?: number;
-  bookmark?: boolean;
+  commentAmount?: number;
 }
 
 export interface NewsItemProps {
