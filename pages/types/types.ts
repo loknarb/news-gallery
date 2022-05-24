@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image';
-
+import { Property } from 'csstype';
 export interface NewsItemType {
   uuid: string;
   title: string;
@@ -25,7 +25,7 @@ export interface NewsItemProp {
 
 export interface LayoutProps {
   display: string;
-  flexDirection?: string;
+  flexDirection?: Property.FlexDirection;
   gridTemplateColumns?: string;
   gap: string;
 }
