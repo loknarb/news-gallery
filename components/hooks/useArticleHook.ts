@@ -88,6 +88,12 @@ const handleUpvote = (articles: NewsItemType[], uuid: NewsItemType['uuid']): New
   return articles.map((article) => ({
     ...article,
     upvote: article.uuid === uuid ? !article.upvote : article.upvote,
+    upvoteAmount:
+      article.uuid === uuid && !article.upvote
+        ? article.upvoteAmount! + 1
+        : article.uuid === uuid && article.upvote
+        ? article.upvoteAmount! - 1
+        : article.upvoteAmount!,
   }));
 };
 const handleComment = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
