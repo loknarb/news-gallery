@@ -1,4 +1,4 @@
-import { NewsItemType } from '../../pages/types/types';
+import { BookmarkPostRequest, NewsItemType, UpvotePostRequest } from '../../pages/types/types';
 import create, { useStore } from 'zustand';
 import axios from 'axios';
 const useArticles = create<{
@@ -6,10 +6,10 @@ const useArticles = create<{
   filteredArticles: NewsItemType[];
   scrollAmount: number;
   scrollTopButton: boolean;
-  upvoteHandler: (uuid: NewsItemType['uuid'], action: 'ADD' | 'SUBTRACT') => void;
+  upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => void;
   upvoteStatus: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
-  bookmarkHandler: (uuid: NewsItemType['uuid']) => void;
+  bookmarkHandler: (uuid: NewsItemType['uuid'], action: BookmarkPostRequest['action']) => void;
   bookmarkStatus: (uuid: NewsItemType['uuid']) => void;
   hideArticle: (uuid: NewsItemType['uuid']) => void;
   filterSource: (source: NewsItemType['source']) => void;
@@ -24,7 +24,7 @@ const useArticles = create<{
   filteredArticles: [],
   scrollAmount: 0,
   scrollTopButton: false,
-  upvoteHandler: (uuid: NewsItemType['uuid'], action: 'ADD' | 'SUBTRACT') => {
+  upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => {
     set((state) => ({
       filteredArticles: handleUpvote(state.filteredArticles, uuid, action),
     }));
@@ -37,9 +37,9 @@ const useArticles = create<{
     set((state) => ({
       articles: handleComment(state.articles, uuid),
     })),
-  bookmarkHandler: (uuid: NewsItemType['uuid']) =>
+  bookmarkHandler: (uuid: NewsItemType['uuid'], action: BookmarkPostRequest['action']) =>
     set((state) => ({
-      filteredArticles: handleBookmark(state.filteredArticles, uuid),
+      filteredArticles: handleBookmark(state.filteredArticles, uuid, action),
     })),
   bookmarkStatus: () =>
     set((state) => ({
@@ -106,7 +106,12 @@ const handleUpvote = (
 const handleComment = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
   return [...articles];
 };
-const handleBookmark = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
+const handleBookmark = (
+  articles: NewsItemType[],
+  uuid: NewsItemType['uuid'],
+  action: BookmarkPostRequest['action']
+) => {
+  const response = axios.post('api/bookmark', { uuid, action });
   return articles.map((article) => ({
     ...article,
     bookmark: article.uuid === uuid ? !article.bookmark : article.bookmark,

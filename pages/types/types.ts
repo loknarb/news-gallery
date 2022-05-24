@@ -34,3 +34,6 @@ export interface LayoutProps {
 export interface UpvotePostRequest extends Pick<NewsItemType, 'uuid'> {
   action: 'ADD' | 'SUBTRACT';
 }
+export interface BookmarkPostRequest extends Pick<NewsItemType, 'uuid'> {
+  action: 'ADD' | 'REMOVE';
+}

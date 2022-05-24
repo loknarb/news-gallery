@@ -155,17 +155,18 @@ export const getStaticProps: GetStaticProps = async () => {
     // }
     // for (let i = 0; i < 543; i++) {}
     // newsArticleCollection.find({}).forEach((document) => {
-    //   newsArticleCollection.updateOne(
-    //     { uuid: document.uuid },
-    //     {
-    //       $set: {
-    //         upvoteAmount: Math.floor(Math.random() * 90),
-    //         commentAmount: Math.floor(Math.random() * 30),
-    //         upvoted: false,
+    //   if (document.commentAmount + document.upvoteAmount < 40) {
+    //     const x = newsArticleCollection.updateOne(
+    //       { uuid: document.uuid },
+    //       {
+    //         $set: {
+    //           bookmark: true,
+    //         },
     //       },
-    //     },
-    //     { upsert: true }
-    //   );
+    //       { upsert: true }
+    //     );
+    //     console.log(x);
+    //   }
     // });
   }
 
