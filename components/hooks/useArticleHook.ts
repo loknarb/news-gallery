@@ -91,7 +91,7 @@ const handleUpvote = (
   action: 'ADD' | 'SUBTRACT'
 ): NewsItemType[] => {
   const response = axios.post('api/popular', { uuid, action });
-  console.log(response);
+  console.log('response', response);
   return articles.map((article) => ({
     ...article,
     upvoted: article.uuid === uuid ? !article.upvoted : article.upvoted,

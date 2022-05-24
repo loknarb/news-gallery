@@ -47,7 +47,6 @@ const NewsItem: React.FC<NewsItemType> = ({
             <div className='flex justify-between align-middle mt-1'>
               <Link href={url}>
                 <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
-                  {/* <Image layout='fill' src={`https://logo.clearbit.com/${domain}`} /> */}
                   <ImageWithFallback
                     src={`https://logo.clearbit.com/${domain}`}
                     layout='fill'
@@ -86,7 +85,9 @@ const NewsItem: React.FC<NewsItemType> = ({
                   ? 'flex flex-row bg-gray-900 text-green-300 hover:bg-gray-900 border-none rounded-none z-10 p-1'
                   : 'flex flex-row text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
               }
-              onClick={() => upvoteHandler(uuid)}>
+              onClick={
+                !upvoted ? () => upvoteHandler(uuid, 'ADD') : () => upvoteHandler(uuid, 'SUBTRACT')
+              }>
               <Upvote />
               <span className='font-mono font-semibold tracking-tight'>{upvoteAmount}</span>
             </Button>
