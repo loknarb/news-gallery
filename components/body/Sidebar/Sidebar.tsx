@@ -10,7 +10,7 @@ const Sidebar = () => {
   const { hideSideBar } = useSideBar((state) => state);
   return (
     <aside
-      className='flex-col flex fixed left-0 w-60 border-r-2 bg-slate-700  h-screen p-4 dark:bg-[#1F2937] dark:border-[#1A1E1F]'
+      className='flex-col flex fixed left-0 w-60 border-r-2 bg-slate-700  h-screen p-4 dark:bg-[#1F2937] dark:border-[#1A1E1F] shadow-md'
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {hovered ? (
