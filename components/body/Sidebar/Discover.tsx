@@ -20,14 +20,17 @@ const Discover = () => {
         }`}>
         Discover
       </span>
-      <ul className='list-none'>
+      <ul className='list-none p-1'>
         <List className='transition-all duration-500 cursor-pointer'>
           <Button
-            className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
-            onClick={() => {
-              loadingHandler(), popularStatus(), scrollToTopHandler();
-            }}>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'>
+            className={`${
+              sideBar ? 'h-6' : ''
+            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
+            <span
+              className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'
+              onClick={() => {
+                loadingHandler(), popularStatus(), scrollToTopHandler();
+              }}>
               <Popular />
             </span>
             <span
@@ -39,7 +42,10 @@ const Discover = () => {
           </Button>
         </List>
         <List className='transition-all duration-500 cursor-pointer'>
-          <Button className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
+          <Button
+            className={`${
+              sideBar ? 'h-6' : ''
+            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
             <span
               className='w-4 flex align-middle mt-0.5 mr-1 text-green-300'
               onClick={() => {
@@ -56,7 +62,10 @@ const Discover = () => {
           </Button>
         </List>
         <List className='transition-all duration-500 cursor-pointer'>
-          <Button className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
+          <Button
+            className={`${
+              sideBar ? 'h-6' : ''
+            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
             <span className='w-4 flex align-middle mt-0.5 mr-1 text-fuchsia-300'>
               <Discussions />
             </span>
