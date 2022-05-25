@@ -18,7 +18,7 @@ const Manage = () => {
   return (
     <>
       <ul className='list-none mt-0.5 mr-1'>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => {
@@ -29,7 +29,7 @@ const Manage = () => {
             </span>
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => openModalAuth()}>
@@ -38,7 +38,7 @@ const Manage = () => {
             </span>
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => openModal()}>

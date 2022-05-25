@@ -13,7 +13,7 @@ const DiscoverLogos = () => {
   return (
     <>
       <ul className='list-none mt-0.5 mr-1'>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => {
@@ -24,7 +24,7 @@ const DiscoverLogos = () => {
             </span>
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => {
@@ -35,7 +35,7 @@ const DiscoverLogos = () => {
             </span>
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'>
             <span className='w-4 flex align-middle text-fuchsia-300'>
               <Discussions />

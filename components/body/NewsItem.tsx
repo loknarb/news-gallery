@@ -82,8 +82,8 @@ const NewsItem: React.FC<NewsItemType> = ({
             <Button
               className={
                 upvoted
-                  ? 'flex flex-row bg-gray-900 text-green-300 hover:bg-gray-900 border-none rounded-none z-10 p-1'
-                  : 'flex flex-row text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1'
+                  ? 'flex flex-row bg-gray-900 text-green-300 hover:bg-gray-900 border-none rounded-none z-10 p-1 transition-all duration-500'
+                  : 'flex flex-row text-gray-900 dark:text-[#AAB6C1] hover:text-green-300 hover:bg-gray-900 rounded-md z-10 p-1 transition-all duration-500'
               }
               onClick={
                 !upvoted ? () => upvoteHandler(uuid, 'ADD') : () => upvoteHandler(uuid, 'SUBTRACT')
@@ -91,14 +91,14 @@ const NewsItem: React.FC<NewsItemType> = ({
               <Upvote />
               <span className='font-mono font-semibold tracking-tight'>{upvoteAmount}</span>
             </Button>
-            <Button className='text-gray-900 dark:text-[#AAB6C1] hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1'>
+            <Button className='text-gray-900 dark:text-[#AAB6C1] hover:text-fuchsia-300 hover:bg-gray-900 rounded-md z-10 p-1 transition-all duration-500'>
               <Discussion />
             </Button>
             <Button
               className={
                 bookmark
-                  ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900  p-1 z-10 text-orange-300 border-none rounded-none'
-                  : 'text-gray-900 dark:text-[#AAB6C1] hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
+                  ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900  p-1 z-10 text-orange-300 border-none rounded-none transition-all duration-500'
+                  : 'text-gray-900 dark:text-[#AAB6C1] hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 transition-all duration-500'
               }
               onClick={
                 !bookmark

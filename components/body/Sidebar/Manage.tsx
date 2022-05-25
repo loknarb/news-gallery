@@ -16,9 +16,9 @@ const Manage = () => {
     <>
       <span className='text-xs font-bold pt-3 pb-1 text-slate-500 tracking-wider '>Manage</span>
       <ul className='list-none'>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
-            className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+            className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => bookmarkStatus()}>
             <span className='w-4 flex align-middle mt-0.5 mr-1 text-orange-300'>
               <Bookmark />
@@ -26,9 +26,9 @@ const Manage = () => {
             Bookmarks
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
-            className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+            className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => openModalAuth()}>
             <span className='w-4 flex align-middle mt-0.5 mr-1 text-blue-300'>
               <ReadingHistory />
@@ -36,9 +36,9 @@ const Manage = () => {
             Reading History
           </Button>
         </List>
-        <List>
+        <List className='transition-all duration-500 cursor-pointer'>
           <Button
-            className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+            className='transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => openModal()}>
             <span className='w-4 flex align-middle mt-0.5 mr-1 text-gray-300'>
               <Settings />
