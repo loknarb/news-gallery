@@ -4,34 +4,11 @@ import Button from '../../UI/Button';
 import LeftArrow from '../../UI/LeftArrow';
 import Discover from './Discover';
 import Manage from './Manage';
-import { AnimatePresence, motion } from 'framer-motion';
 const Sidebar = () => {
-  const sidebar = {
-    closed: {
-      width: '46px',
-      transition: {
-        type: 'spring',
-        stiffness: 20,
-        restDelta: 2,
-      },
-    },
-    open: {
-      width: '240px',
-      transition: {
-        delay: 0.5,
-        type: 'spring',
-        stiffness: 400,
-        damping: 40,
-      },
-    },
-  };
   const [hovered, setHovered] = useState(false);
   const { hideSideBar, sideBar } = useSideBar((state) => state);
   return (
-    <motion.aside
-      animate={sideBar ? 'open' : 'closed'}
-      variants={sidebar}
-      exit={'closed'}
+    <aside
       className='flex-col flex fixed left-0 border-r-2 bg-slate-700  h-screen p-4 dark:bg-[#1F2937] dark:border-[#1A1E1F] shadow-md'
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
@@ -46,7 +23,7 @@ const Sidebar = () => {
       )}
       <Discover />
       <Manage />
-    </motion.aside>
+    </aside>
   );
 };
 
