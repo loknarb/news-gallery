@@ -18,7 +18,10 @@ const Sidebar = () => {
         <div
           className='self-end -mr-7 absolute'
           onClick={sideBar ? () => hideSideBar() : () => showSideBar()}>
-          <Button className='bg-slate-100 text-slate-700 border-2 rounded border-slate-700 dark:bg-[#141717] dark:text-[#dad7d1] dark:border-[#1a1f24]'>
+          <Button
+            className={`${
+              sideBar ? 'rotate-180' : ''
+            } bg-slate-100 text-slate-700 border-2 rounded border-slate-700 dark:bg-[#141717] dark:text-[#dad7d1] dark:border-[#1a1f24] `}>
             <LeftArrow />
           </Button>
         </div>

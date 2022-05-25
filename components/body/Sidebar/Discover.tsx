@@ -25,12 +25,11 @@ const Discover = () => {
           <Button
             className={`${
               sideBar ? 'h-6' : ''
-            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
-            <span
-              className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'
-              onClick={() => {
-                loadingHandler(), popularStatus(), scrollToTopHandler();
-              }}>
+            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
+            onClick={() => {
+              loadingHandler(), popularStatus(), scrollToTopHandler();
+            }}>
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'>
               <Popular />
             </span>
             <span
@@ -45,12 +44,11 @@ const Discover = () => {
           <Button
             className={`${
               sideBar ? 'h-6' : ''
-            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
-            <span
-              className='w-4 flex align-middle mt-0.5 mr-1 text-green-300'
-              onClick={() => {
-                loadingHandler(), upvoteStatus(), scrollToTopHandler();
-              }}>
+            } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
+            onClick={() => {
+              loadingHandler(), upvoteStatus(), scrollToTopHandler();
+            }}>
+            <span className='w-4 flex align-middle mt-0.5 mr-1 text-green-300'>
               <Upvote />
             </span>
             <span
