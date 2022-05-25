@@ -20,7 +20,6 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         upvoteAmount = -1;
         break;
     }
-    console.log('upvoteAmount', upvoteAmount);
     const article = await newsArticleCollection.updateOne(
       { uuid: data.uuid },
       {
@@ -30,11 +29,9 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
       }
     );
     console.log(article);
-    res
-      .status(200)
-      .json({
-        message: `Successfully ${upvoteAmount === 1 ? 'upvoted' : 'removed upvote'} ${data.uuid}`,
-      });
+    res.status(200).json({
+      message: `Successfully ${upvoteAmount === 1 ? 'upvoted' : 'removed upvote'} ${data.uuid}`,
+    });
     client.close();
   }
 };
