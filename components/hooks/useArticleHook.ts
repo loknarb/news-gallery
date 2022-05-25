@@ -41,10 +41,12 @@ const useArticles = create<{
       filteredArticles: handleUpvote(state.filteredArticles, uuid, action),
     }));
   },
-  upvoteStatus: () =>
+  upvoteStatus: async () => {
+    const handleFilterUpvotes = await handleFilterUpvote();
     set((state) => ({
-      filteredArticles: handleFilterUpvote(state.articles),
-    })),
+      filteredArticles: handleFilterUpvotes,
+    }));
+  },
   comment: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
       articles: handleComment(state.articles, uuid),
@@ -131,10 +133,9 @@ const handleBookmark = (
     bookmark: article.uuid === uuid ? !article.bookmark : article.bookmark,
   }));
 };
-const handleFilterUpvote = (articles: NewsItemType[]) => {
-  const response = axios.post('api/upvote-filter');
-
-  return articles.filter((article) => article.upvoted === true);
+const handleFilterUpvote = async () => {
+  const response = await axios.post('api/upvote-filter');
+  return response.data.data;
 };
 const handleFilterBookmark = async () => {
   const response = await axios.post('/api/bookmark-filter');
