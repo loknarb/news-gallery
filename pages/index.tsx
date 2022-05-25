@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
       (results) => {
         results.forEach((result) => {
           if (result.data.data) {
-            console.log(result.data.data);
+            // console.log(result.data.data);
             result.data.data.forEach(async (article: NewsItemType) => {
               let resultMany: UpdateResult | Document;
               resultMany = await newsArticleCollection.updateMany(

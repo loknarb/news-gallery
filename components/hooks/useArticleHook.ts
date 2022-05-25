@@ -46,7 +46,7 @@ const useArticles = create<{
     set((state) => ({
       filteredArticles: handleFilterUpvotes,
       articles: handleFilterUpvotes,
-      scrollFunctionEnabled: true,
+      scrollFunctionEnabled: false,
     }));
   },
   comment: (uuid: NewsItemType['uuid']) =>
