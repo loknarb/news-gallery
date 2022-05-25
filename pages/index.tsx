@@ -6,7 +6,7 @@ import { Document, MongoClient, UpdateResult } from 'mongodb';
 import { NewsItemProps, NewsItemType } from './types/types';
 import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
-import { useEffect } from 'react';
+import react, { useEffect } from 'react';
 import Button from '../components/UI/Button';
 import UpScroll from '../components/UI/UpScroll';
 import LoginModal from '../components/modal/LoginModal';
@@ -37,7 +37,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
       <Header />
       {scrollTopButton ? (
         <Button
-          className='rounded-full bg-slate-700 text-white fixed z-20 bottom-[2em] right-[2em]'
+          className='rounded-full border border-black bg-slate-700 text-white fixed z-20 bottom-[2em] right-[2em] shadow-lg shadow-black hover:shadow-sm transition-all duration-300'
           onClick={scrollToTopHandler}>
           <UpScroll />
         </Button>

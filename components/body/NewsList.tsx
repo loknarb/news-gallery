@@ -86,6 +86,7 @@ const NewsList = () => {
     let isApiSubscribed = true;
 
     if (isApiSubscribed && scrollAmount > 0 && scrollFunctionEnabled) {
+      console.log(scrollAmount);
       scroll(scrollAmount);
     }
     return () => {
@@ -94,7 +95,6 @@ const NewsList = () => {
   }, [scrollAmount]);
 
   let skeletonCards = Array(20).fill(0);
-  console.log('loading', loading);
   return (
     <main className='w-full h-full justify-center' style={initLayout}>
       {loading

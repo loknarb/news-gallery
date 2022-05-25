@@ -1,5 +1,5 @@
 import { BookmarkPostRequest, NewsItemType, UpvotePostRequest } from '../../pages/types/types';
-import create, { useStore } from 'zustand';
+import create from 'zustand';
 import axios from 'axios';
 const useArticles = create<{
   articles: NewsItemType[];
@@ -32,7 +32,6 @@ const useArticles = create<{
   loading: false,
   popularStatus: async () => {
     const response = await axios.post('api/popular');
-    console.log(response.data);
     set((state) => ({
       filteredArticles: response.data.data,
       articles: response.data.data,
@@ -82,6 +81,7 @@ const useArticles = create<{
   search: (input: string) =>
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
+      scrollFunctionEnabled: false,
     })),
   setter: (init: NewsItemType[]) =>
     set((state) => ({
@@ -89,6 +89,7 @@ const useArticles = create<{
       filteredArticles: [...init],
     })),
   scroll: async (scrollAmount: number) => {
+    console.log('ran');
     const response = await axios.post('/api/pages', { skip: scrollAmount });
     set((state) => ({
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
@@ -155,7 +156,6 @@ const handleFilterUpvote = async () => {
 };
 const handleFilterBookmark = async () => {
   const response = await axios.post('/api/bookmark-filter');
-  console.log(response);
   return response.data.data;
 };
 const handleHideArticle = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
@@ -165,9 +165,7 @@ const handleFilterSource = (articles: NewsItemType[], source: NewsItemType['sour
   return articles.filter((article) => article.source !== source);
 };
 const handleSearch = (articles: NewsItemType[], input: string) => {
-  if (input === '') {
-    return [...articles];
-  }
+  console.log('input', input);
   return articles.filter((article) =>
     Object.values(article).join(' ').toLowerCase().includes(input.toLowerCase())
   );
