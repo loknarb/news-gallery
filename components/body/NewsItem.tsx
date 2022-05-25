@@ -100,7 +100,11 @@ const NewsItem: React.FC<NewsItemType> = ({
                   ? ' bg-gray-900 hover:text-orange-300  hover:bg-gray-900  p-1 z-10 text-orange-300 border-none rounded-none'
                   : 'text-gray-900 dark:text-[#AAB6C1] hover:text-orange-300  hover:bg-gray-900 rounded-md p-1 z-10 '
               }
-              onClick={() => bookmarkHandler(uuid)}>
+              onClick={
+                !bookmark
+                  ? () => bookmarkHandler(uuid, 'ADD')
+                  : () => bookmarkHandler(uuid, 'REMOVE')
+              }>
               <Bookmark />
             </Button>
           </div>

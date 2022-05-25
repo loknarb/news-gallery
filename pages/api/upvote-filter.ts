@@ -2,7 +2,7 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const data: UpvotePostRequest = req.body;
+    const data = req.body;
     console.log(data);
     // TODO close client or instead keep it open for a specific session
     const client = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
@@ -21,3 +21,4 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     client.close();
   }
 };
+export default handler;
