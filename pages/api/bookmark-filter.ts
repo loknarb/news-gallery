@@ -9,8 +9,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     const db = client.db();
     const newsArticleCollection = db.collection('newsArticles');
     const response = await newsArticleCollection
-      .find({}, { projection: { _id: 0 } })
-      .sort({ bookmark: -1 })
+      .find({ bookmark: true }, { projection: { _id: 0 } })
       .limit(50)
       .toArray();
 

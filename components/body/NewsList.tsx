@@ -18,6 +18,7 @@ const NewsList = () => {
     scrollIncrementer,
     scrollButtonShower,
     scrollButtonHider,
+    scrollFunctionEnabled,
   } = useArticles((state) => state);
   const { spacingType, layoutType } = useLayout((state) => state);
   const [initLayout, setLayout] = useState<LayoutProps>({
@@ -82,7 +83,7 @@ const NewsList = () => {
   useEffect(() => {
     let isApiSubscribed = true;
 
-    if (isApiSubscribed && scrollAmount > 0) {
+    if (isApiSubscribed && scrollAmount > 0 && scrollFunctionEnabled) {
       scroll(scrollAmount);
     }
     return () => {
