@@ -10,7 +10,8 @@ const MainDesktop = () => {
       <main className='pl-64 pr-6 pt-8 w-full mx-auto '>
         <NewsList />
       </main>
-      {sideBar ? <Sidebar /> : <SideBarLogos />}
+      <Sidebar />
+      {/* : <SideBarLogos />} */}
     </div>
   );
 };
