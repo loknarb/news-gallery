@@ -20,6 +20,7 @@ const NewsList = () => {
     scrollButtonShower,
     scrollButtonHider,
     scrollFunctionEnabled,
+    loading,
   } = useArticles((state) => state);
   const { spacingType, layoutType } = useLayout((state) => state);
   const [initLayout, setLayout] = useState<LayoutProps>({
@@ -93,78 +94,78 @@ const NewsList = () => {
   }, [scrollAmount]);
 
   let skeletonCards = Array(20).fill(0);
+  console.log('loading', loading);
   return (
     <main className='w-full h-full justify-center' style={initLayout}>
-      {skeletonCards.map((index: number) => (
-        <SkeletonCard key={index} />
-      ))}
-      {/* {filteredArticles.map(
-        (
-          {
-            uuid,
-            categories,
-            title,
-            description,
-            url,
-            image_url,
-            source,
-            published_at,
-            bookmark,
-            upvoted,
-            upvoteAmount,
-            commentAmount,
-          },
-          index
-        ) => {
-          const body = (
-            <>
-              <NewsItem
-                key={uuid}
-                uuid={uuid}
-                categories={categories}
-                title={title}
-                description={description}
-                url={url}
-                image_url={image_url}
-                source={source}
-                published_at={published_at}
-                bookmark={bookmark}
-                upvoted={upvoted}
-                upvoteAmount={upvoteAmount}
-                commentAmount={commentAmount}
-              />
-              <Menu key={`Menu${uuid}`} id={uuid}>
-                <Item key={`hide${uuid}`} onClick={() => hideArticle(uuid)}>
-                  Hide Post
-                </Item>
-                <Item key={`filter${uuid}`} onClick={() => filterSource(source)}>
-                  Hide Posts from {source}
-                </Item>
-                <Item key={`clip${uuid}`} onClick={() => handleClipboardCopy(url)}>
-                  Share this post
-                </Item>
-              </Menu>
-            </>
-          );
-          if (index === 10) {
-            return (
-              <ul>
-                <div ref={scrollDivRef} className='absolute h-1'></div>
-                {body}
-              </ul>
-            );
-          } else if (filteredArticles.length === index + 1) {
-            return (
-              <ul>
-                <div ref={articleElementRef}></div>
-                {body}
-              </ul>
-            );
-          } else {
-            return <ul>{body}</ul>;
-          }
-        }
-      )} */}
+      {loading
+        ? skeletonCards.map((x, index: number) => <SkeletonCard key={index} />)
+        : filteredArticles.map(
+            (
+              {
+                uuid,
+                categories,
+                title,
+                description,
+                url,
+                image_url,
+                source,
+                published_at,
+                bookmark,
+                upvoted,
+                upvoteAmount,
+                commentAmount,
+              },
+              index
+            ) => {
+              const body = (
+                <>
+                  <NewsItem
+                    key={uuid}
+                    uuid={uuid}
+                    categories={categories}
+                    title={title}
+                    description={description}
+                    url={url}
+                    image_url={image_url}
+                    source={source}
+                    published_at={published_at}
+                    bookmark={bookmark}
+                    upvoted={upvoted}
+                    upvoteAmount={upvoteAmount}
+                    commentAmount={commentAmount}
+                  />
+                  <Menu key={`Menu${uuid}`} id={uuid}>
+                    <Item key={`hide${uuid}`} onClick={() => hideArticle(uuid)}>
+                      Hide Post
+                    </Item>
+                    <Item key={`filter${uuid}`} onClick={() => filterSource(source)}>
+                      Hide Posts from {source}
+                    </Item>
+                    <Item key={`clip${uuid}`} onClick={() => handleClipboardCopy(url)}>
+                      Share this post
+                    </Item>
+                  </Menu>
+                </>
+              );
+              if (index === 10) {
+                return (
+                  <ul>
+                    <div ref={scrollDivRef} className='absolute h-1'></div>
+                    {body}
+                  </ul>
+                );
+              } else if (filteredArticles.length === index + 1) {
+                return (
+                  <ul>
+                    <div ref={articleElementRef}></div>
+                    {body}
+                  </ul>
+                );
+              } else {
+                return <ul>{body}</ul>;
+              }
+            }
+          )}
     </main>
   );
 };

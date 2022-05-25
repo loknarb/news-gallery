@@ -7,6 +7,7 @@ const useArticles = create<{
   scrollAmount: number;
   scrollTopButton: boolean;
   scrollFunctionEnabled: boolean;
+  loading: boolean;
   popularStatus: () => void;
   upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => void;
   upvoteStatus: () => void;
@@ -21,12 +22,14 @@ const useArticles = create<{
   scrollIncrementer: () => void;
   scrollButtonShower: () => void;
   scrollButtonHider: () => void;
+  loadingHandler: () => void;
 }>((set) => ({
   articles: [],
   filteredArticles: [],
   scrollAmount: 0,
   scrollTopButton: false,
   scrollFunctionEnabled: true,
+  loading: false,
   popularStatus: async () => {
     const response = await axios.post('api/popular');
     console.log(response.data);
@@ -34,6 +37,7 @@ const useArticles = create<{
       filteredArticles: response.data.data,
       articles: response.data.data,
       scrollFunctionEnabled: true,
+      loading: false,
     }));
   },
   upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => {
@@ -43,10 +47,12 @@ const useArticles = create<{
   },
   upvoteStatus: async () => {
     const handleFilterUpvotes = await handleFilterUpvote();
+
     set((state) => ({
       filteredArticles: handleFilterUpvotes,
       articles: handleFilterUpvotes,
       scrollFunctionEnabled: false,
+      loading: false,
     }));
   },
   comment: (uuid: NewsItemType['uuid']) =>
@@ -62,6 +68,7 @@ const useArticles = create<{
     set((state) => ({
       filteredArticles: handleFilterBookmarks,
       scrollFunctionEnabled: false,
+      loading: false,
     }));
   },
   hideArticle: (uuid: NewsItemType['uuid']) =>
@@ -88,6 +95,7 @@ const useArticles = create<{
       filteredArticles: [
         ...new Set([...state.articles, ...(response.data.articles as NewsItemType[])]),
       ],
+      loading: false,
     }));
   },
   scrollIncrementer: () =>
@@ -102,6 +110,11 @@ const useArticles = create<{
     set((state) => ({
       scrollTopButton: false,
     })),
+  loadingHandler: () => {
+    set((state) => ({
+      loading: true,
+    }));
+  },
 }));
 
 const handleUpvote = (
@@ -119,6 +132,7 @@ const handleUpvote = (
         : article.uuid === uuid && article.upvoted
         ? article.upvoteAmount! - 1
         : article.upvoteAmount!,
+    loading: false,
   }));
 };
 const handleComment = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {

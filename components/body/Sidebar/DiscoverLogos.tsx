@@ -6,7 +6,7 @@ import List from '../../UI/List';
 import Popular from '../../UI/Popular';
 import Upvote from '../../UI/Upvote';
 const DiscoverLogos = () => {
-  const { popularStatus, upvoteStatus } = useArticles((state) => state);
+  const { popularStatus, upvoteStatus, loadingHandler } = useArticles((state) => state);
   const scrollToTopHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
@@ -17,7 +17,7 @@ const DiscoverLogos = () => {
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => {
-              popularStatus(), scrollToTopHandler();
+              loadingHandler(), popularStatus(), scrollToTopHandler();
             }}>
             <span className='w-4 flex align-middle text-red-300'>
               <Popular />
@@ -28,7 +28,7 @@ const DiscoverLogos = () => {
           <Button
             className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
             onClick={() => {
-              upvoteStatus(), scrollToTopHandler();
+              loadingHandler(), upvoteStatus(), scrollToTopHandler();
             }}>
             <span className='w-4 flex align-middle text-green-300'>
               <Upvote />
