@@ -23,7 +23,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
     const article = await newsArticleCollection.updateOne(
       { uuid: data.uuid },
       {
-        $inc: {
+        $set: {
           bookmark: bookmarkBool,
         },
       }

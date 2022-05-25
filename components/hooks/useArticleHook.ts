@@ -10,7 +10,7 @@ const useArticles = create<{
   upvoteStatus: (uuid: NewsItemType['uuid']) => void;
   comment: (uuid: NewsItemType['uuid']) => void;
   bookmarkHandler: (uuid: NewsItemType['uuid'], action: BookmarkPostRequest['action']) => void;
-  bookmarkStatus: (uuid: NewsItemType['uuid']) => void;
+  bookmarkStatus: () => void;
   hideArticle: (uuid: NewsItemType['uuid']) => void;
   filterSource: (source: NewsItemType['source']) => void;
   search: (input: string) => void;
@@ -43,7 +43,7 @@ const useArticles = create<{
     })),
   bookmarkStatus: () =>
     set((state) => ({
-      filteredArticles: handleFilterBookmark(state.articles),
+      filteredArticles: handleFilterBookmark(state.filteredArticles),
     })),
   hideArticle: (uuid: NewsItemType['uuid']) =>
     set((state) => ({
@@ -112,6 +112,7 @@ const handleBookmark = (
   action: BookmarkPostRequest['action']
 ) => {
   const response = axios.post('api/bookmark', { uuid, action });
+  console.log(response);
   return articles.map((article) => ({
     ...article,
     bookmark: article.uuid === uuid ? !article.bookmark : article.bookmark,
