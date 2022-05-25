@@ -8,6 +8,7 @@ import { LayoutProps, NewsItemType } from '../../pages/types/types';
 import usePopUp from '../hooks/usePopUpHook';
 import 'reactjs-popup/dist/index.css';
 import useLayout from '../hooks/useLayout';
+import SkeletonCard from '../UI/SkeletonCard';
 const NewsList = () => {
   const {
     filteredArticles,
@@ -91,9 +92,13 @@ const NewsList = () => {
     };
   }, [scrollAmount]);
 
+  let skeletonCards = Array(20).fill(0);
   return (
     <main className='w-full h-full justify-center' style={initLayout}>
-      {filteredArticles.map(
+      {skeletonCards.map((index: number) => (
+        <SkeletonCard key={index} />
+      ))}
+      {/* {filteredArticles.map(
         (
           {
             uuid,
@@ -159,7 +164,7 @@ const NewsList = () => {
             return <ul>{body}</ul>;
           }
         }
-      )}
+      )} */}
     </main>
   );
 };
