@@ -3,6 +3,7 @@ import useArticles from '../hooks/useArticleHook';
 import useDebounce from '../hooks/useDebounce';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
+import { motion } from 'framer-motion';
 import SearchLogo from '../UI/SearchLogo';
 const SearchMobile: React.FC<{
   onShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,25 +31,44 @@ const SearchMobile: React.FC<{
   const onSubmitChangeHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  const variants = {
+    open: {
+      width: '15rem',
+      transition: {
+        duration: 0.3,
+        type: 'spring',
+        stiffness: 30,
+      },
+    },
+    closed: {
+      x: 100,
+      opacity: 0,
+      display: 'none',
+      transition: {
+        duration: 0.5,
+        type: 'spring',
+        stiffness: 20,
+        restDelta: 2,
+      },
+    },
+  };
   return (
     <form className='flex items-center' onSubmit={onSubmitChangeHandler}>
-      {searchShown ? (
-        <>
-          <input
-            onBlur={onInputHideHandler}
-            className='border border-slate-200 rounded-md w-60 p-1 pr-8 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none'
-            placeholder='Article'
-            onChange={onInputChangeHandler}
-          />
-          <Button className='-ml-8' onClick={onInputHideHandler}>
-            <CloseLogo />
-          </Button>
-        </>
-      ) : (
-        <Button className='-ml-8 text-slate-200' onClick={onInputOpenHandler}>
-          <SearchLogo />
-        </Button>
-      )}
+      <motion.div animate={searchShown ? 'open' : 'closed'} variants={variants}>
+        <input
+          onBlur={onInputHideHandler}
+          className='border border-slate-200 rounded-md p-1 pr-8  focus:bg-slate-200 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none cursor-pointer focus:cursor-auto'
+          placeholder='Article'
+          onChange={onInputChangeHandler}
+          onClick={onInputOpenHandler}
+          type='search'
+        />
+      </motion.div>
+      <Button
+        className={`-ml-8 ${searchShown ? '' : 'text-slate-200'} `}
+        onClick={searchShown ? onInputHideHandler : onInputOpenHandler}>
+        {searchShown ? <CloseLogo /> : <SearchLogo />}
+      </Button>
     </form>
   );
 };
