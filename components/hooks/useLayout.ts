@@ -37,7 +37,6 @@ const useLayout = create<{
     }
   },
   layoutHandler: (layoutType: string) => {
-    console.log(layoutType);
     switch (layoutType) {
       case 'GRID':
         set((state) => ({
