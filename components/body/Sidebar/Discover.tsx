@@ -6,12 +6,13 @@ import Discussions from '../../UI/Discussions';
 import List from '../../UI/List';
 import Popular from '../../UI/Popular';
 import Upvote from '../../UI/Upvote';
-const Discover = () => {
+const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   const { popularStatus, upvoteStatus, loadingHandler } = useArticles((state) => state);
   const scrollToTopHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
   const { hideSideBar, sideBar } = useSideBar((state) => state);
+  console.log(sideBar);
   return (
     <>
       <span
@@ -20,8 +21,9 @@ const Discover = () => {
         }`}>
         Discover
       </span>
-      <ul className='list-none p-1'>
-        <List className='transition-all duration-500 cursor-pointer'>
+      <ul className={`list-none ${mobile && sideBar ? 'pl-0 pr-0' : 'p-1'}`}>
+        <List
+          className={`transition-all  cursor-pointer ${mobile && sideBar ? 'pl-0 pr-0' : 'p-1'}`}>
           <Button
             className={`${
               sideBar ? 'h-6' : ''
@@ -29,7 +31,10 @@ const Discover = () => {
             onClick={() => {
               loadingHandler(), popularStatus(), scrollToTopHandler();
             }}>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-red-300'>
+            <span
+              className={`${
+                mobile && sideBar ? 'w-0' : 'w-4'
+              } flex align-middle mt-0.5 mr-1 text-red-300 `}>
               <Popular />
             </span>
             <span
@@ -40,7 +45,8 @@ const Discover = () => {
             </span>
           </Button>
         </List>
-        <List className='transition-all duration-500 cursor-pointer'>
+        <List
+          className={`transition-all  cursor-pointer ${mobile && sideBar ? 'pl-0 pr-0' : 'p-1'}`}>
           <Button
             className={`${
               sideBar ? 'h-6' : ''
@@ -48,7 +54,10 @@ const Discover = () => {
             onClick={() => {
               loadingHandler(), upvoteStatus(), scrollToTopHandler();
             }}>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-green-300'>
+            <span
+              className={`${
+                mobile && sideBar ? 'w-0' : 'w-4'
+              } flex align-middle mt-0.5 mr-1 text-green-300`}>
               <Upvote />
             </span>
             <span
@@ -59,12 +68,16 @@ const Discover = () => {
             </span>
           </Button>
         </List>
-        <List className='transition-all duration-500 cursor-pointer'>
+        <List
+          className={`transition-all  cursor-pointer ${mobile && sideBar ? 'pl-0 pr-0' : 'p-1'}`}>
           <Button
             className={`${
               sideBar ? 'h-6' : ''
             } transition-all duration-250 flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold`}>
-            <span className='w-4 flex align-middle mt-0.5 mr-1 text-fuchsia-300'>
+            <span
+              className={`${
+                mobile && sideBar ? 'w-0' : 'w-4'
+              } flex align-middle mt-0.5 mr-1 text-fuchsia-300`}>
               <Discussions />
             </span>
             <span

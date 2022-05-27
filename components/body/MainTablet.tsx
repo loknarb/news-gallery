@@ -7,7 +7,7 @@ const MainTablet = () => {
   const { sideBar } = useSideBar((state) => state);
   return (
     <div className='flex flex-row md:pl-52 pt-14 bg-slate-100 dark:bg-[#141717]'>
-      {sideBar ? <SidebarTablet /> : ''}
+      <SidebarTablet />
       <main className='pt-8 w-full mx-auto'>
         <NewsList />
       </main>

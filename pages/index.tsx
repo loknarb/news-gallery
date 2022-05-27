@@ -108,7 +108,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const collectionAPI = acceptedNewsSources.map((domain) => {
       return `https://api.thenewsapi.com/v1/news/all?api_token=${
         process.env.NEWS_API
-      }&language=en&domains=${domain}&categories=business,tech&published_on=${pastweek.toLocaleDateString(
+      }&language=en&domains=${domain}&categories=business,tech&published_at=${pastweek.toLocaleDateString(
         'en-CA'
       )}&limit=5`;
     });
@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
       (results) => {
         results.forEach((result) => {
           if (result.data.data) {
-            // console.log(result.data.data);
+            console.log(result.data.data);
             result.data.data.forEach(async (article: NewsItemType) => {
               let resultMany: UpdateResult | Document;
               resultMany = await newsArticleCollection.updateMany(

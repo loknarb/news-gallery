@@ -6,12 +6,12 @@ import SearchMobile from './SearchMobile';
 import useSideBar from '../hooks/useSideBarHook';
 import Button from '../UI/Button';
 const HeaderMobile = () => {
-  const { showSideBar } = useSideBar((state) => state);
+  const { hideSideBar } = useSideBar((state) => state);
   const [searchShown, setSearchShown] = useState(false);
   return (
     <>
       <div className='flex-1'>
-        <Button className='text-slate-200' onClick={() => showSideBar()}>
+        <Button className='text-slate-200' onClick={() => hideSideBar()}>
           <MenuLogo />
         </Button>
       </div>

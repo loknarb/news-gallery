@@ -6,11 +6,11 @@ import icon from '../../public/favicon.png';
 import Button from '../UI/Button';
 import useSideBar from '../hooks/useSideBarHook';
 const HeaderMobile = () => {
-  const { showSideBar } = useSideBar((state) => state);
+  const { hideSideBar } = useSideBar((state) => state);
   return (
     <>
       <div className='flex-1'>
-        <Button className='text-slate-200' onClick={() => showSideBar()}>
+        <Button className='text-slate-200' onClick={() => hideSideBar()}>
           <MenuLogo />
         </Button>
       </div>
