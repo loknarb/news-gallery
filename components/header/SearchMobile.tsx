@@ -57,7 +57,7 @@ const SearchMobile: React.FC<{
       <motion.div animate={searchShown ? 'open' : 'closed'} variants={variants}>
         <input
           onBlur={onInputHideHandler}
-          className='border border-slate-200 rounded-md p-1 pr-16  focus:bg-slate-200 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none cursor-pointer focus:cursor-auto'
+          className='border border-slate-200 rounded-md p-1 pr-8  focus:bg-slate-200 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none cursor-pointer focus:cursor-auto'
           placeholder='Article'
           onChange={onInputChangeHandler}
           onClick={onInputOpenHandler}
