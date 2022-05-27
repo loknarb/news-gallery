@@ -51,7 +51,9 @@ const SettingsModal = () => {
           zIndex: '50',
         },
       }}>
-      <Button className='absolute right-6 ' onClick={closeModal}>
+      <Button
+        className='transition-colors duration-250 hover:text-slate-500 absolute right-6 '
+        onClick={closeModal}>
         <CloseLogo />
       </Button>
       <div className='mb-2 '>
@@ -70,14 +72,14 @@ const SettingsModal = () => {
               <span className='tracking-tight font-semibold '>Grid</span>
               {layoutType !== 'grid' ? (
                 <input
-                  className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                  className=' bg-gray-300 transition-colors duration-300 cursor-pointer shadow-sm checked:bg-slate-800'
                   type='checkbox'
                   id='switch'
                   onClick={() => layoutHandler('GRID')}
                 />
               ) : (
                 <input
-                  className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
+                  className=' bg-gray-300  transition-colors duration-300 cursor-pointer shadow-sm checked:bg-slate-800'
                   type='checkbox'
                   id='switch'
                   onClick={() => layoutHandler('FLEX')}
@@ -99,13 +101,13 @@ const SettingsModal = () => {
         <ul className='list-none'>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold transition-colors duration-300'
               onClick={() => setIsDark(true)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {!isDark ? (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3 transition-colors duration-300' />
                 ) : (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white transition-colors duration-300' />
                 )}
               </span>
               <span className='tracking-tight'>Dark</span>
@@ -113,13 +115,13 @@ const SettingsModal = () => {
           </ListPadded>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold '
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold  transition-colors duration-300'
               onClick={() => setIsDark(false)}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {isDark ? (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3 transition-colors duration-300' />
                 ) : (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white transition-colors duration-300 ' />
                 )}
               </span>
               <span className='tracking-tight'>Light</span>
@@ -134,13 +136,13 @@ const SettingsModal = () => {
         <ul className='list-none'>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold transition-colors duration-300'
               onClick={() => spacingHandler('COMPACT')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {spacingType === '0.5rem' || '' ? (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white  transition-colors duration-300' />
                 ) : (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3 transition-colors duration-300'></span>
                 )}
               </span>
               <span className='tracking-tight'>Compact</span>
@@ -148,13 +150,13 @@ const SettingsModal = () => {
           </ListPadded>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold transition-colors duration-300'
               onClick={() => spacingHandler('NORMAL')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {spacingType === '1.5rem' || '' ? (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white  transition-colors duration-300' />
                 ) : (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3 transition-colors duration-300'></span>
                 )}
               </span>
               <span className='tracking-tight'>Normal</span>
@@ -162,13 +164,13 @@ const SettingsModal = () => {
           </ListPadded>
           <ListPadded>
             <Button
-              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold'
+              className='flex flex-row grow w-full hover:text-slate-400 text-slate-100 font-semibold transition-colors duration-300'
               onClick={() => spacingHandler('COZY')}>
               <span className='w-7 h-7 p-1.5 rounded-10 mr-1.5'>
                 {spacingType === '2.5rem' || '' ? (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white ' />
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white bg-white  transition-colors duration-300' />
                 ) : (
-                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3'></span>
+                  <span className='w-full h-full flex rounded-full border-2 border-slate-400 center hover:border-white hover:border-3 transition-colors duration-300'></span>
                 )}
               </span>
               <span className='tracking-tight font-semibold'>Cozy</span>
