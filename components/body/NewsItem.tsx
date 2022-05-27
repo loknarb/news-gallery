@@ -78,12 +78,12 @@ const NewsItem: React.FC<NewsItemType> = ({
               {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
             </div>
           </a>
-          <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-slate-700 shadow-sm shadow-black border-b-0 '>
+          <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-slate-600 shadow-sm shadow-black border-b-0 '>
             <Button
               className={
                 upvoted
                   ? 'flex flex-row  text-green-300  border-none rounded-none z-10 p-1 transition-all duration-300'
-                  : 'flex flex-row text-slate-200 dark:text-[#AAB6C1] hover:text-green-300  rounded-md z-10 p-1 transition-all duration-300'
+                  : 'flex flex-row text-slate-400 dark:text-[#AAB6C1] hover:text-green-300  rounded-md z-10 p-1 transition-all duration-300'
               }
               onClick={
                 !upvoted ? () => upvoteHandler(uuid, 'ADD') : () => upvoteHandler(uuid, 'SUBTRACT')
@@ -91,14 +91,14 @@ const NewsItem: React.FC<NewsItemType> = ({
               <Upvote />
               <span className='font-mono font-semibold tracking-tight'>{upvoteAmount}</span>
             </Button>
-            <Button className='text-slate-200 dark:text-[#AAB6C1] hover:text-fuchsia-300  rounded-md z-10 p-1 transition-all duration-300'>
+            <Button className='text-slate-400 dark:text-[#AAB6C1] hover:text-fuchsia-300  rounded-md z-10 p-1 transition-all duration-300'>
               <Discussion />
             </Button>
             <Button
               className={
                 bookmark
                   ? '  hover:text-orange-300 p-1 z-10 text-orange-300 border-none rounded-none transition-all duration-300'
-                  : 'text-slate-200 dark:text-[#AAB6C1] hover:text-orange-300   rounded-md p-1 z-10 transition-all duration-300'
+                  : 'text-slate-400 dark:text-[#AAB6C1] hover:text-orange-300   rounded-md p-1 z-10 transition-all duration-300'
               }
               onClick={
                 !bookmark
