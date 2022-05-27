@@ -152,7 +152,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const articleData = JSON.stringify(response);
   const newsItems = JSON.parse(articleData);
-  // mongo.close();
+  mongo.close();
 
   return {
     props: {
