@@ -37,6 +37,7 @@ const useArticles = create<{
       articles: response.data.data,
       scrollFunctionEnabled: true,
       loading: false,
+      scrollAmount: 0,
     }));
   },
   upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => {
@@ -81,12 +82,12 @@ const useArticles = create<{
   search: (input: string) =>
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
-      scrollFunctionEnabled: false,
     })),
   setter: (init: NewsItemType[]) =>
     set(() => ({
       articles: [...init],
       filteredArticles: [...init],
+      loading: false,
       scrollFunctionEnabled: true,
     })),
   scroll: async (scrollAmount: number) => {
@@ -100,10 +101,11 @@ const useArticles = create<{
       loading: false,
     }));
   },
-  scrollIncrementer: () =>
+  scrollIncrementer: () => {
     set((state) => ({
       scrollAmount: state.scrollAmount + 1,
-    })),
+    }));
+  },
   scrollButtonShower: () =>
     set(() => ({
       scrollTopButton: true,

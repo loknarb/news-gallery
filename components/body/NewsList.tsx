@@ -67,7 +67,8 @@ const NewsList = () => {
       });
       if (node) observerAPI.current.observe(node);
     },
-    [scrollIncrementer, observerAPI]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [observerAPI]
   );
   const scrollDivRef = useCallback(
     (node: HTMLDivElement) => {
@@ -84,14 +85,16 @@ const NewsList = () => {
   );
   useEffect(() => {
     let isApiSubscribed = true;
-
+    console.log(scrollAmount);
+    console.log('scrollFunctionEnabled', scrollFunctionEnabled);
     if (isApiSubscribed && scrollAmount > 0 && scrollFunctionEnabled) {
       scroll(scrollAmount);
     }
     return () => {
       isApiSubscribed = false;
     };
-  }, [scroll, scrollAmount, scrollFunctionEnabled]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollAmount]);
 
   const skeletonCards = Array(20).fill(0);
   return (

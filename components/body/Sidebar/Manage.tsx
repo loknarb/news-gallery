@@ -11,8 +11,11 @@ import Settings from '../../UI/Settings';
 
 const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   const openModalAuth = useUserAuth((state) => state.openModalAuth);
+  const { bookmarkStatus, loadingHandler } = useArticles((state) => state);
   const openModal = useModal((state) => state.openModal);
-  const bookmarkStatus = useArticles((state) => state.bookmarkStatus);
+  const scrollToTopHandler = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
   const { sideBar } = useSideBar((state) => state);
   return (
     <>
@@ -31,7 +34,9 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             className={`${
               sideBar ? 'h-6' : ''
             } transition-all duration-500 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
-            onClick={() => bookmarkStatus()}>
+            onClick={() => {
+              loadingHandler(), bookmarkStatus(), scrollToTopHandler();
+            }}>
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
