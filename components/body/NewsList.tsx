@@ -134,14 +134,23 @@ const NewsList = () => {
                     upvoteAmount={upvoteAmount}
                     commentAmount={commentAmount}
                   />
-                  <Menu key={`Menu${uuid}`} id={uuid}>
-                    <Item key={`hide${uuid}`} onClick={() => hideArticle(uuid)}>
+                  <Menu key={`Menu${uuid}`} className={`bg-slate-100`} id={uuid}>
+                    <Item
+                      key={`hide${uuid}`}
+                      className={`bg-slate-100`}
+                      onClick={() => hideArticle(uuid)}>
                       Hide Post
                     </Item>
-                    <Item key={`filter${uuid}`} onClick={() => filterSource(source)}>
+                    <Item
+                      key={`filter${uuid}`}
+                      className={`bg-slate-100`}
+                      onClick={() => filterSource(source)}>
                       Hide Posts from {source}
                     </Item>
-                    <Item key={`clip${uuid}`} onClick={() => handleClipboardCopy(url)}>
+                    <Item
+                      key={`clip${uuid}`}
+                      className={`bg-slate-100`}
+                      onClick={() => handleClipboardCopy(url)}>
                       Share this post
                     </Item>
                   </Menu>
