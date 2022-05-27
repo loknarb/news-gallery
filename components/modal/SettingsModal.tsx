@@ -13,10 +13,11 @@ const SettingsModal = () => {
   const [isDark, setIsDark] = useDarkModeHook();
   const { spacingHandler, spacingType, layoutHandler, layoutType } = useLayout((state) => state);
   const { newTab, newTabSwitch } = useArticles((state) => state);
+  console.log('newTab', newTab);
   return (
     <ReactModal
       isOpen={shown}
-      closeTimeoutMS={250}
+      closeTimeoutMS={500}
       onRequestClose={closeModal}
       ariaHideApp={false}
       style={{
@@ -187,6 +188,7 @@ const SettingsModal = () => {
                 className=' bg-gray-300  cursor-pointer shadow-sm checked:bg-slate-800'
                 type='checkbox'
                 id='switch2'
+                onClick={() => newTabSwitch()}
                 // checked
               />
               <label

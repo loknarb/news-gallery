@@ -26,7 +26,7 @@ const NewsItem: React.FC<NewsItemType> = ({
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
   const { show } = useContextMenu({ id: uuid });
-  const { bookmarkHandler, upvoteHandler, newTab, newTabSwitch } = useArticles((state) => state);
+  const { bookmarkHandler, upvoteHandler, newTab } = useArticles((state) => state);
   function displayMenu(e: React.MouseEvent) {
     show(e, {
       props: { id: uuid },

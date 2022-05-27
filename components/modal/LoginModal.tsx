@@ -12,7 +12,7 @@ const LoginModal = () => {
   return (
     <ReactModal
       isOpen={shown}
-      closeTimeoutMS={250}
+      closeTimeoutMS={500}
       onRequestClose={closeModalAuth}
       ariaHideApp={false}
       style={{
@@ -30,14 +30,18 @@ const LoginModal = () => {
           maxHeight: '24rem',
           margin: '0 auto',
           display: 'flex',
+          top: '-20px',
+          bottom: '0',
+          right: '0',
+          left: '0',
           flexDirection: 'column',
-          padding: '1rem',
+          padding: '1.5rem',
           alignItems: 'center',
           borderRadius: '1rem',
           border: '1px solid rgb(51 65 85 / 1)',
           background: 'rgb(51 65 85 / 1)',
           color: 'white',
-          width: '100%',
+          width: '75%',
           position: 'relative',
           zIndex: '50',
         },
