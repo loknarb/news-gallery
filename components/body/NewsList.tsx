@@ -156,10 +156,10 @@ const NewsList = () => {
                   </Menu>
                 </>
               );
-              if (index === 10) {
+              if (index === 0) {
                 return (
                   <ul>
-                    <div ref={scrollDivRef} className='absolute h-1'></div>
+                    <div ref={scrollDivRef} className='absolute h-[100rem]'></div>
                     {body}
                   </ul>
                 );
