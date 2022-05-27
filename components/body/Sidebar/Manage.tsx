@@ -40,8 +40,8 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Bookmark />
             </span>
             <span
-              className={`flex-1 text-left transistion-all ${
-                sideBar ? 'opacity-0 w-0  width-0' : 'opacity-100'
+              className={`flex-1 text-left transition-all duration-200 ${
+                sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Bookmark
             </span>
@@ -63,7 +63,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <ReadingHistory />
             </span>
             <span
-              className={`flex-1 text-left transistion-all ${
+              className={`flex-1 text-left transition-all duration-200 ${
                 sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Reading History
@@ -86,7 +86,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Settings />
             </span>
             <span
-              className={`flex-1 text-left transistion-all ${
+              className={`flex-1 text-left transition-all duration-200 ${
                 sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Settings

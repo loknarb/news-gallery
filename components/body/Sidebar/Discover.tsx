@@ -37,8 +37,8 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Popular />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity duration-200 ${
-                sideBar ? 'opacity-0' : 'opacity-100'
+              className={`flex-1 text-left transition-all duration-200 ${
+                sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Popular
             </span>
@@ -60,8 +60,8 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Upvote />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity duration-200 ${
-                sideBar ? 'opacity-0' : 'opacity-100'
+              className={`flex-1 text-left transition-all duration-200 ${
+                sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Most Upvoted
             </span>
@@ -80,8 +80,8 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Discussions />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity duration-200 ${
-                sideBar ? 'opacity-0' : 'opacity-100'
+              className={`flex-1 text-left transition-all duration-200 ${
+                sideBar ? 'opacity-0 w-0' : 'opacity-100'
               }`}>
               Best Discussions
             </span>
