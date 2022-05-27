@@ -10,12 +10,12 @@ const SidebarMobile = () => {
   return (
     <>
       <div
-        className={`fixed w-full h-full bg-zinc-800 bg-opacity-50 z-30 cursor-pointer inset-0 ${
-          sideBar ? 'opacity-0 w-0 h-0' : 'opacity-100 w-full h-full'
+        className={`fixed w-full bg-zinc-800 bg-opacity-50 z-30 cursor-pointer inset-0 ${
+          sideBar ? 'opacity-0 w-0 h-0' : 'opacity-100 w-full '
         }`}
         onClick={() => showSideBar()}></div>
       <aside
-        className={`p-4 h-full z-40 flex-col flex fixed left-0 bg-slate-700 top-0 shadow-slate-900 shadow-lg dark:bg-[#1F2937] transistion-transform ease-in-out -translate-x-64 w-55 duration-300  ${
+        className={`p-4 h-full z-40 flex-col flex fixed left-0 bg-slate-700 top-0 shadow-slate-900 shadow-sm dark:bg-[#1F2937] transistion-transform ease-in-out -translate-x-64 w-55 duration-300 rounded-br-lg  ${
           sideBar ? '-translate-x-64' : '-translate-x-0'
         }`}>
         <div className='self-end' onClick={() => showSideBar()}>

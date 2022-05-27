@@ -8,6 +8,10 @@ const useArticles = create<{
   scrollTopButton: boolean;
   scrollFunctionEnabled: boolean;
   loading: boolean;
+  searchValue: string;
+  newTab: boolean;
+  newTabSwitch: () => void;
+  setSearchValue: (typedValue: string) => void;
   popularStatus: () => void;
   upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => void;
   upvoteStatus: () => void;
@@ -30,6 +34,16 @@ const useArticles = create<{
   scrollTopButton: false,
   scrollFunctionEnabled: true,
   loading: false,
+  searchValue: '',
+  newTab: true,
+  newTabSwitch: () =>
+    set((state) => ({
+      newTab: !state.newTab,
+    })),
+  setSearchValue: (typedValue: string) =>
+    set(() => ({
+      searchValue: typedValue,
+    })),
   popularStatus: async () => {
     const response = await axios.post('api/popular');
     set(() => ({
@@ -82,6 +96,7 @@ const useArticles = create<{
   search: (input: string) =>
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
+      scrollFunctionEnabled: false,
     })),
   setter: (init: NewsItemType[]) =>
     set(() => ({

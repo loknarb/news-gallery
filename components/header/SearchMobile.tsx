@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import useArticles from '../hooks/useArticleHook';
 import useDebounce from '../hooks/useDebounce';
 import Button from '../UI/Button';
@@ -9,8 +9,8 @@ const SearchMobile: React.FC<{
   onShown: React.Dispatch<React.SetStateAction<boolean>>;
   searchShown: boolean;
 }> = ({ onShown, searchShown }) => {
-  const search = useArticles((state) => state.search);
-  const [searchValue, setSearchValue] = useState('');
+  const { search, searchValue, setSearchValue } = useArticles((state) => state);
+
   const debouncedHandleSearch = useDebounce(searchValue, 250);
   useEffect(() => {
     search(debouncedHandleSearch);

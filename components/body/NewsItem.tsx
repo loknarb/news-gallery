@@ -26,7 +26,7 @@ const NewsItem: React.FC<NewsItemType> = ({
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
   const { show } = useContextMenu({ id: uuid });
-  const { bookmarkHandler, upvoteHandler } = useArticles((state) => state);
+  const { bookmarkHandler, upvoteHandler, newTab, newTabSwitch } = useArticles((state) => state);
   function displayMenu(e: React.MouseEvent) {
     show(e, {
       props: { id: uuid },
@@ -39,7 +39,11 @@ const NewsItem: React.FC<NewsItemType> = ({
           className='w-full h-80 flex flex-col justify-between'
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}>
-          <a className='cursor-pointer z-0 w-full h-80 flex flex-col justify-between' href={url}>
+          <a
+            className='cursor-pointer z-0 w-full h-80 flex flex-col justify-between'
+            href={url}
+            target={`${newTab ? '_blank' : '_self'} `}
+            rel='noopener noreferrer'>
             <div className='flex justify-between align-middle mt-1'>
               <Link href={url}>
                 <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
