@@ -14,8 +14,8 @@ const HeaderDesktop = () => {
           src={icon}
           alt={'picture of a newspaper icon'}
         />
-        <h1 className='text-2xl px-4 font-bold text-slate-200 font-mono tracking-tight dark:text-slate-400'>
-          Tech News
+        <h1 className='text-2xl px-4 font-bold text-slate-200 tracking-tight dark:text-slate-400'>
+          TECH NEWS{' '}
         </h1>
       </div>
       <div>

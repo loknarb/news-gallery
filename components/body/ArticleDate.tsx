@@ -22,18 +22,18 @@ const ArticleDate: React.FC<{ published_at: NewsItemType['published_at'] }> = ({
   });
   switch (differenceFromToday) {
     case 0:
-      return <span>Today</span>;
+      return <span className='font-semibold text-slate-500'>Today</span>;
     case 86400:
-      return <span>Yesterday</span>;
+      return <span className='font-semibold text-slate-500'>Yesterday</span>;
     case 172800:
     case 259200:
     case 345600:
     case 432000:
     case 518400:
     case 604800:
-      return <span>{articleWeek}</span>;
+      return <span className='font-semibold text-slate-500'>{articleWeek}</span>;
     default:
-      return <span>{articleDate}</span>;
+      return <span className='font-semibold text-slate-500'>{articleDate}</span>;
   }
 };
 

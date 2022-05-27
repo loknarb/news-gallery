@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import useArticles from '../hooks/useArticleHook';
 import useDarkModeHook from '../hooks/useDarkMode';
 import useLayout from '../hooks/useLayout';
 import useModal from '../hooks/useModalHook';
@@ -11,6 +12,7 @@ const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);
   const [isDark, setIsDark] = useDarkModeHook();
   const { spacingHandler, spacingType, layoutHandler, layoutType } = useLayout((state) => state);
+  const { newTab, newTabSwitch } = useArticles((state) => state);
   return (
     <ReactModal
       isOpen={shown}
@@ -188,8 +190,9 @@ const SettingsModal = () => {
                 // checked
               />
               <label
-                className='tracking-tight  after:bg-white after:hover:bg-slate-800 bg-slate-500 hover:bg-slate-300 ml-1 mr-2'
-                htmlFor='switch2'></label>
+                className={`tracking-tight after:bg-white after:hover:bg-slate-800 bg-slate-500 hover:bg-slate-300 ml-1 mr-2`}
+                htmlFor='switch2'
+                id='labelTab'></label>
               <span className='tracking-tight font-semibold'>Open links in new tab</span>
             </div>
           </ListPadded>

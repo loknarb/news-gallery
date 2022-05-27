@@ -67,7 +67,7 @@ const NewsItem: React.FC<NewsItemType> = ({
                 )}
               </div>
             </div>
-            <h3 className='font-bold break-words text-gray-900 dark:text-[#AAB6C1] text-base line-clamp-3 mx-4'>
+            <h3 className='-tracking-wide  break-words text-gray-900 dark:text-[#AAB6C1] text-base line-clamp-3 mx-4'>
               {title}
             </h3>
             <div className='flex-1'></div>

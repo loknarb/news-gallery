@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { MongoClient } from 'mongodb';
@@ -32,6 +33,17 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
           name='description'
           content='Latest News curated by NewsApi created and maintained by Sebastien Brumbaugh'
         />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Orbitron:wght@700&family=Signika:wght@700&display=swap'
+          rel='stylesheet'
+        />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Poppins&display=swap'
+          rel='stylesheet'
+        />
+        <link href='https://fonts.googleapis.com/css2?family=Dosis&display=swap' rel='stylesheet' />
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Header />
