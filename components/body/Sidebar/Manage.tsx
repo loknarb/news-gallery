@@ -14,7 +14,6 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   const openModal = useModal((state) => state.openModal);
   const bookmarkStatus = useArticles((state) => state.bookmarkStatus);
   const { sideBar } = useSideBar((state) => state);
-  console.log('mobile and sideBar', mobile && sideBar);
   return (
     <>
       <span

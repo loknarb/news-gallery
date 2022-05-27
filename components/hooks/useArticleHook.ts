@@ -167,7 +167,6 @@ const handleFilterSource = (articles: NewsItemType[], source: NewsItemType['sour
   return articles.filter((article) => article.source !== source);
 };
 const handleSearch = (articles: NewsItemType[], input: string) => {
-  console.log('input', input);
   return articles.filter((article) =>
     Object.values(article).join(' ').toLowerCase().includes(input.toLowerCase())
   );

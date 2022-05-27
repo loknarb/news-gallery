@@ -127,7 +127,6 @@ export const getStaticProps: GetStaticProps = async () => {
     //       },
     //       { upsert: true }
     //     );
-    //     console.log(x);
     //   }
     // });
   }
