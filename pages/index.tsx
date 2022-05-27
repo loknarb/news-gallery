@@ -34,7 +34,7 @@ const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
           content='Latest News curated by NewsApi created and maintained by Sebastien Brumbaugh'
         />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin={'true'} />
         <link
           href='https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Orbitron:wght@700&family=Signika:wght@700&display=swap'
           rel='stylesheet'
