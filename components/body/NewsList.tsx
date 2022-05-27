@@ -4,7 +4,7 @@ import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 
 import 'react-contexify/dist/ReactContexify.css';
-import { LayoutProps, NewsItemType } from '../../pages/types/types';
+import { LayoutProps, NewsItemType } from '../types/types';
 import usePopUp from '../hooks/usePopUpHook';
 import 'reactjs-popup/dist/index.css';
 import useLayout from '../hooks/useLayout';

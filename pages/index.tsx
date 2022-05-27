@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import Main from '../components/body/Main';
 import Header from '../components/header/Header';
-import { NewsItemProps, NewsItemType } from './types/types';
+import { NewsItemProps, NewsItemType } from '../components/types/types';
 import useArticles from '../components/hooks/useArticleHook';
 import Button from '../components/UI/Button';
 import UpScroll from '../components/UI/UpScroll';

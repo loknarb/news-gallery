@@ -1,4 +1,4 @@
-import { BookmarkPostRequest, NewsItemType, UpvotePostRequest } from '../../pages/types/types';
+import { BookmarkPostRequest, NewsItemType, UpvotePostRequest } from '../types/types';
 import create from 'zustand';
 import axios from 'axios';
 const useArticles = create<{

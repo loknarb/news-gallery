@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { NewsItemType, UpvotePostRequest } from '../types/types';
+import { UpvotePostRequest } from '../../components/types/types';
 
 // export default function handler(req: NextApiRequest, res: NextApiResponse<NewsItemType>) {
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -19,7 +19,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         upvoteAmount = -1;
         break;
     }
-    const article = await newsArticleCollection.updateOne(
+    await newsArticleCollection.updateOne(
       { uuid: data.uuid },
       {
         $inc: {

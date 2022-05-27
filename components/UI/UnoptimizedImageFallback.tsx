@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Image, { ImageProps, StaticImageData } from 'next/image';
+import Image, { ImageProps } from 'next/image';
 const UnoptimizedImageFallback: React.FC<ImageProps> = ({ src, alt, ...rest }) => {
   const [ImageUnoptimized, setImageUnoptimized] = useState(false);
 

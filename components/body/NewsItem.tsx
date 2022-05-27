@@ -3,7 +3,7 @@ import Card from '../UI/Card';
 import Bookmark from '../UI/Bookmark';
 import Discussion from '../UI/Discussions';
 import Upvote from '../UI/Upvote';
-import { NewsItemType } from '../../pages/types/types';
+import { NewsItemType } from '../types/types';
 import ArticleDate from './ArticleDate';
 import Link from 'next/link';
 import VerticalDots from '../UI/VerticalDots';

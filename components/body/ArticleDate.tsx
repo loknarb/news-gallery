@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsItemType } from '../../pages/types/types';
+import { NewsItemType } from '../types/types';
 
 const ArticleDate: React.FC<{ published_at: NewsItemType['published_at'] }> = ({
   published_at,

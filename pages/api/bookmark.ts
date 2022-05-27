@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { BookmarkPostRequest } from '../types/types';
+import { BookmarkPostRequest } from '../../components/types/types';
 
 // export default function handler(req: NextApiRequest, res: NextApiResponse<NewsItemType>) {
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -19,7 +19,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         bookmarkBool = false;
         break;
     }
-    const article = await newsArticleCollection.updateOne(
+    await newsArticleCollection.updateOne(
       { uuid: data.uuid },
       {
         $set: {
