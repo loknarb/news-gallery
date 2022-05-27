@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Item, ItemParams, Menu } from 'react-contexify';
+import { Item, Menu } from 'react-contexify';
 import useArticles from '../hooks/useArticleHook';
 import NewsItem from './NewsItem';
 
@@ -67,7 +67,7 @@ const NewsList = () => {
       });
       if (node) observerAPI.current.observe(node);
     },
-    [observerAPI]
+    [scrollIncrementer, observerAPI]
   );
   const scrollDivRef = useCallback(
     (node: HTMLDivElement) => {
@@ -80,25 +80,24 @@ const NewsList = () => {
       });
       if (node) observerScroll.current.observe(node);
     },
-    [observerScroll]
+    [scrollButtonHider, scrollButtonShower, observerScroll]
   );
   useEffect(() => {
     let isApiSubscribed = true;
 
     if (isApiSubscribed && scrollAmount > 0 && scrollFunctionEnabled) {
-      console.log(scrollAmount);
       scroll(scrollAmount);
     }
     return () => {
       isApiSubscribed = false;
     };
-  }, [scrollAmount]);
+  }, [scroll, scrollAmount, scrollFunctionEnabled]);
 
-  let skeletonCards = Array(20).fill(0);
+  const skeletonCards = Array(20).fill(0);
   return (
     <main className='w-full h-full justify-center' style={initLayout}>
       {loading
-        ? skeletonCards.map((x, index: number) => <SkeletonCard key={index} />)
+        ? skeletonCards.map((_x, index: number) => <SkeletonCard key={index} />)
         : filteredArticles.map(
             (
               {
@@ -114,6 +113,7 @@ const NewsList = () => {
                 upvoted,
                 upvoteAmount,
                 commentAmount,
+                snippet,
               },
               index
             ) => {
@@ -133,6 +133,7 @@ const NewsList = () => {
                     upvoted={upvoted}
                     upvoteAmount={upvoteAmount}
                     commentAmount={commentAmount}
+                    snippet={snippet}
                   />
                   <Menu key={`Menu${uuid}`} className={`bg-slate-100`} id={uuid}>
                     <Item

@@ -4,7 +4,6 @@ import Bookmark from '../UI/Bookmark';
 import Discussion from '../UI/Discussions';
 import Upvote from '../UI/Upvote';
 import { NewsItemType } from '../../pages/types/types';
-import Image from 'next/image';
 import ArticleDate from './ArticleDate';
 import Link from 'next/link';
 import VerticalDots from '../UI/VerticalDots';
@@ -15,17 +14,14 @@ import ImageWithFallback from '../UI/ImageWithFallback';
 import UnoptimizedImageFallback from '../UI/UnoptimizedImageFallback';
 const NewsItem: React.FC<NewsItemType> = ({
   uuid,
-  categories,
   title,
-  description,
   url,
   image_url,
-  source,
   published_at,
   bookmark,
   upvoted,
   upvoteAmount,
-  commentAmount,
+  snippet,
 }) => {
   const domain = new URL(url).hostname.replace('www.', '');
   const [hovered, setHovered] = useState(false);
@@ -50,6 +46,7 @@ const NewsItem: React.FC<NewsItemType> = ({
                   <ImageWithFallback
                     src={`https://logo.clearbit.com/${domain}`}
                     layout='fill'
+                    alt={`${snippet}`}
                     fallbackSrc='/favicon.png'
                   />
                 </div>
@@ -74,7 +71,12 @@ const NewsItem: React.FC<NewsItemType> = ({
               <ArticleDate published_at={published_at} />
             </div>
             <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
-              <UnoptimizedImageFallback layout='fill' className='object-cover' src={image_url} />
+              <UnoptimizedImageFallback
+                layout='fill'
+                className='object-cover'
+                src={image_url}
+                alt={`${snippet}`}
+              />
               {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
             </div>
           </a>

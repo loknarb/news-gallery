@@ -1,10 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
-import useArticles from '../hooks/useArticleHook';
 import usePopUp from '../hooks/usePopUpHook';
 import useWindowSize from '../hooks/useWindowSize';
-import Button from '../UI/Button';
-import UpScroll from '../UI/UpScroll';
 import MainDesktop from './MainDesktop';
 import MainMobile from './MainMobile';
 import MainTablet from './MainTablet';
@@ -15,8 +12,12 @@ const Main: React.FC = () => {
 
   return (
     <>
-      {width! >= 992 ? <MainDesktop /> : ''}
+      {typeof width === undefined && <MainDesktop />}
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+      {width! >= 992 && <MainDesktop />}
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       {width! > 768 && width! < 992 ? <MainTablet /> : ''}
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       {width! <= 768 ? <MainMobile /> : ''}
       <Popup
         open={shown}

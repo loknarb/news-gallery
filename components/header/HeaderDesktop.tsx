@@ -7,7 +7,13 @@ const HeaderDesktop = () => {
   return (
     <>
       <div className='flex'>
-        <Image className='px-4' width={'28px'} height={'28px'} src={icon} />
+        <Image
+          className='px-4'
+          width={'28px'}
+          height={'28px'}
+          src={icon}
+          alt={'picture of a newspaper icon'}
+        />
         <h1 className='text-2xl px-4 font-bold text-slate-200 font-mono tracking-tight dark:text-slate-400'>
           Tech News
         </h1>

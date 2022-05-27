@@ -1,12 +1,12 @@
 import { MongoClient } from 'mongodb';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { NewsItemType } from '../types/types';
 
 // export default function handler(req: NextApiRequest, res: NextApiResponse<NewsItemType>) {
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const data = req.body;
-    let skip = data.skip ? parseInt(data.skip) : 0;
+    const skip = data.skip ? parseInt(data.skip) : 0;
+    console.log(skip);
     // TODO close client or instead keep it open for a specific session
     const client = await MongoClient.connect(`${process.env.MONGO_DB_API}`);
     const db = client.db();

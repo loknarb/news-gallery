@@ -6,7 +6,7 @@ import DiscoverLogos from './DiscoverLogos';
 import ManageLogos from './ManageLogos';
 
 const SideBarLogos = () => {
-  const { showSideBar, sideBar } = useSideBar((state) => state);
+  const { showSideBar } = useSideBar((state) => state);
   return (
     <aside className='flex-col flex fixed left-0 border-r-2 bg-slate-700 border-r-slate-300 h-screen p-4 dark:bg-[#1F2937] dark:border-[#1A1E1F]'>
       <div className='self-end -mr-7 absolute' onClick={() => showSideBar()}>

@@ -1,12 +1,7 @@
 import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const useSearchArticles = (scrollAmount: number) => {
-  useEffect(() => {
-    if (scrollAmount > 1) {
-      fetchArticleHandler();
-    }
-  }, [scrollAmount]);
   // TODO figure out how to fix async useeffect
   const fetchArticleHandler = useCallback(async () => {
     await axios
@@ -14,6 +9,11 @@ const useSearchArticles = (scrollAmount: number) => {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }, [scrollAmount]);
+  useEffect(() => {
+    if (scrollAmount > 1) {
+      fetchArticleHandler();
+    }
+  }, [fetchArticleHandler, scrollAmount]);
 };
 
 export default useSearchArticles;

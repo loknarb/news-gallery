@@ -15,7 +15,7 @@ const HeaderMobile = () => {
         </Button>
       </div>
       <div className='flex justify-center flex-1'>
-        <Image width={'28px'} height={'28px'} src={icon} />
+        <Image width={'28px'} height={'28px'} src={icon} alt={'picture of a newspaper icon'} />
       </div>
       <div className='flex justify-end flex-1'>
         <Search />

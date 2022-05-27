@@ -17,7 +17,7 @@ const HeaderMobile = () => {
       </div>
       {!searchShown ? (
         <div className='flex justify-center flex-1 transition-all duration-500'>
-          <Image width={'28px'} height={'28px'} src={icon} />
+          <Image width={'28px'} height={'28px'} src={icon} alt={'picture of a newspaper icon'} />
         </div>
       ) : (
         ''

@@ -7,8 +7,6 @@ import Manage from './Manage';
 
 const SidebarTablet = () => {
   const { showSideBar, sideBar } = useSideBar((state) => state);
-  console.log('targgetted');
-  console.log(sideBar);
   return (
     <>
       <div

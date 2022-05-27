@@ -5,11 +5,7 @@ import useLayout from '../hooks/useLayout';
 import useModal from '../hooks/useModalHook';
 import Button from '../UI/Button';
 import CloseLogo from '../UI/CloseLogo';
-import Discussions from '../UI/Discussions';
-import List from '../UI/List';
 import ListPadded from '../UI/ListPadded';
-import Popular from '../UI/Popular';
-import Upvote from '../UI/Upvote';
 
 const SettingsModal = () => {
   const { shown, closeModal } = useModal((state) => state);

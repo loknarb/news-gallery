@@ -17,7 +17,7 @@ const SearchMobile: React.FC<{
     return () => {
       search(debouncedHandleSearch);
     };
-  }, [debouncedHandleSearch]);
+  }, [debouncedHandleSearch, search]);
 
   const onInputOpenHandler = () => {
     onShown(true);

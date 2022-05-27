@@ -6,7 +6,7 @@ import Discover from './Discover';
 import Manage from './Manage';
 
 const SidebarMobile = () => {
-  const { hideSideBar, sideBar, showSideBar } = useSideBar((state) => state);
+  const { sideBar, showSideBar } = useSideBar((state) => state);
   return (
     <>
       <div

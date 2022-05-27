@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image, { ImageProps, StaticImageData } from 'next/image';
 const ImageWithFallback: React.FC<ImageProps & { fallbackSrc: string | StaticImageData }> = ({
   src,
+  alt,
   fallbackSrc,
   ...rest
 }) => {
@@ -14,6 +15,7 @@ const ImageWithFallback: React.FC<ImageProps & { fallbackSrc: string | StaticIma
       onError={() => {
         setImgSrc(fallbackSrc);
       }}
+      alt={alt}
     />
   );
 };

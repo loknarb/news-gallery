@@ -11,7 +11,7 @@ const useArticles = create<{
   popularStatus: () => void;
   upvoteHandler: (uuid: NewsItemType['uuid'], action: UpvotePostRequest['action']) => void;
   upvoteStatus: () => void;
-  comment: (uuid: NewsItemType['uuid']) => void;
+  comment: () => void;
   bookmarkHandler: (uuid: NewsItemType['uuid'], action: BookmarkPostRequest['action']) => void;
   bookmarkStatus: () => void;
   hideArticle: (uuid: NewsItemType['uuid']) => void;
@@ -32,7 +32,7 @@ const useArticles = create<{
   loading: false,
   popularStatus: async () => {
     const response = await axios.post('api/popular');
-    set((state) => ({
+    set(() => ({
       filteredArticles: response.data.data,
       articles: response.data.data,
       scrollFunctionEnabled: true,
@@ -47,16 +47,16 @@ const useArticles = create<{
   upvoteStatus: async () => {
     const handleFilterUpvotes = await handleFilterUpvote();
 
-    set((state) => ({
+    set(() => ({
       filteredArticles: handleFilterUpvotes,
       articles: handleFilterUpvotes,
       scrollFunctionEnabled: false,
       loading: false,
     }));
   },
-  comment: (uuid: NewsItemType['uuid']) =>
+  comment: () =>
     set((state) => ({
-      articles: handleComment(state.articles, uuid),
+      articles: handleComment(state.articles),
     })),
   bookmarkHandler: (uuid: NewsItemType['uuid'], action: BookmarkPostRequest['action']) =>
     set((state) => ({
@@ -64,7 +64,7 @@ const useArticles = create<{
     })),
   bookmarkStatus: async () => {
     const handleFilterBookmarks = await handleFilterBookmark();
-    set((state) => ({
+    set(() => ({
       filteredArticles: handleFilterBookmarks,
       scrollFunctionEnabled: false,
       loading: false,
@@ -84,9 +84,10 @@ const useArticles = create<{
       scrollFunctionEnabled: false,
     })),
   setter: (init: NewsItemType[]) =>
-    set((state) => ({
+    set(() => ({
       articles: [...init],
       filteredArticles: [...init],
+      scrollFunctionEnabled: true,
     })),
   scroll: async (scrollAmount: number) => {
     console.log('ran');
@@ -104,15 +105,15 @@ const useArticles = create<{
       scrollAmount: state.scrollAmount + 1,
     })),
   scrollButtonShower: () =>
-    set((state) => ({
+    set(() => ({
       scrollTopButton: true,
     })),
   scrollButtonHider: () =>
-    set((state) => ({
+    set(() => ({
       scrollTopButton: false,
     })),
   loadingHandler: () => {
-    set((state) => ({
+    set(() => ({
       loading: true,
     }));
   },
@@ -123,7 +124,8 @@ const handleUpvote = (
   uuid: NewsItemType['uuid'],
   action: 'ADD' | 'SUBTRACT'
 ): NewsItemType[] => {
-  const response = axios.post('api/upvote', { uuid, action });
+  axios.post('api/upvote', { uuid, action });
+  /* eslint-disable @typescript-eslint/no-non-null-assertion */
   return articles.map((article) => ({
     ...article,
     upvoted: article.uuid === uuid ? !article.upvoted : article.upvoted,
@@ -136,7 +138,7 @@ const handleUpvote = (
     loading: false,
   }));
 };
-const handleComment = (articles: NewsItemType[], uuid: NewsItemType['uuid']) => {
+const handleComment = (articles: NewsItemType[]) => {
   return [...articles];
 };
 const handleBookmark = (
@@ -144,7 +146,7 @@ const handleBookmark = (
   uuid: NewsItemType['uuid'],
   action: BookmarkPostRequest['action']
 ) => {
-  const response = axios.post('api/bookmark', { uuid, action });
+  axios.post('api/bookmark', { uuid, action });
   return articles.map((article) => ({
     ...article,
     bookmark: article.uuid === uuid ? !article.bookmark : article.bookmark,

@@ -11,7 +11,7 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   const scrollToTopHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
-  const { hideSideBar, sideBar } = useSideBar((state) => state);
+  const { sideBar } = useSideBar((state) => state);
   return (
     <>
       <span

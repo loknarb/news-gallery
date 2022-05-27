@@ -14,7 +14,7 @@ const Search = () => {
     return () => {
       search(debouncedHandleSearch);
     };
-  }, [debouncedHandleSearch]);
+  }, [debouncedHandleSearch, search]);
 
   const [searchShown, setSearchShown] = useState(false);
   const searchBarHandler = () => {

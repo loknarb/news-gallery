@@ -1,26 +1,26 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { MongoClient } from 'mongodb';
+import axios from 'axios';
+import { useEffect } from 'react';
 import Main from '../components/body/Main';
 import Header from '../components/header/Header';
-import { Document, MongoClient, UpdateResult } from 'mongodb';
 import { NewsItemProps, NewsItemType } from './types/types';
-import axios from 'axios';
 import useArticles from '../components/hooks/useArticleHook';
-import react, { useEffect } from 'react';
 import Button from '../components/UI/Button';
 import UpScroll from '../components/UI/UpScroll';
 import LoginModal from '../components/modal/LoginModal';
 import SettingsModal from '../components/modal/SettingsModal';
+
 const Home: NextPage<NewsItemProps> = ({ newsItems }) => {
   const setter = useArticles((state) => state.setter);
-  const scrollAmount = useArticles((state) => state.scrollAmount);
   const scrollTopButton = useArticles((state) => state.scrollTopButton);
   useEffect(() => {
     setter(newsItems);
     return () => {
       setter(newsItems);
     };
-  }, []);
+  }, [newsItems, setter]);
   const scrollToTopHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
@@ -57,42 +57,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const newsArticleCollection = mongoDB.collection('newsArticles');
 
   if (process.env.NODE_ENV !== 'development') {
-    const categories = [
-      'accessibility',
-      'alpinejs',
-      'angular',
-      'babel',
-      'bootstrap-css',
-      'chromium',
-      'css',
-      'emberjs',
-      'firebase',
-      'firefox',
-      'gatsby',
-      'graphql',
-      'jamstack',
-      'javascript',
-      'jquery',
-      'microsoft-edge',
-      'nextjs',
-      'nodejs',
-      'preact',
-      'react',
-      'react-native',
-      'react-query',
-      'safari',
-      'supabase',
-      'svelte',
-      'tailwind-css',
-      'typescript',
-      'vite',
-      'vuejs',
-      'web-design',
-      'webassembly',
-      'webdev',
-      'webpack',
-      'webrtc',
-    ];
     const acceptedNewsSources = [
       'medium.com',
       'joshwcomeau.com',
@@ -105,21 +69,20 @@ export const getStaticProps: GetStaticProps = async () => {
     ];
     const today = new Date();
     const pastweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const collectionAPI = acceptedNewsSources.map((domain) => {
-      return `https://api.thenewsapi.com/v1/news/all?api_token=${
-        process.env.NEWS_API
-      }&language=en&domains=${domain}&categories=business,tech&published_at=${pastweek.toLocaleDateString(
-        'en-CA'
-      )}&limit=5`;
-    });
+    const collectionAPI = acceptedNewsSources.map(
+      (domain) =>
+        `https://api.thenewsapi.com/v1/news/all?api_token=${
+          process.env.NEWS_API
+        }&language=en&domains=${domain}&categories=business,tech&published_at=${pastweek.toLocaleDateString(
+          'en-CA'
+        )}&limit=5`
+    );
     Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then(
       (results) => {
         results.forEach((result) => {
           if (result.data.data) {
-            console.log(result.data.data);
             result.data.data.forEach(async (article: NewsItemType) => {
-              let resultMany: UpdateResult | Document;
-              resultMany = await newsArticleCollection.updateMany(
+              await newsArticleCollection.updateMany(
                 { uuid: article.uuid },
                 {
                   $set: {
@@ -140,7 +103,6 @@ export const getStaticProps: GetStaticProps = async () => {
                 },
                 { upsert: true }
               );
-              console.log(resultMany);
             });
           }
         });
