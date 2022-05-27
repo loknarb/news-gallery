@@ -9,7 +9,7 @@ const Sidebar = () => {
   const { hideSideBar, sideBar, showSideBar } = useSideBar((state) => state);
   return (
     <aside
-      className={`flex-col flex fixed left-0 border-r-2 bg-slate-700  h-screen  dark:bg-[#1F2937] dark:border-[#1A1E1F] shadow-md transition-all ${
+      className={`flex-col flex fixed left-0 border-r-2 bg-slate-700  h-screen  dark:bg-[#1F2937] dark:border-[#1A1E1F] shadow-md transition-all duration-500 ${
         sideBar ? 'w-11 p-1' : 'w-60 p-4'
       }`}
       onMouseEnter={() => setHovered(true)}

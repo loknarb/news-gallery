@@ -31,7 +31,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
           <Button
             className={`${
               sideBar ? 'h-6' : ''
-            } transition-all duration-250 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
+            } transition-all duration-500 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
             onClick={() => bookmarkStatus()}>
             <span
               className={`${
@@ -54,7 +54,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
           <Button
             className={`${
               sideBar ? 'h-6' : ''
-            } transition-all duration-250 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
+            } transition-all duration-500 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
             onClick={() => openModalAuth()}>
             <span
               className={`${
@@ -77,7 +77,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
           <Button
             className={`${
               sideBar ? 'h-6' : ''
-            } transition-all duration-250 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
+            } transition-all duration-500 flex flex-grow w-full hover:text-slate-400 text-slate-100 font-semibold`}
             onClick={() => openModal()}>
             <span
               className={`${

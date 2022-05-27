@@ -12,11 +12,10 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
   const { hideSideBar, sideBar } = useSideBar((state) => state);
-  console.log(sideBar);
   return (
     <>
       <span
-        className={`text-xs font-bold pb-1 text-slate-500 tracking-wide transition-opacity ${
+        className={`text-xs font-bold pb-1 text-slate-500 tracking-wide transition-opacity duration-500 ${
           sideBar ? 'opacity-0' : 'opacity-100'
         }`}>
         Discover
@@ -38,7 +37,7 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Popular />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity ${
+              className={`flex-1 text-left transition-opacity duration-200 ${
                 sideBar ? 'opacity-0' : 'opacity-100'
               }`}>
               Popular
@@ -61,7 +60,7 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Upvote />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity ${
+              className={`flex-1 text-left transition-opacity duration-200 ${
                 sideBar ? 'opacity-0' : 'opacity-100'
               }`}>
               Most Upvoted
@@ -81,7 +80,7 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
               <Discussions />
             </span>
             <span
-              className={`flex-1 text-left transition-opacity ${
+              className={`flex-1 text-left transition-opacity duration-200 ${
                 sideBar ? 'opacity-0' : 'opacity-100'
               }`}>
               Best Discussions
