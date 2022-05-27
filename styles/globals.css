@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* #f6f6f6  -- light gray looks cutie */ 
+/* #f6f6f6  -- light gray looks cutie */
 /*  TODO light blue, light grey,  */
+html {
+  overflow-y: scroll;
+}
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -22,34 +24,34 @@ a {
   box-sizing: border-box;
 }
 
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
+input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
   position: absolute;
 }
 
 label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 40px;
-	height: 20px;
-	background: grey;
-	display: block;
-	border-radius: 100px;
-	position: relative;
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
 }
 
 label:after {
-	content: '';
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	width: 14px;
-	height: 14px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
 }
 
 /* input:checked + label {
@@ -57,19 +59,22 @@ label:after {
 } */
 
 input:checked + label:after {
-	left: calc(100% - 3px);
-	transform: translateX(-100%);
+  left: calc(100% - 3px);
+  transform: translateX(-100%);
 }
 
 label:active:after {
-	width: 20px;
+  width: 20px;
 }
 
-.react-contexify__item:not(.react-contexify__item--disabled):hover > .react-contexify__item__content, .react-contexify__item:not(.react-contexify__item--disabled):focus > .react-contexify__item__content {
+.react-contexify__item:not(.react-contexify__item--disabled):hover
+  > .react-contexify__item__content,
+.react-contexify__item:not(.react-contexify__item--disabled):focus
+  > .react-contexify__item__content {
   color: white !important;
-  background-color: #45556D !important;
+  background-color: #45556d !important;
 }
 
 .react-contexify {
-	background-color: #45556D !important;
+  background-color: #45556d !important;
 }

@@ -20,7 +20,7 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   return (
     <>
       <span
-        className={`text-xs font-bold pt-3 pb-1 text-slate-500 tracking-wider transition-opacity ${
+        className={`text-xs font-bold pt-3 pb-1 text-slate-500 tracking-wider ${
           sideBar ? 'opacity-0' : 'opacity-100'
         }`}>
         Manage
@@ -40,13 +40,10 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-orange-300`}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-orange-300`}>
               <Bookmark />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left  ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Bookmark
             </span>
           </Button>
@@ -63,13 +60,10 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-blue-300`}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-blue-300`}>
               <ReadingHistory />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left  ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Reading History
             </span>
           </Button>
@@ -86,13 +80,10 @@ const Manage: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-gray-300`}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-gray-300`}>
               <Settings />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left  ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Settings
             </span>
           </Button>

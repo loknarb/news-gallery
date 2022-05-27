@@ -19,7 +19,10 @@ const SidebarTablet = () => {
           sideBar ? '-translate-x-64' : '-translate-x-0'
         }`}>
         <div className='self-end' onClick={() => showSideBar()}>
-          <Button className='flex flex-row grow w-full hover:text-slate-400 text-slate-200 font-semibold'>
+          <Button
+            className={`${
+              !sideBar && 'rotate-180'
+            } flex flex-row grow w-full hover:text-slate-400 text-slate-200 font-semibold`}>
             <RightArrow />
           </Button>
         </div>

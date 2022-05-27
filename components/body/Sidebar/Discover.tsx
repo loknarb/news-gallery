@@ -15,7 +15,7 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
   return (
     <>
       <span
-        className={`text-xs font-bold pb-1 text-slate-500 tracking-wide transition-opacity duration-500 ${
+        className={`text-xs font-bold pb-1 text-slate-500 tracking-wide ${
           sideBar ? 'opacity-0' : 'opacity-100'
         }`}>
         Discover
@@ -33,13 +33,10 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-red-300 `}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-red-300 `}>
               <Popular />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Popular
             </span>
           </Button>
@@ -56,13 +53,10 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-green-300`}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-green-300`}>
               <Upvote />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Most Upvoted
             </span>
           </Button>
@@ -76,13 +70,10 @@ const Discover: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
             <span
               className={`${
                 mobile && sideBar ? 'w-0' : 'w-4'
-              } flex align-middle mt-0.5 mr-1 text-fuchsia-300`}>
+              } flex align-middle mt-0.5 mr-1 duration-700 transition-all text-fuchsia-300`}>
               <Discussions />
             </span>
-            <span
-              className={`flex-1 text-left transition-all duration-200 ${
-                sideBar ? 'opacity-0 w-0' : 'opacity-100'
-              }`}>
+            <span className={`flex-1 text-left ${sideBar ? 'opacity-0 w-0' : 'opacity-100'}`}>
               Best Discussions
             </span>
           </Button>
