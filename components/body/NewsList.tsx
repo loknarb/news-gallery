@@ -94,7 +94,7 @@ const NewsList = () => {
       isApiSubscribed = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrollAmount]);
+  }, [scrollAmount, scrollFunctionEnabled]);
 
   const skeletonCards = Array(20).fill(0);
   return (

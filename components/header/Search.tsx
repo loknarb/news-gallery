@@ -8,12 +8,10 @@ const Search = () => {
   const { search, searchValue, setSearchValue } = useArticles((state) => state);
   const debouncedHandleSearch = useDebounce(searchValue, 250);
   useEffect(() => {
-    search(debouncedHandleSearch);
-
-    return () => {
+    if (debouncedHandleSearch !== '') {
       search(debouncedHandleSearch);
-    };
-  }, [debouncedHandleSearch, search]);
+    }
+  }, [search, debouncedHandleSearch]);
 
   const [searchShown, setSearchShown] = useState(false);
   const searchBarHandler = () => {
@@ -56,7 +54,7 @@ const Search = () => {
         onChange={onInputChangeHandler}
         animate={searchShown ? 'open' : 'closed'}
         variants={variants}
-        className='border border-slate-200 rounded-md p-1 pr-8 pl-2 w-24 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none dark:bg-[#2B2A33] dark:caret-slate-400 dark:border-slate-500 text-gray-300'
+        className='border border-slate-200 rounded-md p-1 pr-8 pl-2 w-24 shadow-white active:shadow hover:shadow focus:shadow focus-visible:outline-none dark:bg-[#2B2A33] dark:caret-slate-400 dark:border-slate-500 dark:text-gray-300'
         placeholder='Article'
       />
       <Button className='-ml-8 dark:text-[#AAB6C1]'>

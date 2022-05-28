@@ -13,11 +13,10 @@ const SearchMobile: React.FC<{
 
   const debouncedHandleSearch = useDebounce(searchValue, 250);
   useEffect(() => {
-    search(debouncedHandleSearch);
-    return () => {
+    if (debouncedHandleSearch !== '') {
       search(debouncedHandleSearch);
-    };
-  }, [debouncedHandleSearch, search]);
+    }
+  }, [search, debouncedHandleSearch]);
 
   const onInputOpenHandler = () => {
     onShown(true);

@@ -46,6 +46,7 @@ const useArticles = create<{
     })),
   popularStatus: async () => {
     const response = await axios.post('api/popular');
+    console.log('ran in popularStatus');
     set(() => ({
       filteredArticles: response.data.data,
       articles: response.data.data,
@@ -60,6 +61,7 @@ const useArticles = create<{
     }));
   },
   upvoteStatus: async () => {
+    console.log('ran in upvoteStatus');
     const handleFilterUpvotes = await handleFilterUpvote();
 
     set(() => ({
@@ -78,6 +80,7 @@ const useArticles = create<{
       filteredArticles: handleBookmark(state.filteredArticles, uuid, action),
     })),
   bookmarkStatus: async () => {
+    console.log('ran in bookmarkStatus');
     const handleFilterBookmarks = await handleFilterBookmark();
     set(() => ({
       filteredArticles: handleFilterBookmarks,
@@ -93,20 +96,25 @@ const useArticles = create<{
     set((state) => ({
       filteredArticles: handleFilterSource(state.filteredArticles, source),
     })),
-  search: (input: string) =>
+  search: (input: string) => {
+    console.log('ran in search');
     set((state) => ({
       filteredArticles: handleSearch(state.articles, input),
       scrollFunctionEnabled: false,
-    })),
-  setter: (init: NewsItemType[]) =>
+    }));
+  },
+  setter: (init: NewsItemType[]) => {
+    console.log('ran in setter');
+
     set(() => ({
       articles: [...init],
       filteredArticles: [...init],
       loading: false,
       scrollFunctionEnabled: true,
-    })),
+    }));
+  },
   scroll: async (scrollAmount: number) => {
-    console.log('ran');
+    console.log('ran in scroll');
     const response = await axios.post('/api/pages', { skip: scrollAmount });
     set((state) => ({
       articles: [...new Set([...state.articles, ...(response.data.articles as NewsItemType[])])],
