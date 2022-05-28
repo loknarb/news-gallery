@@ -32,6 +32,8 @@ const NewsItem: React.FC<NewsItemType> = ({
       props: { id: uuid },
     });
   }
+  const [discussed, setDiscussed] = useState(false);
+
   return (
     <>
       <Card>
@@ -97,7 +99,13 @@ const NewsItem: React.FC<NewsItemType> = ({
               <Upvote />
               <span className='font-mono font-semibold tracking-tight'>{upvoteAmount}</span>
             </Button>
-            <Button className='text-slate-400 dark:text-[#AAB6C1] hover:text-fuchsia-300  rounded-md z-10 p-1 transition-all duration-300'>
+            <Button
+              className={
+                discussed
+                  ? 'flex flex-row  text-fuchsia-300  border-none rounded-none z-10 p-1 transition-all duration-300'
+                  : 'flex flex-row text-slate-400 dark:text-[#AAB6C1] hover:text-fuchsia-300  rounded-md z-10 p-1 transition-all duration-300'
+              }
+              onClick={() => setDiscussed(!discussed)}>
               <Discussion />
             </Button>
             <Button
