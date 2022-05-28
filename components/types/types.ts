@@ -27,6 +27,8 @@ export interface NewsItemProp {
 export interface LayoutProps {
   display: string;
   flexDirection?: Property.FlexDirection;
+  paddingLeft?: string;
+  paddingRight?: string;
   gridTemplateColumns?: string;
   gap: string;
 }

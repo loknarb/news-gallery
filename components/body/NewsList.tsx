@@ -22,7 +22,7 @@ const NewsList = () => {
     scrollFunctionEnabled,
     loading,
   } = useArticles((state) => state);
-  const { spacingType, layoutType } = useLayout((state) => state);
+  const { spacingType, layoutType, paddingType } = useLayout((state) => state);
   const [initLayout, setLayout] = useState<LayoutProps>({
     display: `${layoutType}`,
     gridTemplateColumns: `repeat(auto-fit, minmax(300px, 300px))`,
@@ -34,6 +34,8 @@ const NewsList = () => {
         display: `${layoutType}`,
         flexDirection: 'column',
         gap: `${spacingType}`,
+        paddingLeft: `${paddingType}`,
+        paddingRight: `${paddingType}`,
       });
     } else if (layoutType === 'grid') {
       setLayout({
@@ -48,7 +50,7 @@ const NewsList = () => {
         gap: `${spacingType}`,
       });
     }
-  }, [spacingType, layoutType]);
+  }, [spacingType, layoutType, paddingType]);
   const observerAPI = useRef<IntersectionObserver | null>(null);
   const observerScroll = useRef<IntersectionObserver | null>(null);
   const { openPopUp, closePopup } = usePopUp((state) => state);
