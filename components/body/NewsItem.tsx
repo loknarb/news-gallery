@@ -42,7 +42,7 @@ const NewsItem: React.FC<NewsItemType> = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}>
           <a
-            className='cursor-pointer z-0 w-full flex flex-col justify-between'
+            className='cursor-pointer z-0 h-72 w-full flex flex-col justify-between'
             href={url}
             target={`${newTab ? '_blank' : '_self'} `}
             rel='noopener noreferrer'>
