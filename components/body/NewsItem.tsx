@@ -42,51 +42,50 @@ const NewsItem: React.FC<NewsItemType> = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}>
           <a
-            className='cursor-pointer z-0 h-72 w-full flex flex-col justify-between'
+            className='cursor-pointer z-10 h-72 w-72 absolute'
             href={url}
             target={`${newTab ? '_blank' : '_self'} `}
-            rel='noopener noreferrer'>
-            <div className='flex justify-between align-middle mt-1'>
-              <Link href={url}>
-                <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
-                  <ImageWithFallback
-                    src={`https://logo.clearbit.com/${domain}`}
-                    layout='fill'
-                    alt={`${snippet}`}
-                    fallbackSrc='/favicon.png'
-                  />
-                </div>
-              </Link>
-              <div className='h-6'>
-                {hovered ? (
-                  <Button className='z-20' onClick={displayMenu}>
-                    <span className='text-gray-900 dark:text-[#AAB6C1] flex w-6'>
-                      <VerticalDots />
-                    </span>
-                  </Button>
-                ) : (
-                  ''
-                )}
+            rel='noopener noreferrer'></a>
+          <div className='flex justify-between align-middle mt-1'>
+            <Link href={url}>
+              <div className='mx-4 relative h-6 w-6  rounded-full overflow-hidden'>
+                <ImageWithFallback
+                  src={`https://logo.clearbit.com/${domain}`}
+                  layout='fill'
+                  alt={`${snippet}`}
+                  fallbackSrc='/favicon.png'
+                />
               </div>
+            </Link>
+            <div className='h-6 z-20'>
+              {hovered ? (
+                <Button onClick={displayMenu}>
+                  <span className='text-gray-900 dark:text-[#AAB6C1] flex w-6'>
+                    <VerticalDots />
+                  </span>
+                </Button>
+              ) : (
+                ''
+              )}
             </div>
-            <h3 className='-tracking-wide  break-words text-gray-900 dark:text-[#AAB6C1] text-base line-clamp-3 mx-4'>
-              {title}
-            </h3>
-            <div className='flex-1 flex-shrink'></div>
-            <div className='mx-4 text-xs text-gray-900 dark:text-[#AAB6C1] mb-1'>
-              <ArticleDate published_at={published_at} />
-            </div>
-            <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
-              <UnoptimizedImageFallback
-                layout='fill'
-                className='object-cover'
-                src={image_url}
-                alt={`${snippet}`}
-              />
-              {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
-            </div>
-          </a>
-          <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-slate-600 shadow-sm shadow-black border-b-0 '>
+          </div>
+          <h3 className='-tracking-wide break-words text-gray-900 dark:text-[#AAB6C1] text-base line-clamp-3 mx-4'>
+            {title}
+          </h3>
+          <div className='flex-1 flex-shrink'></div>
+          <div className='mx-4 text-xs text-gray-900 dark:text-[#AAB6C1] mb-1'>
+            <ArticleDate published_at={published_at} />
+          </div>
+          <div className='relative h-40 w-full border rounded-lg border-slate-800 overflow-hidden'>
+            <UnoptimizedImageFallback
+              layout='fill'
+              className='object-cover'
+              src={image_url}
+              alt={`${snippet}`}
+            />
+            {/* <Image layout='fill' className='object-cover' src={image_url} /> */}
+          </div>
+          <div className='flex flex-row justify-around justify-self-end mt-2 border  border-[#33415524] rounded bg-slate-600 shadow-sm shadow-black border-b-0'>
             <Button
               className={
                 upvoted
