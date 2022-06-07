@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const mongoDB = mongo.db();
   const newsArticleCollection = mongoDB.collection('newsArticles');
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV === 'development') {
     const acceptedNewsSources = [
       'medium.com',
       'joshwcomeau.com',
@@ -77,6 +77,7 @@ export const getStaticProps: GetStaticProps = async () => {
           'en-CA'
         )}&limit=5`
     );
+    console.log(collectionAPI);
     Promise.all(collectionAPI.map(async (endpoint) => await axios.get(endpoint))).then(
       (results) => {
         results.forEach((result) => {
@@ -140,7 +141,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const articleData = JSON.stringify(response);
   const newsItems = JSON.parse(articleData);
-  mongo.close();
+  // mongo.close();
 
   return {
     props: {
